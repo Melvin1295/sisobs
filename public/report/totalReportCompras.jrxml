@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="totalReportCompras" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d5047539-97d7-4e2d-86ea-1f35dbf2ce1b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechaini" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fechafin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["/var/www/html/prueba/public/report/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select purchases.id as TotCompraSolesf from purchases
+
+inner join suppliers on suppliers.id=purchases.supplier_id inner join payments on payments.purchase_id=purchases.id where purchases.fechaEntrega between $P{fechaini} and $P{fechafin} ;]]>
+	</queryString>
+	<field name="TotCompraSolesf" class="java.lang.Long"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band height="50">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="50" backcolor="#999900" uuid="e29aa5a1-dff2-47a9-8286-5b7ae4263566"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier 10 Pitch" size="32"/>
+				</textElement>
+				<text><![CDATA[Reporete Compras]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="99">
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="297" y="50" width="43" height="20" uuid="b3356499-fdad-4995-961e-cc3c6e642348"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="430" y="50" width="50" height="20" uuid="113ace44-2434-4af6-a455-0ef84c124a72"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
