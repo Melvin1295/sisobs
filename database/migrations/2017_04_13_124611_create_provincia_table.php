@@ -1,9 +1,9 @@
-<?php
+.<?php
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIndicadoresTable extends Migration
+class CreateProvinciaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,20 +12,15 @@ class CreateIndicadoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('indicators', function (Blueprint $table) {
+        Schema::create('provinces', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titulo')->nullable();
+            $table->string('nombre')->nullable();
             $table->text('descripcion')->nullable();
-            $table->text('descripcion_corta');
-            $table->string('archivo_adjunto')->nullable();
-            $table->string('funete')->nullable();
+            $table->string('codigo',10);
+            $table->string('pais')->nullable();
             $table->smallInteger('estado')->default(1);
-            
-            $table->integer('province_id')->unsigned();
 
             $table->timestamps();
-
-            $table->foreign('province_id')->references('id')->on('provinces');
         });  
     }
 
@@ -36,6 +31,6 @@ class CreateIndicadoresTable extends Migration
      */
     public function down()
     {
-        Schema::drop('indicators');
+        Schema::drop('provinces');
     }
 }
