@@ -19,7 +19,7 @@ class PageController extends Controller {
 
     public function index()
     {
-        return View('stores.index');
+        return View('pages.index');
     }
 
     
