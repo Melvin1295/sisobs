@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="pages">
 <head>
     <!-- ==========================
     	Meta Tags 
@@ -25,15 +25,15 @@
     =========================== -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/animate.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/magnific-popup.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/owl.carousel.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/creative-brands.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/color-switcher.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/custom.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/color/red.css" id="main-color" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/magnific-popup.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/owl.carousel.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/creative-brands.css') }}" rel="stylesheet">
+     <link href="{{ asset('assets/css/color-switcher.css') }}" rel="stylesheet">
+     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
+     <link href="{{ asset('assets/css/color/red.css') }}" rel="stylesheet">
 
 @section('base_url')
 @show
@@ -142,18 +142,79 @@
             </div>
         </div>
         </header>
-        </section>
+
     
      
 
     
     
   <div class="content-wrapper">
-       @yield('content')        
+       @yield('content')  
+
+                         <!-- ==========================
+        JUMBOTRON - START
+    =========================== --> 
+    
+    
+    @if('Request::' == ('/pages') )
+     <section class="content">
+    <section  class="jumbotron jumbotron-carousel">
+        <div id="homepage-1-carousel" class="nav-inside owl-animation">
+            
+            <!-- SLIDESHOW ITEM - START -->
+            <div class="item slide-1">
+                <div class="slide-mask"></div>
+                <div class="slide-body">
+                    <div class="container">
+                        <h2 class="animation top-to-bottom slow">Supreme</h2>
+                        <h3 class="animation bottom-to-top slow delay-1">Precision Business Theme</h3>
+                        <a href="https://wrapbootstrap.com/theme/supreme-precision-business-theme-WB08P8D88?ref=themejumbo" class="btn btn-normal animation bottom-to-top slow delay-2" target="_blank">More Information</a>
+                    </div>
+                </div>
+            </div>
+            <!-- SLIDESHOW ITEM - END -->
+            
+            <!-- SLIDESHOW ITEM - START -->
+            <div class="item slide-2">
+                <div class="slide-mask"></div>
+                <div class="slide-body">
+                    <div class="container">
+                        <h2 class="animation right-to-left delay-1">Core Theme <span class="color">Features</span></h2>
+                        <ul class="list-unstyled">
+                            <li class="animation right-to-left delay-2">Mobile Friendly</li>
+                            <li class="animation right-to-left delay-3">Easy to Customize</li>
+                            <li class="animation right-to-left delay-4">Modern Design</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- SLIDESHOW ITEM - END -->
+            
+            <!-- SLIDESHOW ITEM - START -->
+            <div class="item slide-3">
+                <div class="slide-mask"></div>
+                <div class="slide-body">
+                    <div class="container">
+                        <div class="row">
+                        <div class="col-sm-12 col-md-11 col-lg-10">
+                        <h2 class="animation top-to-bottom delay-1">Supreme - Precision Business Theme</h2>
+                        <p class="animation bottom-to-top delay-2">Donec laoreet nisi erat, quis tincidunt arcu interdum eu. Fusce blandit tristique odio, eu pellentesque sem vulputate nec.</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- SLIDESHOW ITEM - END -->
+            
+        </div>
+    
+       </section>
+       </section>
+     @endif 
   </div>
   
 
-  <script src="/vendor/angular/angular.js"></script>
+  <script src="{{ asset('/vendor/angular/angular.js') }}"></script>
   <script src="/vendor/moment/moment.js"></script>
   <script src="/vendor/angular-route/angular-route.js"></script>
   <script src="/vendor/angular-sanitize/angular-sanitize.js"></script>
@@ -163,6 +224,21 @@
   <script src="/js/app/servicesglobal.js"></script>
   <script src="/vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true"></script>
+
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jqBootstrapValidation.js') }}"></script>
+    <script src="{{ asset('assets/js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.mb.YTPlayer.min.js') }}"></script>
+    <script src="{{ asset('assets/js/typed.min.js') }}"></script>
+    <script src="{{ asset('assets/js/creative-brands.js') }}"></script>
+    <script src="{{ asset('assets/js/color-switcher.js') }}"></script>
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
     
  @section('js-customize')
  @show

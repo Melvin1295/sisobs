@@ -21,6 +21,13 @@ class PageController extends Controller {
     {
         return View('pages.index');
     }
+    public function form_blog()
+    {
+        return View('pages.form_blog');
+    }
+    public function form_contact(){
+    	return View('pages.form_contact');
+    }
 
     
 }

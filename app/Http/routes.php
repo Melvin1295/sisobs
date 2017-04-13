@@ -75,6 +75,10 @@ Route::get('api/employeesVenta/search/{q?}',['as'=>'person_search', 'uses'=>'Emp
 
 /* incio rutas de pagina web */
 Route::get('pages',['as'=>'person','uses'=>'PageController@index']);
+Route::get('pages/blog',['as'=>'person','uses'=>'PageController@index']);
+Route::get('pages/form-blog',['as'=>'person','uses'=>'PageController@form_blog']);
+Route::get('pages/contact',['as'=>'person','uses'=>'PageController@index']);
+Route::get('pages/form-contact',['as'=>'person','uses'=>'PageController@form_contact']);
 /* fin rutas de pagina web */
 
 Route::group(['middleware' => 'role'], function () {
