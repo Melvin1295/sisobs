@@ -73,6 +73,9 @@ Route::get('api/employees/search/{q?}',['as'=>'person_search', 'uses'=>'Employee
 Route::get('api/employees/find/{id}',['as'=>'person_find', 'uses'=>'EmployeesController@find']);
 Route::get('api/employeesVenta/search/{q?}',['as'=>'person_search', 'uses'=>'EmployeesController@searchVenta']);
 
+/* incio rutas de pagina web */
+Route::get('pages',['as'=>'person','uses'=>'PageController@index']);
+/* fin rutas de pagina web */
 
 Route::group(['middleware' => 'role'], function () {
 Route::get('stores',['as'=>'store','uses'=>'StoresController@index']);
