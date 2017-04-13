@@ -12,7 +12,7 @@ class AddDniToEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::table('employees', function (Blueprint $table) {
+        Schema::table('authors', function (Blueprint $table) {
             //
             $table->char('dni',8)->unique();
         });
@@ -25,7 +25,7 @@ class AddDniToEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::table('employees', function (Blueprint $table) {
+        Schema::table('authors', function (Blueprint $table) {
             //
             $table->dropColumn('dni');
         });

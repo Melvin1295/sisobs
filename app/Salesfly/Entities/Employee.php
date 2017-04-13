@@ -3,7 +3,7 @@ namespace Salesfly\Salesfly\Entities;
 
 class Employee extends \Eloquent {
 
-	protected $table = 'employees';
+	protected $table = 'authors';
     
     protected $fillable = ['nombres',
     						'apellidos',

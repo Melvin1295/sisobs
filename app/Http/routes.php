@@ -93,6 +93,21 @@ Route::get('api/stores/select','StoresController@selectStores');
 });
 
 
+Route::get('publishers',['as'=>'person','uses'=>'PublishersController@index']);
+Route::get('publishers/create',['as'=>'person_create','uses'=>'PublishersController@index']);
+Route::get('publishers/edit/{id?}', ['as' => 'person_edit', 'uses' => 'PublishersController@index']);
+Route::get('publishers/form-create',['as'=>'person_form_create','uses'=>'PublishersController@form_create']);
+Route::get('publishers/form-edit',['as'=>'person_form_edit','uses'=>'PublishersController@form_edit']);
+Route::get('api/publishers/all',['as'=>'person_all', 'uses'=>'PublishersController@all']);
+Route::get('api/publishers/paginate/',['as' => 'person_paginate', 'uses' => 'PublishersController@paginatep']);
+Route::post('api/publishers/create',['as'=>'person_create', 'uses'=>'PublishersController@create']);
+Route::put('api/publishers/edit',['as'=>'person_edit', 'uses'=>'PublishersController@edit']);
+Route::post('api/publishers/destroy',['as'=>'person_destroy', 'uses'=>'PublishersController@destroy']);
+Route::get('api/publishers/search/{q?}',['as'=>'person_search', 'uses'=>'PublishersController@search']);
+Route::get('api/publishers/find/{id}',['as'=>'person_find', 'uses'=>'PublishersController@find']);
+Route::get('api/employeesVenta/search/{q?}',['as'=>'person_search', 'uses'=>'PublishersController@searchVenta']);
+
+
 
 
 

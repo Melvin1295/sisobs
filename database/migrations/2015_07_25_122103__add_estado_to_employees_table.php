@@ -12,7 +12,7 @@ class AddEstadoToEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::table('employees', function (Blueprint $table) {
+        Schema::table('authors', function (Blueprint $table) {
             //
             $table->boolean('estado'); //1-> activo, 0 -> no activo;
         });
@@ -25,7 +25,7 @@ class AddEstadoToEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::table('employees', function (Blueprint $table) {
+        Schema::table('authors', function (Blueprint $table) {
             //
             $table->dropColumn('estado'); //1-> activo, 0 -> no activo;
         });

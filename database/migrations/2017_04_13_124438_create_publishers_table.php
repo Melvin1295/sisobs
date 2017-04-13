@@ -13,6 +13,19 @@ class CreatePublishersTable extends Migration
     public function up()
     {
         //
+        Schema::create('publishers', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('titulo');
+            $table->dateTime('fecha_publicacion')->nullable();
+            $table->string('tipo')->nullable();
+            $table->string('archivo_adjunto')->nullable();
+            $table->smallInteger('estado')->default(1);
+            
+            $table->integer('usuario_id')->unsigned();
+            $table->timestamps();
+
+            $table->foreign('usuario_id')->references('id')->on('users');
+        });        
     }
 
     /**
@@ -22,6 +35,6 @@ class CreatePublishersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('publishers');
     }
 }
