@@ -15,5 +15,10 @@ class SliderRepo extends BaseRepo{
                     ->paginate(15);
         return $menus;
     }
+    public function slidersall($q)
+    {
+        $menus =Slider::get();
+        return $menus;
+    }
     
 } 

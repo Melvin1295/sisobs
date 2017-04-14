@@ -10,6 +10,7 @@ class Slider extends \Eloquent {
                     'nombre',
                     'imagen',
                     'glosa',
-                    'estado'
+                    'estado',
+                    'orden'
                     ];
 }

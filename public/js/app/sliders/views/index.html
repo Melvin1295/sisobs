@@ -69,7 +69,7 @@
                       <td>{{$index + 1}}</td>
                       <td>{{row.nombre}}</td>
                       <td>{{row.glosa}}</td>
-                      <td>{{row.imagen}}</td>
+                      <td style="width: 100px"><img ng-src="{{row.imagen}}" alt="" class="img-thumbnail"/></td>
 
 
                       <td><a ng-click="updateEstadoSliders(row)" class="btn btn-default btn-xs">{{row.estado == 1? 'Desactivar':'Activar'}}</a>

@@ -28,6 +28,12 @@ class SliderController extends Controller {
         return response()->json($sliders);
     }
 
+    public function slidersall()
+    {
+        $sliders = $this->sliderRepo->slidersall(15);
+        return response()->json($sliders);
+    }
+
     public function paginatep(){
         $sliders = $this->sliderRepo->paginate(15);
         return response()->json($sliders);

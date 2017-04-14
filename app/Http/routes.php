@@ -140,6 +140,8 @@ Route::put('api/sliders/edit',['as'=>'person_edit', 'uses'=>'SliderController@ed
 Route::post('api/sliders/destroy',['as'=>'person_destroy', 'uses'=>'SliderController@destroy']);
 Route::get('api/sliders/search/{q?}',['as'=>'person_search', 'uses'=>'SliderController@search']);
 Route::get('api/sliders/find/{id}',['as'=>'person_find', 'uses'=>'SliderController@find']);
+Route::get('api/slidersall/paginate/',['as'=>'person_all', 'uses'=>'SliderController@slidersall']);
+
 //===============================================================
 Route::get('provinces',['as'=>'person','uses'=>'ProvincesController@index']);
 Route::get('provinces/create',['as'=>'person_create','uses'=>'ProvincesController@index']);

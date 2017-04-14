@@ -38,16 +38,42 @@
                 }else{
                     crudService.search('authorsdata',0,1).then(function (data){
                         $scope.autores = data.data;
-                    });    
+                    });  
+
                     crudService.paginate('sliders',1).then(function (data) {
                         $scope.sliders = data.data;
                         $scope.maxSize = 5;
                         $scope.totalItems = data.total;
                         $scope.currentPage = data.current_page;
                         $scope.itemsperPage = 2;
+                        
 
                     });
+                    crudService.paginate('slidersall',1).then(function (data) {
+                        $scope.listarSlider();
+                    });
                 }
+
+                $scope.slidersOrden=[];
+                $scope.listarSlider= function(){
+                    console.log('$scope.sliders');
+                    console.log($scope.sliders);
+
+                    for (var i = 0; i < $scope.sliders.length; i++) {
+                        if ($scope.sliders[i].estado === 1) {
+                            $scope.slidersOrden.push($scope.sliders[i]);
+                        }
+                    }
+
+                    console.log('$scope.sliders');
+                    console.log($scope.sliders);
+                    console.log('$scope.slidersOrden');
+                    console.log($scope.slidersOrden);
+
+                }
+
+
+                
 
                 $scope.searchSliders= function(){
                 if ($scope.query.length > 0) {

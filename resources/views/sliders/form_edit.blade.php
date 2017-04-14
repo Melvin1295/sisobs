@@ -45,15 +45,13 @@
                       
 
                      
-                     <div class="form-group" ng-class="{true: 'has-error'}[ sliderEditForm.glosa.$error.required && sliderEditForm.$submitted || sliderEditForm.glosa.$dirty && sliderEditForm.glosa.$invalid]">
+                     <div class="form-group">
                       <label for="nombres">Descripcion</label>
-                      <textarea rows="2" cols="50" class="form-control" name="glosa" placeholder="Descripcion"</ ng-model="slider.glosa" required>
+                      <textarea rows="2" cols="50" class="form-control" name="glosa" placeholder="Descripcion"</ ng-model="slider.glosa">
                         
                       </textarea>
-                      <label ng-show="sliderEditForm.$submitted || sliderEditForm.glosa.$dirty && sliderEditForm.glosa.$invalid">
-                        <span ng-show="sliderEditForm.glosa.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
-                      </label>
-                    </div>    
+
+                    </div>     
             
                        <!--====================-->
                             
