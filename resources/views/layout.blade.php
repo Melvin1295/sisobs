@@ -150,9 +150,17 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class=""><a href="/users" ><i class="fa fa-circle-o"></i>Usuarios</a></li>
-                  <li><a href="/stores"><i class="fa fa-circle-o"></i>Tienda </a></li>
-                  <li><a href="/employees"><i class="fa fa-circle-o"></i>Tienda </a></li>
+                  <li class=""><a href="/users" ><i class="fa fa-circle-o"></i>Usuarios</a></li>
+                  <li><a href="/menus"><i class="fa fa-circle-o"></i>Menus </a></li>
+                  <li><a href="/sliders"><i class="fa fa-circle-o"></i>Slider </a></li>
+                  
+                  <li><a href="/provinces"><i class="fa fa-circle-o"></i>Provincias </a></li>
+                  <li><a href="/authors"><i class="fa fa-circle-o"></i>Autores </a></li>
+                  <li><a href="/publishers"><i class="fa fa-circle-o"></i>Publicaciones </a></li>
+                  <li><a href="/editorials"><i class="fa fa-circle-o"></i>Editoriales </a></li>
+                  
+                  <li><a href="/indicators"><i class="fa fa-circle-o"></i>Indicadores </a></li>
+
               </ul>
             </li>
              @endif
