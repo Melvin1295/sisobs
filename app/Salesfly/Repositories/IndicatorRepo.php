@@ -12,7 +12,13 @@ class IndicatorRepo extends BaseRepo{
     public function search($q)
     {
         $indicator =Indicator::where('titulo','like', $q.'%')
+                    ->with('province')
                     ->paginate(15);
+        return $indicator;
+    }
+    public function paginaterepo($c){
+         $indicator =Indicator::with('province')
+                    ->paginate($c);
         return $indicator;
     }
     

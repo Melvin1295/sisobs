@@ -28,10 +28,17 @@
 
                 if(id)
                 {
+                    crudService.search('authorsdata',0,1).then(function (data){
+                        $scope.autores = data.data;
+                    });    
                     crudService.byId(id,'publishers').then(function (data) {
                         $scope.publisher = data;
+                        $scope.publisher.fecha_publicacion = new Date($scope.publisher.fecha_publicacion);
                     });
                 }else{
+                    crudService.search('authorsdata',0,1).then(function (data){
+                        $scope.autores = data.data;
+                    });    
                     crudService.paginate('publishers',1).then(function (data) {
                         $scope.publishers = data.data;
                         $scope.maxSize = 5;
@@ -60,12 +67,13 @@
                 };
 
                 $scope.createPublishers = function(){
-                    if ($scope.storeCreateForm.$valid) {
+                    if ($scope.publisherCreateForm.$valid) {
+                        console.log($scope.publisher);
                         crudService.create($scope.publisher, 'publishers').then(function (data) {
                            
                             if (data['estado'] == true) {
                                 $scope.success = data['nombres'];
-                                alert('grabado correctamente');
+                                alert('Grabado correctamente');
                                 $location.path('/publishers');
 
                             } else {
@@ -81,7 +89,7 @@
                 };
 
                 $scope.updatePublishers = function(){
-                   if ($scope.storeCreateForm.$valid) {
+                   if ($scope.publisherEditForm.$valid) {
                         crudService.update($scope.publisher,'publishers').then(function(data)
                         {
                             if(data['estado'] == true){
@@ -93,6 +101,20 @@
                             }
                         });
                     }
+                };
+                $scope.updateEstadoPublishers = function(row){
+                    if (row.estado === 1) {
+                        row.estado=0;
+                    }else{
+                        row.estado=1;
+                    }
+                        crudService.update(row,'publishers').then(function(data)
+                        {
+                            if(data['estado'] == true){
+                            }else{
+                                $scope.errors =data;
+                            }
+                        });
                 };
 
                 $scope.deletePublishers = function(row){

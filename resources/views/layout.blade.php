@@ -515,7 +515,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="/vendor/adminlte/dist/js/demo.js" type="text/javascript"></script>
 
-    <script src="/dev2/socket.io/socket.io.js"></script>
+    <!--  <script src="/dev2/socket.io/socket.io.js"></script> -->
   <!-- bower:js -->
   <script src="/vendor/angular/angular.js"></script>
   <script src="/vendor/moment/moment.js"></script>

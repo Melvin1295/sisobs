@@ -15,7 +15,7 @@ class CreateEditorialTable extends Migration
         Schema::create('editorials', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre')->nullable();
-            $table->dateTime('anio')->nullable();
+            $table->string('anio')->nullable();
             $table->text('descripcion_corta');
             $table->text('descripcion');
             $table->text('titulo_descripcion');

@@ -12,7 +12,7 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('authors', function (Blueprint $table) {
+        Schema::create('employees', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombres');
             $table->string('apellidos');
@@ -33,6 +33,8 @@ class CreateEmployeesTable extends Migration
             $table->string('departamento');
             $table->string('pais');
             $table->text('notas');
+            $table->boolean('estado'); 
+            $table->string('dni');
             $table->timestamps();
         });
     }
@@ -43,6 +45,6 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
-       Schema::drop('authors');
+       Schema::drop('employees');
     }
 }

@@ -1,0 +1,110 @@
+<!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Autores
+            <small>Panel de Control</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Autores</li>
+          </ol>
+          </section>
+        
+
+        <!-- Main content -->
+        <section class="content">
+        <div class="row">
+        <div class="col-md-12">
+        <a href="/authors/create" type="submit" ng-click="llenarcombo()" class="btn btn-primary pull-left">Añadir Autor</a>
+         <!-- <input type="submit" class="btn btn-primary pull-left" value="Anadir Cl" ng-click="llenarcombo()" onclick="location='/authors/create'"/>-->
+          </div>
+        </div>
+        </br>
+          <div class="row">
+            <div class="col-md-12">
+
+
+              <div class="box">
+
+                <div class="box-header with-border">
+                  <h3 class="box-title">Autores</h3>
+                  <div class="box-tools">
+                  <form ng-keyup="searchAuthor()">
+                    <div class="input-group" style="width: 200px;">
+                      <input type="text" ng-model="query"  name="table_search" class="form-control input-sm pull-right" placeholder="Search" />
+                      <div class="input-group-btn">
+                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                    </form>
+                  </div>
+                  
+                </div><!-- /.box-header -->
+                  <div class="callout callout-warning"  ng-show="estado">
+                      <h4><b>Gastos Del Autor {{mostrarShow}}</b></h4>
+                      <button type="button" ng-click="" data-toggle="modal" data-target="#miventana1" class="btn btn-primary" ng-show="mostrarver" >Ver</button>
+                          <button type="button" ng-click="" data-toggle="modal" data-target="#miventana" class="btn btn-primary" ng-show="mostraragregar">Agregar</button>                          
+                          <button type="button" class="btn btn-default" ng-click="variable2()">Salir</button>
+                  </div>
+                <div class="box-body">
+                   
+                <div class="callout callout-info"  ng-show="author.id > 0">
+                    <h4>¿ Estás seguro que deseas eliminar a "{{author.nombres}}" ?</h4>
+                    <p>
+                      <button type="button" class="btn btn-danger" ng-click="destroyAuthor()">Si</button>
+                      <button type="button" class="btn btn-default" ng-click="cancelAuthor()">No</button>
+                    </p>
+                  </div>
+                  <div class="box-body table-responsive no-padding">
+                  <table class="table table-bordered">
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Nombre Completo </th>
+                      <th>DNI</th>
+                      <th>Codigo</th>
+                      <th>E-mail</th>
+                      <th>Direcion</th>
+                      <th>Estado</th>
+                      <!--<th style="width: 40px">Costos</th>-->
+                      <th style="width: 40px">Editar</th>
+                      <th style="width: 40px">Eliminar</th>
+                    </tr>
+                   
+                    <tr ng-repeat="row in authors">
+                      <td>{{$index + 1 + (currentPage-1)*itemsperPage}}</td>
+
+                      <td>{{row.nombres+ " " + row.apellidos }}</td>
+                      <td>{{row.dni}}</td>
+                      <td>{{row.codigo}}</td>
+                      <td>{{row.email}}</td>
+                      <td>{{row.direccioncontacto}}</td>
+
+                      <td><div ng-if="row.estado==1">
+                          Activo      
+                          </div>
+                          <div ng-if="row.estado==0">
+                          Inactivo      
+                          </div>
+                      </td>
+
+                        <!--<td><a ng-click="editCostos(row)" class="btn btn-success btn-xs">Costos</a></td>-->
+                        <td><a ng-click="editAuthor(row)" class="btn btn-warning btn-xs">Editar</a></td>
+                      <td><a ng-click="deleteAuthor(row)" class="btn btn-danger btn-xs">Eliminar</a></td>
+                      
+                    </tr>
+                    
+                    
+                  </table>
+                  </div>
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix">
+                  <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm no-margin pull-right" items-per-page="itemsperPage" boundary-links="ngenabled" rotate="false" num-pages="numPages" ng-change="pageChanged()"></pagination>
+
+
+
+                </div>
+              </div><!-- /.box -->
+            </div>  
+          </div>
+        </section>
+          

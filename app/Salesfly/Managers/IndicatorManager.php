@@ -9,9 +9,12 @@ class IndicatorManager extends BaseManager {
             'descripcion'=> '',
             'descripcion_corta'=> '',
             'archivo_adjunto'=> '',
-            'funete'=> '',
+            'fecha_publicacion'=> '',
+            'fuente'=> '',
             'estado'=> '',
             'province_id'=> ''
                   ];
         return $rules;
-    }}
+    }
+    
+}

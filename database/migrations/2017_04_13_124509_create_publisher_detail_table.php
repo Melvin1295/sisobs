@@ -18,16 +18,17 @@ class CreatePublisherDetailTable extends Migration
             $table->text('descripcion')->nullable();
             $table->text('descripcion_corta')->nullable();
             $table->string('archivo_adjunto')->nullable();
-            $table->string('imagen');
-            $table->integer('orden');
-            $table->integer('autor_id')->unsigned();
-            $table->integer('publisher_id')->unsigned();
+            $table->dateTime('fecha_publicacion')->nullable();
+            $table->string('imagen')->nullable();
+            $table->integer('orden')->nullable();
+            $table->integer('employee_id')->unsigned();
+            //$table->integer('publisher_id')->unsigned();
             $table->smallInteger('estado')->default(1);
 
             $table->timestamps();
 
-            $table->foreign('autor_id')->references('id')->on('authors');
-            $table->foreign('publisher_id')->references('id')->on('publishers');
+            $table->foreign('employee_id')->references('id')->on('employees');
+            //$table->foreign('publisher_id')->references('id')->on('publishers');
         }); 
     }
 

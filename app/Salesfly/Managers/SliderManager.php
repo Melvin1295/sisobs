@@ -7,7 +7,7 @@ class SliderManager extends BaseManager {
         $rules = [              
             'nombre'=> '',
             'imagen'=> '',
-            'glosa'=> ''
+            'glosa'=> '',
             'estado'=> ''
                   ];
         return $rules;

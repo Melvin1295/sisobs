@@ -10,18 +10,18 @@
                  
           
                 //----------------------------------------------------------------------
-            .when('/employees', {
-                    templateUrl: '/js/app/employees/views/index.html',
-                    controller: 'EmployeeController'
+            .when('/authors', {
+                    templateUrl: '/js/app/authors/views/index.html',
+                    controller: 'AuthorController'
                 })
-                .when('/employees/create',{
-                    templateUrl:'/employees/form-create',
-                    controller: 'EmployeeController'
+                .when('/authors/create',{
+                    templateUrl:'/authors/form-create',
+                    controller: 'AuthorController'
                 })
                 
-                .when('/employees/edit/:id',{
-                    templateUrl:'/employees/form-edit',
-                    controller: 'EmployeeController'
+                .when('/authors/edit/:id',{
+                    templateUrl:'/authors/form-edit',
+                    controller: 'AuthorController'
                 }) 
                 //-----------------------------------------------  
             
@@ -52,7 +52,7 @@
                     controller: 'UserController'
                 })
                 
-                .when('/employees', {
+                /*.when('/employees', {
                     templateUrl: '/js/app/employees/views/index.html',
                     controller: 'EmployeeController'
                 })
@@ -63,7 +63,86 @@
                 .when('/employees/edit/:id',{
                     templateUrl:'/employees/form-edit',
                     controller: 'EmployeeController'
+                })*/
+                //-----------------------------------------------          
+                .when('/publishers', {
+                    templateUrl: '/js/app/publishers/views/index.html',
+                    controller: 'PublisherController'
                 })
+                .when('/publishers/create',{
+                    templateUrl:'/publishers/form-create',
+                    controller: 'PublisherController'
+                })
+                .when('/publishers/edit/:id',{
+                    templateUrl:'/publishers/form-edit',
+                    controller: 'PublisherController'
+                })
+                //-----------------------------------------------          
+                .when('/editorials', {
+                    templateUrl: '/js/app/editorials/views/index.html',
+                    controller: 'EditorialController'
+                })
+                .when('/editorials/create',{
+                    templateUrl:'/editorials/form-create',
+                    controller: 'EditorialController'
+                })
+                .when('/editorials/edit/:id',{
+                    templateUrl:'/editorials/form-edit',
+                    controller: 'EditorialController'
+                })  
+                //-----------------------------------------------          
+                .when('/sliders', {
+                    templateUrl: '/js/app/sliders/views/index.html',
+                    controller: 'SliderController'
+                })
+                .when('/sliders/create',{
+                    templateUrl:'/sliders/form-create',
+                    controller: 'SliderController'
+                })
+                .when('/sliders/edit/:id',{
+                    templateUrl:'/sliders/form-edit',
+                    controller: 'SliderController'
+                }) 
+                //-----------------------------------------------          
+                .when('/provinces', {
+                    templateUrl: '/js/app/provinces/views/index.html',
+                    controller: 'ProvinceController'
+                })
+                .when('/provinces/create',{
+                    templateUrl:'/provinces/form-create',
+                    controller: 'ProvinceController'
+                })
+                .when('/provinces/edit/:id',{
+                    templateUrl:'/provinces/form-edit',
+                    controller: 'ProvinceController'
+                }) 
+                //-----------------------------------------------          
+                .when('/indicators', {
+                    templateUrl: '/js/app/indicators/views/index.html',
+                    controller: 'IndicatorController'
+                })
+                .when('/indicators/create',{
+                    templateUrl:'/indicators/form-create',
+                    controller: 'IndicatorController'
+                })
+                .when('/indicators/edit/:id',{
+                    templateUrl:'/indicators/form-edit',
+                    controller: 'IndicatorController'
+                }) 
+                //-----------------------------------------------          
+                .when('/menus', {
+                    templateUrl: '/js/app/menus/views/index.html',
+                    controller: 'MenuController'
+                })
+                .when('/menus/create',{
+                    templateUrl:'/menus/form-create',
+                    controller: 'MenuController'
+                })
+                .when('/menus/edit/:id',{
+                    templateUrl:'/menus/form-edit',
+                    controller: 'MenuController'
+                })               
+                              
                 
                 
                 .otherwise({

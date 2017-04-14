@@ -18,8 +18,9 @@ class CreateIndicadoresTable extends Migration
             $table->text('descripcion')->nullable();
             $table->text('descripcion_corta');
             $table->string('archivo_adjunto')->nullable();
-            $table->string('funete')->nullable();
+            $table->string('fuente')->nullable();
             $table->smallInteger('estado')->default(1);
+            $table->dateTime('fecha_publicacion')->nullable();
             
             $table->integer('province_id')->unsigned();
 

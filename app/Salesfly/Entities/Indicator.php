@@ -11,8 +11,12 @@ class Indicator extends \Eloquent {
                     'descripcion',
                     'descripcion_corta',
                     'archivo_adjunto',
-                    'funete',
+                    'fecha_publicacion',
+                    'fuente',
                     'estado',
                     'province_id'
                     ];
-}
+                    public function province(){
+            return $this->belongsTo('Salesfly\Salesfly\Entities\Province','province_id');
+        }
+} 

@@ -12,4 +12,5 @@ class ProvinceManager extends BaseManager {
             'estado'=> ''
                   ];
         return $rules;
-    }}
+    }
+}

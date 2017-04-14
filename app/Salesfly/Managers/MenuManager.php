@@ -6,7 +6,7 @@ class MenuManager extends BaseManager {
     {
         $rules = [              
             'titulo'=> '',
-            'descripcion'=> ''
+            'descripcion'=> '',
             'estado'=> ''
                   ];
         return $rules;

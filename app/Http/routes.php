@@ -59,19 +59,19 @@ Route::get('api/users/search/{q?}',['as'=>'user_search', 'uses'=>'Auth\AuthContr
 Route::get('api/users/find/{id}',['as'=>'user_find', 'uses'=>'Auth\AuthController@find']);
 Route::get('api/users/stores',['as' => 'user_stores_select','uses' => 'Auth\AuthController@store_select']);
 
-Route::get('employees',['as'=>'person','uses'=>'EmployeesController@index']);
-Route::get('employees/create',['as'=>'person_create','uses'=>'EmployeesController@index']);
-Route::get('employees/edit/{id?}', ['as' => 'person_edit', 'uses' => 'EmployeesController@index']);
-Route::get('employees/form-create',['as'=>'person_form_create','uses'=>'EmployeesController@form_create']);
-Route::get('employees/form-edit',['as'=>'person_form_edit','uses'=>'EmployeesController@form_edit']);
-Route::get('api/employees/all',['as'=>'person_all', 'uses'=>'EmployeesController@all']);
-Route::get('api/employees/paginate/',['as' => 'person_paginate', 'uses' => 'EmployeesController@paginatep']);
-Route::post('api/employees/create',['as'=>'person_create', 'uses'=>'EmployeesController@create']);
-Route::put('api/employees/edit',['as'=>'person_edit', 'uses'=>'EmployeesController@edit']);
-Route::post('api/employees/destroy',['as'=>'person_destroy', 'uses'=>'EmployeesController@destroy']);
-Route::get('api/employees/search/{q?}',['as'=>'person_search', 'uses'=>'EmployeesController@search']);
-Route::get('api/employees/find/{id}',['as'=>'person_find', 'uses'=>'EmployeesController@find']);
-Route::get('api/employeesVenta/search/{q?}',['as'=>'person_search', 'uses'=>'EmployeesController@searchVenta']);
+Route::get('authors',['as'=>'person','uses'=>'AuthorController@index']);
+Route::get('authors/create',['as'=>'person_create','uses'=>'AuthorController@index']);
+Route::get('authors/edit/{id?}', ['as' => 'person_edit', 'uses' => 'AuthorController@index']);
+Route::get('authors/form-create',['as'=>'person_form_create','uses'=>'AuthorController@form_create']);
+Route::get('authors/form-edit',['as'=>'person_form_edit','uses'=>'AuthorController@form_edit']);
+Route::get('api/authors/all',['as'=>'person_all', 'uses'=>'AuthorController@all']);
+Route::get('api/authors/paginate/',['as' => 'person_paginate', 'uses' => 'AuthorController@paginatep']);
+Route::post('api/authors/create',['as'=>'person_create', 'uses'=>'AuthorController@create']);
+Route::put('api/authors/edit',['as'=>'person_edit', 'uses'=>'AuthorController@edit']);
+Route::post('api/authors/destroy',['as'=>'person_destroy', 'uses'=>'AuthorController@destroy']);
+Route::get('api/authors/search/{q?}',['as'=>'person_search', 'uses'=>'AuthorController@search']);
+Route::get('api/authors/find/{id}',['as'=>'person_find', 'uses'=>'AuthorController@find']);
+Route::get('api/authorsdata/search/{q?}',['as'=>'person_search', 'uses'=>'AuthorController@searchall']);
 
 /* incio rutas de pagina web */
 Route::get('pages',['as'=>'person','uses'=>'PageController@index']);
@@ -95,7 +95,7 @@ Route::get('api/stores/find/{id}',['as'=>'store_find', 'uses'=>'StoresController
 Route::get('api/stores/select','StoresController@selectStores');
 });
 
-
+//===============================================================
 Route::get('publishers',['as'=>'person','uses'=>'PublishersController@index']);
 Route::get('publishers/create',['as'=>'person_create','uses'=>'PublishersController@index']);
 Route::get('publishers/edit/{id?}', ['as' => 'person_edit', 'uses' => 'PublishersController@index']);
@@ -108,7 +108,75 @@ Route::put('api/publishers/edit',['as'=>'person_edit', 'uses'=>'PublishersContro
 Route::post('api/publishers/destroy',['as'=>'person_destroy', 'uses'=>'PublishersController@destroy']);
 Route::get('api/publishers/search/{q?}',['as'=>'person_search', 'uses'=>'PublishersController@search']);
 Route::get('api/publishers/find/{id}',['as'=>'person_find', 'uses'=>'PublishersController@find']);
-Route::get('api/employeesVenta/search/{q?}',['as'=>'person_search', 'uses'=>'PublishersController@searchVenta']);
+
+//===============================================================
+Route::get('editorials',['as'=>'person','uses'=>'EditorialsController@index']);
+Route::get('editorials/create',['as'=>'person_create','uses'=>'EditorialsController@index']);
+Route::get('editorials/edit/{id?}', ['as' => 'person_edit', 'uses' => 'EditorialsController@index']);
+Route::get('editorials/form-create',['as'=>'person_form_create','uses'=>'EditorialsController@form_create']);
+Route::get('editorials/form-edit',['as'=>'person_form_edit','uses'=>'EditorialsController@form_edit']);
+Route::get('api/editorials/all',['as'=>'person_all', 'uses'=>'EditorialsController@all']);
+Route::get('api/editorials/paginate/',['as' => 'person_paginate', 'uses' => 'EditorialsController@paginatep']);
+Route::post('api/editorials/create',['as'=>'person_create', 'uses'=>'EditorialsController@create']);
+Route::put('api/editorials/edit',['as'=>'person_edit', 'uses'=>'EditorialsController@edit']);
+Route::post('api/editorials/destroy',['as'=>'person_destroy', 'uses'=>'EditorialsController@destroy']);
+Route::get('api/editorials/search/{q?}',['as'=>'person_search', 'uses'=>'EditorialsController@search']);
+Route::get('api/editorials/find/{id}',['as'=>'person_find', 'uses'=>'EditorialsController@find']);
+
+//===============================================================
+Route::get('sliders',['as'=>'person','uses'=>'SliderController@index']);
+Route::get('sliders/create',['as'=>'person_create','uses'=>'SliderController@index']);
+Route::get('sliders/edit/{id?}', ['as' => 'person_edit', 'uses' => 'SliderController@index']);
+Route::get('sliders/form-create',['as'=>'person_form_create','uses'=>'SliderController@form_create']);
+Route::get('sliders/form-edit',['as'=>'person_form_edit','uses'=>'SliderController@form_edit']);
+Route::get('api/sliders/all',['as'=>'person_all', 'uses'=>'SliderController@all']);
+Route::get('api/sliders/paginate/',['as' => 'person_paginate', 'uses' => 'SliderController@paginatep']);
+Route::post('api/sliders/create',['as'=>'person_create', 'uses'=>'SliderController@create']);
+Route::put('api/sliders/edit',['as'=>'person_edit', 'uses'=>'SliderController@edit']);
+Route::post('api/sliders/destroy',['as'=>'person_destroy', 'uses'=>'SliderController@destroy']);
+Route::get('api/sliders/search/{q?}',['as'=>'person_search', 'uses'=>'SliderController@search']);
+Route::get('api/sliders/find/{id}',['as'=>'person_find', 'uses'=>'SliderController@find']);
+//===============================================================
+Route::get('provinces',['as'=>'person','uses'=>'ProvincesController@index']);
+Route::get('provinces/create',['as'=>'person_create','uses'=>'ProvincesController@index']);
+Route::get('provinces/edit/{id?}', ['as' => 'person_edit', 'uses' => 'ProvincesController@index']);
+Route::get('provinces/form-create',['as'=>'person_form_create','uses'=>'ProvincesController@form_create']);
+Route::get('provinces/form-edit',['as'=>'person_form_edit','uses'=>'ProvincesController@form_edit']);
+Route::get('api/provinces/all',['as'=>'person_all', 'uses'=>'ProvincesController@all']);
+Route::get('api/provinces/paginate/',['as' => 'person_paginate', 'uses' => 'ProvincesController@paginatep']);
+Route::post('api/provinces/create',['as'=>'person_create', 'uses'=>'ProvincesController@create']);
+Route::put('api/provinces/edit',['as'=>'person_edit', 'uses'=>'ProvincesController@edit']);
+Route::post('api/provinces/destroy',['as'=>'person_destroy', 'uses'=>'ProvincesController@destroy']);
+Route::get('api/provinces/search/{q?}',['as'=>'person_search', 'uses'=>'ProvincesController@search']);
+Route::get('api/provinces/find/{id}',['as'=>'person_find', 'uses'=>'ProvincesController@find']);
+Route::get('api/provincesdata/search/{q?}',['as'=>'person_search', 'uses'=>'ProvincesController@searchall']);
+//===============================================================
+Route::get('indicators',['as'=>'person','uses'=>'IndicatorController@index']);
+Route::get('indicators/create',['as'=>'person_create','uses'=>'IndicatorController@index']);
+Route::get('indicators/edit/{id?}', ['as' => 'person_edit', 'uses' => 'IndicatorController@index']);
+Route::get('indicators/form-create',['as'=>'person_form_create','uses'=>'IndicatorController@form_create']);
+Route::get('indicators/form-edit',['as'=>'person_form_edit','uses'=>'IndicatorController@form_edit']);
+Route::get('api/indicators/all',['as'=>'person_all', 'uses'=>'IndicatorController@all']);
+Route::get('api/indicators/paginate/',['as' => 'person_paginate', 'uses' => 'IndicatorController@paginatep']);
+Route::post('api/indicators/create',['as'=>'person_create', 'uses'=>'IndicatorController@create']);
+Route::put('api/indicators/edit',['as'=>'person_edit', 'uses'=>'IndicatorController@edit']);
+Route::post('api/indicators/destroy',['as'=>'person_destroy', 'uses'=>'IndicatorController@destroy']);
+Route::get('api/indicators/search/{q?}',['as'=>'person_search', 'uses'=>'IndicatorController@search']);
+Route::get('api/indicators/find/{id}',['as'=>'person_find', 'uses'=>'IndicatorController@find']);
+//===============================================================
+Route::get('menus',['as'=>'person','uses'=>'MenuController@index']);
+Route::get('menus/create',['as'=>'person_create','uses'=>'MenuController@index']);
+Route::get('menus/edit/{id?}', ['as' => 'person_edit', 'uses' => 'MenuController@index']);
+Route::get('menus/form-create',['as'=>'person_form_create','uses'=>'MenuController@form_create']);
+Route::get('menus/form-edit',['as'=>'person_form_edit','uses'=>'MenuController@form_edit']);
+Route::get('api/menus/all',['as'=>'person_all', 'uses'=>'MenuController@all']);
+Route::get('api/menus/paginate/',['as' => 'person_paginate', 'uses' => 'MenuController@paginatep']);
+Route::post('api/menus/create',['as'=>'person_create', 'uses'=>'MenuController@create']);
+Route::put('api/menus/edit',['as'=>'person_edit', 'uses'=>'MenuController@edit']);
+Route::post('api/menus/destroy',['as'=>'person_destroy', 'uses'=>'MenuController@destroy']);
+Route::get('api/menus/search/{q?}',['as'=>'person_search', 'uses'=>'MenuController@search']);
+Route::get('api/menus/find/{id}',['as'=>'person_find', 'uses'=>'MenuController@find']);
+
 
 
 

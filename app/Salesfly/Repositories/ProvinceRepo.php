@@ -15,5 +15,10 @@ class ProvinceRepo extends BaseRepo{
                     ->paginate(15);
         return $menus;
     }
+    public function searchall($q)
+    {
+        $authors =Province::paginate(30);
+        return $authors;
+    }
     
 } 

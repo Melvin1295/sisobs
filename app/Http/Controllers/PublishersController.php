@@ -5,14 +5,14 @@ namespace Salesfly\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-use Salesfly\Salesfly\Repositories\PublisherRepo;
-use Salesfly\Salesfly\Managers\PublisherManager;
+use Salesfly\Salesfly\Repositories\DetPublisherRepo;
+use Salesfly\Salesfly\Managers\DetPublisherManager;
 
 class PublishersController extends Controller {
 
     protected $publisherRepo;
 
-    public function __construct(PublisherRepo $publisherRepo)
+    public function __construct(DetPublisherRepo $publisherRepo)
     {
         $this->publisherRepo = $publisherRepo;
     }
@@ -46,8 +46,10 @@ class PublishersController extends Controller {
 
     public function create(Request $request)
     {
+        $user = \Auth::user();
+        $request->merge(array('usuario_id' => $user->id));
         $publishers = $this->publisherRepo->getModel();
-        $manager = new PublisherManager($publishers,$request->all());
+        $manager = new DetPublisherManager($publishers,$request->all());
         $manager->save();
 
         return response()->json(['estado'=>true, 'nombre'=>$publishers->nombreTienda]);
@@ -61,8 +63,10 @@ class PublishersController extends Controller {
 
     public function edit(Request $request)
     {
+        $user = \Auth::user();
+        $request->merge(array('usuario_id' => $user->id));
         $publishers = $this->publisherRepo->find($request->id);
-        $manager = new PublisherManager($publishers,$request->all());
+        $manager = new DetPublisherManager($publishers,$request->all());
         $manager->save();
 
         return response()->json(['estado'=>true, 'nombre'=>$publishers->nombreTienda]);

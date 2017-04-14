@@ -11,8 +11,8 @@ class DetPublisherManager extends BaseManager {
             'archivo_adjunto'=> '',
             'imagen'=> '',
             'orden'=> '',
-            'autor_id'=> '',
-            'publisher_id'=> '',
+            'employee_id'=> '',
+            'fecha_publicacion'=> '',
             'estado'=> ''
                   ];
         return $rules;
