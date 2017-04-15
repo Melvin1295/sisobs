@@ -67,8 +67,6 @@
                 };
 
                 $scope.createPublishers = function(){
-                    if ($scope.publisherCreateForm.$valid) {
-                        console.log($scope.publisher);
                         crudService.create($scope.publisher, 'publishers').then(function (data) {
                            
                             if (data['estado'] == true) {
@@ -81,7 +79,7 @@
 
                             }
                         });
-                    }
+                    
                 }
 
                 $scope.editPublishers = function(row){
@@ -89,7 +87,6 @@
                 };
 
                 $scope.updatePublishers = function(){
-                   if ($scope.publisherEditForm.$valid) {
                         crudService.update($scope.publisher,'publishers').then(function(data)
                         {
                             if(data['estado'] == true){
@@ -99,8 +96,7 @@
                             }else{
                                 $scope.errors =data;
                             }
-                        });
-                    }
+                        });                    
                 };
                 $scope.updateEstadoPublishers = function(row){
                     if (row.estado === 1) {
@@ -139,5 +135,87 @@
                         }
                     });
                 }
+                $scope.bandera = false;
+                //==============================================
+                $scope.uploadFile = function()
+                { 
+
+                    if ($scope.publisherCreateForm.$valid) {
+                        $scope.bandera = true;
+                        var archivo_imagen = $scope.archivo_imagen;
+                        if (archivo_imagen!=undefined) {
+                            crudService.uploadFile('publishers',archivo_imagen, name).then(function(data)
+                            {
+                                $scope.publisher.imagen=data.data;
+                                $scope.funcion2();
+                            });
+                        }else{
+                            $scope.publisher.imagen="";
+                            $scope.funcion2();                            
+                        }
+                    }                       
+                }
+                $scope.funcion2 = function(){
+
+                    var file_archivo = $scope.file_archivo;
+                    if (file_archivo!=undefined) {
+                        crudService.uploadFile('publishers',file_archivo, name).then(function(data)
+                        {
+                            $scope.publisher.archivo_adjunto=data.data;
+                            $scope.createPublishers();
+                        });
+                    }else{
+                        $scope.publisher.archivo_adjunto="";
+                        $scope.createPublishers();
+                    }
+                }
+                $scope.uploadEditFile = function()
+                { 
+                    //alert(uploadFile);
+                    if ($scope.publisherEditForm.$valid) {
+                        $scope.bandera = true;
+                        var archivo_imagen = $scope.archivo_imagen;
+                        if (archivo_imagen!=undefined) {
+                            crudService.uploadFile('publishers',archivo_imagen, name).then(function(data)
+                            {
+                                $scope.publisher.imagen=data.data;
+                                $scope.funcionEdit2();
+                            });
+                        }else{
+                            $scope.funcionEdit2();                            
+                        }
+                    }                       
+                }
+                $scope.funcionEdit2 = function(){
+                    var file_archivo = $scope.file_archivo;
+                    if (file_archivo!=undefined) {
+                        crudService.uploadFile('publishers',file_archivo, name).then(function(data)
+                        {
+                            $scope.publisher.archivo_adjunto=data.data;
+                            $scope.updatePublishers();
+                        });
+                    }else{
+                        $scope.updatePublishers();
+                    }
+                }
+                //Trae el ultimo registro ordenado por fecha
+                $scope.traerUltimo= function(){
+                    crudService.search('publishersUltimo',0,1).then(function (data){
+                        $scope.ultimo = data;
+                        console.log('$scope.ultimo');
+                        console.log($scope.ultimo);
+                    });
+                }
+                //trae todos los registros paginados en 15
+                $scope.traerAll= function(){
+                    crudService.search('publishers_all',0,1).then(function (data){
+                        $scope.todos = data.data;
+                        console.log('$scope.todos');
+                        console.log($scope.todos);
+                        console.log(data);
+                    });
+                }
+                $scope.traerAll();
+                $scope.traerUltimo();
             }]);
 })();

@@ -66,6 +66,12 @@ class IndicatorController extends Controller {
         $user = \Auth::user();
         $request->merge(array('usuario_id' => $user->id));
         $indicators = $this->indicatorRepo->find($request->id);
+        if($request->archivo_adjunto!=$indicators->archivo_adjunto){
+            if ($indicators->archivo_adjunto!="") {
+                $rest = substr(__DIR__, 0, -21);
+                unlink($rest."/public".$indicators->archivo_adjunto);
+            }            
+        }
         $manager = new IndicatorManager($indicators,$request->all());
         $manager->save();
 
@@ -76,6 +82,10 @@ class IndicatorController extends Controller {
     public function destroy(Request $request)
     {
         $indicator= $this->indicatorRepo->find($request->id);
+        if($indicator->archivo_adjunto!=""){
+            $rest = substr(__DIR__, 0, -21);
+            unlink($rest."/public".$indicator->archivo_adjunto);
+        }
         $indicator->delete();
         return response()->json(['estado'=>true, 'nombre'=>$indicator->nombreTienda]);
     }
@@ -85,6 +95,17 @@ class IndicatorController extends Controller {
         $indicators = $this->indicatorRepo->search($q);
 
         return response()->json($indicators);
+    }
+    public function uploadFile(){
+        $file = $_FILES["file"]["name"];
+        $time=time();
+        if(!is_dir("images/indicadores/"))
+            mkdir("images/indicadores/", 0777);
+        if($file && move_uploaded_file($_FILES["file"]["tmp_name"], "images/indicadores/".$time."_".$file))
+        {
+             
+        }
+        return "/images/indicadores/".$time."_".$file;      
     }
     
 }

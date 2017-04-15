@@ -112,6 +112,10 @@ Route::put('api/publishers/edit',['as'=>'person_edit', 'uses'=>'PublishersContro
 Route::post('api/publishers/destroy',['as'=>'person_destroy', 'uses'=>'PublishersController@destroy']);
 Route::get('api/publishers/search/{q?}',['as'=>'person_search', 'uses'=>'PublishersController@search']);
 Route::get('api/publishers/find/{id}',['as'=>'person_find', 'uses'=>'PublishersController@find']);
+Route::post('api/publishers/uploadFile',['as'=>'product_disabled', 'uses'=>'PublishersController@uploadFile']);
+
+Route::get('api/publishersUltimo/search/{q?}',['as'=>'product_disabled', 'uses'=>'PublishersController@publishersUltimo']);
+Route::get('api/publishers_all/search/{q?}',['as'=>'product_disabled', 'uses'=>'PublishersController@publishers_all']);
 
 //===============================================================
 Route::get('editorials',['as'=>'person','uses'=>'EditorialsController@index']);
@@ -126,7 +130,7 @@ Route::put('api/editorials/edit',['as'=>'person_edit', 'uses'=>'EditorialsContro
 Route::post('api/editorials/destroy',['as'=>'person_destroy', 'uses'=>'EditorialsController@destroy']);
 Route::get('api/editorials/search/{q?}',['as'=>'person_search', 'uses'=>'EditorialsController@search']);
 Route::get('api/editorials/find/{id}',['as'=>'person_find', 'uses'=>'EditorialsController@find']);
-
+Route::post('api/editorials/uploadFile',['as'=>'product_disabled', 'uses'=>'EditorialsController@uploadFile']);
 //===============================================================
 Route::get('sliders',['as'=>'person','uses'=>'SliderController@index']);
 Route::get('sliders/create',['as'=>'person_create','uses'=>'SliderController@index']);
@@ -170,6 +174,7 @@ Route::put('api/indicators/edit',['as'=>'person_edit', 'uses'=>'IndicatorControl
 Route::post('api/indicators/destroy',['as'=>'person_destroy', 'uses'=>'IndicatorController@destroy']);
 Route::get('api/indicators/search/{q?}',['as'=>'person_search', 'uses'=>'IndicatorController@search']);
 Route::get('api/indicators/find/{id}',['as'=>'person_find', 'uses'=>'IndicatorController@find']);
+Route::post('api/indicators/uploadFile',['as'=>'product_disabled', 'uses'=>'IndicatorController@uploadFile']);
 //===============================================================
 Route::get('menus',['as'=>'person','uses'=>'MenuController@index']);
 Route::get('menus/create',['as'=>'person_create','uses'=>'MenuController@index']);

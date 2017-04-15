@@ -82,6 +82,9 @@
                           <label>Archivo</label>
                           <input type="file" name="file_archivo" uploader-model="file_archivo" />
                         </div>
+                        <div style="text-align: center;">
+                                        <a  ng-disabled="indicator.archivo_adjunto==''" href="@{{indicator.archivo_adjunto}}" target="_blank" class="btn btn-success btn-xs">Ver Archivo</a>
+                                      </div>
                       </div>
                       
 
@@ -113,7 +116,8 @@
                         </div>
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary" ng-click="updateIndicators()">Editar</button>
+                            <button ng-if="!bandera" type="submit" class="btn btn-primary" ng-click="uploadEditFile()">Editar</button>
+                            <a ng-if="bandera" type="submit" class="btn btn-primary" ng-disabled="true">Cargando</a>
                             <a href="/indicators" class="btn btn-danger">Cancelar</a>
                         </div>
                 </form>

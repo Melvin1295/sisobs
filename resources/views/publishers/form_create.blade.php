@@ -56,7 +56,7 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label>Imagen</label>
-                          <input type="file" name="filea_imagen" uploader-model="filea_imagen" />
+                          <input type="file" name="archivo_imagen" uploader-model="archivo_imagen" />
                         </div>
                       </div>
                       
@@ -113,7 +113,8 @@
 
 
                   <div class="box-footer">
-                    <button type="submit" class="btn btn-primary" ng-click="createPublishers()">Crear</button>
+                    <button ng-if="!bandera" type="submit" class="btn btn-primary" ng-click="uploadFile()">Crear</button>
+                    <a ng-if="bandera" type="submit" class="btn btn-primary" ng-disabled="true">Cargando</a>
                     <a href="/publishers" class="btn btn-danger">Cancelar</a>
                   </div>
                 </form>

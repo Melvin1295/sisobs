@@ -108,7 +108,8 @@
 
 
                   <div class="box-footer">
-                    <button type="submit" class="btn btn-primary" ng-click="createEditorials()">Crear</button>
+                    <button ng-if="!bandera" type="submit" class="btn btn-primary" ng-click="uploadFile()">Crear</button>
+                    <a ng-if="bandera" type="submit" class="btn btn-primary" ng-disabled="true">Cargando</a>
                     <a href="/editorials" class="btn btn-danger">Cancelar</a>
                   </div>
                 </form>

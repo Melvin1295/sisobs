@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Salesfly | Log in</title>
+    <title>observatorio | Log in</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.4 -->
@@ -24,7 +24,7 @@
   <body class="login-page fondo">
     <div class="login-box ">
       <div class="login-logo">
-        <a href="../../index2.html"><b class="primername">Computel</b><b class="segunname">Peru</b></a>
+        <a href="../../index2.html"><b class="primername">observatorio</b><b class="segunname">Peru</b></a>
       </div><!-- /.login-logo -->
       <div class="login-box-body cuadro">
         <p class="login-box-msg primername">Escibre tus credenciales para iniciar sesión</p>
@@ -61,14 +61,14 @@
           </div>
         </form>
 
-        <div class="social-auth-links text-center">
+        <!--<div class="social-auth-links text-center">
           <p>- O -</p>
           <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Iniciar sesión usando Facebook</a>
           <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i> Iniciar sesión usando Google+</a>
-        </div><!-- /.social-auth-links -->
+        </div> --> <!-- /.social-auth-links -->
 
-        <a href="#">Olvidé mi contraseña</a><br>
-        <a href="register.html" class="text-center">Registrar nuevo usuario</a>
+        <!--<a href="#">Olvidé mi contraseña</a><br>
+        <a href="register.html" class="text-center">Registrar nuevo usuario</a>-->
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

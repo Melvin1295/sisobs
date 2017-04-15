@@ -10,7 +10,7 @@ use Salesfly\Salesfly\Managers\EditorialManager;
 
 class EditorialsController extends Controller {
 
-    protected $editorialRepo;
+    protected $editorialRepo; 
 
     public function __construct(EditorialRepo $editorialRepo)
     {
@@ -66,6 +66,12 @@ class EditorialsController extends Controller {
         $user = \Auth::user();
         $request->merge(array('usuario_id' => $user->id));
         $editorials = $this->editorialRepo->find($request->id);
+        if($request->archivo_adjunto!=$editorials->archivo_adjunto){
+            if ($editorials->archivo_adjunto!="") {
+                $rest = substr(__DIR__, 0, -21);
+                unlink($rest."/public".$editorials->archivo_adjunto);
+            }            
+        }
         $manager = new EditorialManager($editorials,$request->all());
         $manager->save();
 
@@ -76,6 +82,10 @@ class EditorialsController extends Controller {
     public function destroy(Request $request)
     {
         $editorial= $this->editorialRepo->find($request->id);
+        if($editorial->archivo_adjunto!=""){
+            $rest = substr(__DIR__, 0, -21);
+            unlink($rest."/public".$editorial->archivo_adjunto);
+        }
         $editorial->delete();
         return response()->json(['estado'=>true, 'nombre'=>$editorial->nombreTienda]);
     }
@@ -85,6 +95,17 @@ class EditorialsController extends Controller {
         $editorials = $this->editorialRepo->search($q);
 
         return response()->json($editorials);
+    }
+    public function uploadFile(){
+        $file = $_FILES["file"]["name"];
+        $time=time();
+        if(!is_dir("images/editoriales/"))
+            mkdir("images/editoriales/", 0777);
+        if($file && move_uploaded_file($_FILES["file"]["tmp_name"], "images/editoriales/".$time."_".$file))
+        {
+             
+        }
+        return "/images/editoriales/".$time."_".$file;      
     }
     
 }

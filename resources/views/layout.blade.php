@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>SistemaVentas | @section('module')Dashboard @show</title>
+    <title>Observatorio | @section('module')Dashboard @show</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.4 -->
@@ -91,7 +91,7 @@
                     </p>
                   </li>
                   <!-- Menu Body -->
-                  <li class="user-body">
+                  <!--<li class="user-body">
                     <div class="col-xs-4 text-center">
                       <a href="#">Followers</a>
                     </div>
@@ -101,7 +101,7 @@
                     <div class="col-xs-4 text-center">
                       <a href="#">Friends</a>
                     </div>
-                  </li>
+                  </li>-->
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
@@ -142,7 +142,7 @@
             <li class="header">Navegación</li>
             <li><a href="/"><i class="fa fa-home"></i> <span>Home</span></a></li>
 
-            @if($role == 1)
+            <!--@if($role == 1)-->
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-wrench"></i>
@@ -163,7 +163,7 @@
 
               </ul>
             </li>
-             @endif
+            <!-- @endif -->
             
            
 
@@ -331,7 +331,7 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> 1.01
         </div>
-        <strong>Copyright &copy; 2014-2015 <a href="#">Salesfly</a>.</strong> Todos los derechos reservados.
+        <strong>Copyright &copy; 2017 <a href="#"></a>.</strong> Todos los derechos reservados.
       </footer>
 
       <!-- Control Sidebar -->

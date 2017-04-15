@@ -11,9 +11,10 @@ class PublisherRepo extends BaseRepo{
 
     public function search($q)
     {
-        $menus =Publisher::where('titulo','like', $q.'%')
+        $publisher =Publisher::where('titulo','like', $q.'%')
                     ->paginate(15);
-        return $menus;
+        return $publisher;
     }
+    
     
 } 

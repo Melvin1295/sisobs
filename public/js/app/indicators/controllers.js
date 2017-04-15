@@ -67,7 +67,6 @@
                 };
 
                 $scope.createIndicators= function(){
-                    if ($scope.indicatorCreateForm.$valid) {
                         crudService.create($scope.indicator, 'indicators').then(function (data) {
                            
                             if (data['estado'] == true) {
@@ -80,7 +79,7 @@
 
                             }
                         });
-                    }
+                    
                 }
 
                 $scope.editIndicators = function(row){
@@ -88,7 +87,6 @@
                 };
 
                 $scope.updateIndicators = function(){
-                   if ($scope.indicatorEditForm.$valid) {
                         crudService.update($scope.indicator,'indicators').then(function(data)
                         {
                             if(data['estado'] == true){
@@ -99,7 +97,7 @@
                                 $scope.errors =data;
                             }
                         });
-                    }
+                    
                 };
                 $scope.updateEstadoIndicators = function(row){
                     if (row.estado === 1) {
@@ -137,6 +135,42 @@
                             $scope.errors = data;
                         }
                     });
+                }
+                $scope.bandera = false;
+                //==============================================
+                $scope.uploadFile = function()
+                { 
+                    if ($scope.indicatorCreateForm.$valid) {
+                        $scope.bandera = true;
+                        var file_archivo = $scope.file_archivo;
+                        if (file_archivo!=undefined) {
+                            crudService.uploadFile('indicators',file_archivo, name).then(function(data)
+                            {
+                                $scope.indicator.archivo_adjunto=data.data;
+                                $scope.createIndicators();
+                            });
+                        }else{
+                            $scope.indicator.archivo_adjunto="";
+                            $scope.createIndicators();
+                        }
+                    }                       
+                }
+                $scope.uploadEditFile = function()
+                { 
+                    if ($scope.indicatorEditForm.$valid) {
+                        $scope.bandera = true;
+                        var file_archivo = $scope.file_archivo;
+                        if (file_archivo!=undefined) {
+                            crudService.uploadFile('indicators',file_archivo, name).then(function(data)
+                            {
+                                $scope.indicator.archivo_adjunto=data.data;
+                                $scope.updateIndicators();
+                            });
+                        }else{
+                            $scope.indicator.archivo_adjunto="";
+                            $scope.updateIndicators();
+                        }
+                    }                       
                 }
             }]);
 })();

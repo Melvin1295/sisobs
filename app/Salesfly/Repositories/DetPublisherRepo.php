@@ -15,5 +15,18 @@ class DetPublisherRepo extends BaseRepo{
                     ->paginate(15);
         return $detPublisherRepo;
     }
+    public function searchUltimo()
+    {
+        $publisher =DetPublisher::where('estado',1)
+                    ->orderBy('fecha_publicacion','desc')
+                    ->first();
+        return $publisher;
+    }
+    public function publishers_all()
+    {
+        $publisher =DetPublisher::where('estado',1)
+                    ->paginate(15);
+        return $publisher;
+    }
     
 } 

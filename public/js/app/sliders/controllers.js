@@ -167,7 +167,7 @@
                                 $scope.createSliders();
                             });
                         }else{
-                            $scope.edicion.brochure="";
+                            $scope.slider.imagen="";
                             //$scope.funcion2();
                             $scope.createSliders();
                         }
@@ -185,7 +185,6 @@
                                 $scope.updateSliders();
                             });
                         }else{
-                            $scope.edicion.brochure="";
                             //$scope.funcion2();
                             $scope.updateSliders();
                         }

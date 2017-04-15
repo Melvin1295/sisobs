@@ -74,7 +74,8 @@
                         </div>
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary" ng-click="uploadEditFile()">Editar</button>
+                            <button ng-if="!bandera" type="submit" class="btn btn-primary" ng-click="uploadEditFile()">Editar</button>
+                            <a ng-if="bandera" type="submit" class="btn btn-primary" ng-disabled="true">Cargando</a>
                             <a href="/sliders" class="btn btn-danger">Cancelar</a>
                         </div>
                 </form>

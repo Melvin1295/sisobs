@@ -138,5 +138,41 @@
                         }
                     });
                 }
+                $scope.bandera = false;
+                //==============================================
+                $scope.uploadFile = function()
+                { 
+                    if ($scope.editorialCreateForm.$valid) {
+                        $scope.bandera = true;
+                        var file_archivo = $scope.file_archivo;
+                        if (file_archivo!=undefined) {
+                            crudService.uploadFile('editorials',file_archivo, name).then(function(data)
+                            {
+                                $scope.editorial.archivo_adjunto=data.data;
+                                $scope.createEditorials();
+                            });
+                        }else{
+                            $scope.editorial.archivo_adjunto="";
+                            $scope.createEditorials();
+                        }
+                    }                       
+                }
+                $scope.uploadEditFile = function()
+                { 
+                    if ($scope.editorialEditForm.$valid) {
+                        $scope.bandera = true;
+                        var file_archivo = $scope.file_archivo;
+                        if (file_archivo!=undefined) {
+                            crudService.uploadFile('editorials',file_archivo, name).then(function(data)
+                            {
+                                $scope.editorial.archivo_adjunto=data.data;
+                                $scope.updateEditorials();
+                            });
+                        }else{
+                            $scope.editorial.archivo_adjunto="";
+                            $scope.updateEditorials();
+                        }
+                    }                       
+                }
             }]);
 })();
