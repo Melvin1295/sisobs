@@ -7,6 +7,7 @@
                 $scope.errors = null;
                 $scope.success;
                 $scope.query = '';
+                $scope.bandera = false;
                 $scope.toggle = function () {
                     $scope.show = !$scope.show;
                 };
@@ -45,8 +46,7 @@
                         $scope.maxSize = 5;
                         $scope.totalItems = data.total;
                         $scope.currentPage = data.current_page;
-                        $scope.itemsperPage = 2;
-                        
+                        $scope.itemsperPage = 2;                       
 
                     });
                     crudService.paginate('slidersall',1).then(function (data) {
@@ -56,20 +56,11 @@
 
                 $scope.slidersOrden=[];
                 $scope.listarSlider= function(){
-                    console.log('$scope.sliders');
-                    console.log($scope.sliders);
-
                     for (var i = 0; i < $scope.sliders.length; i++) {
                         if ($scope.sliders[i].estado === 1) {
                             $scope.slidersOrden.push($scope.sliders[i]);
                         }
                     }
-
-                    console.log('$scope.sliders');
-                    console.log($scope.sliders);
-                    console.log('$scope.slidersOrden');
-                    console.log($scope.slidersOrden);
-
                 }
 
 
@@ -93,7 +84,7 @@
                 };
 
                 $scope.createSliders = function(){
-                    if ($scope.sliderCreateForm.$valid) {
+                    
                         crudService.create($scope.slider, 'sliders').then(function (data) {
                            
                             if (data['estado'] == true) {
@@ -106,7 +97,7 @@
 
                             }
                         });
-                    }
+                    
                 }
 
                 $scope.editSliders = function(row){
@@ -114,7 +105,6 @@
                 };
 
                 $scope.updateSliders = function(){
-                   if ($scope.sliderEditForm.$valid) {
                         crudService.update($scope.slider,'sliders').then(function(data)
                         {
                             if(data['estado'] == true){
@@ -125,7 +115,7 @@
                                 $scope.errors =data;
                             }
                         });
-                    }
+                    
                 };
                 $scope.updateEstadoSliders = function(row){
                     if (row.estado === 1) {
@@ -164,5 +154,56 @@
                         }
                     });
                 }
+                //==============================================
+                $scope.uploadFile = function()
+                { 
+                    if ($scope.sliderCreateForm.$valid) {
+                        $scope.bandera = true;
+                        var file_archivo = $scope.file_archivo;
+                        if (file_archivo!=undefined) {
+                            crudService.uploadFile('sliders',file_archivo, name).then(function(data)
+                            {
+                                $scope.slider.imagen=data.data;
+                                $scope.createSliders();
+                            });
+                        }else{
+                            $scope.edicion.brochure="";
+                            //$scope.funcion2();
+                            $scope.createSliders();
+                        }
+                    }                       
+                }
+                $scope.uploadEditFile = function()
+                { 
+                    if ($scope.sliderEditForm.$valid) {
+                        $scope.bandera = true;
+                        var file_archivo = $scope.file_archivo;
+                        if (file_archivo!=undefined) {
+                            crudService.uploadFile('sliders',file_archivo, name).then(function(data)
+                            {
+                                $scope.slider.imagen=data.data;
+                                $scope.updateSliders();
+                            });
+                        }else{
+                            $scope.edicion.brochure="";
+                            //$scope.funcion2();
+                            $scope.updateSliders();
+                        }
+                    }                       
+                }
+                /*$scope.funcion2 = function(){
+                    var fileResolucion = $scope.fileResolucion;
+                    if (fileResolucion!=undefined) {
+                        crudService.uploadFile('ediciones',fileResolucion, name).then(function(data)
+                        {
+                            $scope.edicion.resolucion=data.data;
+                            $scope.funcion3();
+                        });
+                    }else{
+                        $scope.edicion.resolucion="";
+                        $scope.funcion3();
+                    }
+                }*/
+                
             }]);
 })();

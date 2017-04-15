@@ -72,6 +72,14 @@ class SliderController extends Controller {
         $user = \Auth::user();
         $request->merge(array('usuario_id' => $user->id));
         $sliders = $this->sliderRepo->find($request->id);
+
+        if($request->imagen!=$sliders->imagen){
+            if ($sliders->imagen!="") {
+                $rest = substr(__DIR__, 0, -21);
+                unlink($rest."/public".$sliders->imagen);
+            }            
+        }
+
         $manager = new SliderManager($sliders,$request->all());
         $manager->save();
 
@@ -82,6 +90,10 @@ class SliderController extends Controller {
     public function destroy(Request $request)
     {
         $slider= $this->sliderRepo->find($request->id);
+         if($slider->imagen!=""){
+            $rest = substr(__DIR__, 0, -21);
+            unlink($rest."/public".$slider->imagen);
+        }
         $slider->delete();
         return response()->json(['estado'=>true, 'nombre'=>$slider->nombreTienda]);
     }
@@ -91,6 +103,17 @@ class SliderController extends Controller {
         $sliders = $this->sliderRepo->search($q);
 
         return response()->json($sliders);
+    }
+    public function uploadFile(){
+        $file = $_FILES["file"]["name"];
+        $time=time();
+        if(!is_dir("images/slideshow/"))
+            mkdir("images/slideshow/", 0777);
+        if($file && move_uploaded_file($_FILES["file"]["tmp_name"], "images/slideshow/".$time."_".$file))
+        {
+             
+        }
+        return "/images/slideshow/".$time."_".$file;      
     }
     
 }

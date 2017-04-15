@@ -141,6 +141,7 @@ Route::post('api/sliders/destroy',['as'=>'person_destroy', 'uses'=>'SliderContro
 Route::get('api/sliders/search/{q?}',['as'=>'person_search', 'uses'=>'SliderController@search']);
 Route::get('api/sliders/find/{id}',['as'=>'person_find', 'uses'=>'SliderController@find']);
 Route::get('api/slidersall/paginate/',['as'=>'person_all', 'uses'=>'SliderController@slidersall']);
+Route::post('api/sliders/uploadFile',['as'=>'product_disabled', 'uses'=>'SliderController@uploadFile']);
 
 //===============================================================
 Route::get('provinces',['as'=>'person','uses'=>'ProvincesController@index']);
