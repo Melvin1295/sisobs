@@ -26,6 +26,7 @@ class EditorialRepo extends BaseRepo{
     public function editorials_all()
     {
         $publisher =Editorial::where('estado',1)
+                    ->orderBy('fecha_publicacion','desc')
                     ->paginate(15);
         return $publisher;
     }

@@ -26,6 +26,7 @@ class IndicatorRepo extends BaseRepo{
         $publisher =Indicator::where('estado',1)
                     ->orderBy('fecha_publicacion','desc')
                     ->with('province')
+                    ->orderBy('fecha_publicacion','desc')
                     ->first();
         return $publisher;
     }

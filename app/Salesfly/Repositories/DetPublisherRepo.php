@@ -27,6 +27,7 @@ class DetPublisherRepo extends BaseRepo{
     {
         $publisher =DetPublisher::where('estado',1)
                     ->with('autor')
+                    ->orderBy('fecha_publicacion','desc')
                     ->paginate(15);
         return $publisher;
     }
