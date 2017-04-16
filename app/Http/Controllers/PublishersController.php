@@ -124,6 +124,12 @@ class PublishersController extends Controller {
 
         return response()->json($publishers);
     }
+    public function getPublisher()
+    {
+        $publishers = $this->publisherRepo->getPublisher();
+
+        return response()->json($publishers);
+    }
     public function uploadFile(){
         $file = $_FILES["file"]["name"];
         $time=time();

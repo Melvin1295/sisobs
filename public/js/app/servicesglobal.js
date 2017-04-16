@@ -114,6 +114,16 @@
                 );
                 return deferred.promise;
             }
+            function getObject(uri) {
+                var deferred = $q.defer();
+                $http.get('/api/'+uri+'/get')
+                    .success(function(data)
+                    {
+                        deferred.resolve(data);
+                    }
+                );
+                return deferred.promise;
+            }
 
             function search(uri,query,page){
                 var deferred = $q.defer();
@@ -273,6 +283,7 @@
                 balance:balance,
                 destroy:destroy,
                 search: search,
+                getObject: getObject,
                 select:select,
                 byforeingKey: byforeingKey,
                 searchMes,searchMes,

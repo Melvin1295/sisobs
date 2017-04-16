@@ -9,6 +9,9 @@
                    $scope.publicaciones=[];
                    $scope.editoriales=[];
                    $scope.indicadores=[];
+                   $scope.colaboradores=[];
+                   $scope.colaboradores2=[];
+                   $scope.ultPubicaciones=[];
                    $scope.indicador={};
                    $scope.editorial={};
                    $scope.publicacione={};
@@ -20,6 +23,16 @@
 	                	crudService.search('publisher_id',id,1).then(function (data){
 	                        $scope.publicacione = data;
 	                    });    
+	                }else{
+	                	crudService.getObject('getPublisher').then(function (data){
+	                        $scope.ultPubicaciones = data;
+	                    }); 
+	                    crudService.all('colaboradores').then(function (data){
+                            $scope.colaboradores=data.data;
+                            $scope.colaboradoresFuncion();
+	                    });
+
+
 	                }
 	                 if($location.path() == '/pages/editoriales') {
 	                 	 crudService.search('editorials_all',0,$scope.currentPage).then(function (data){
@@ -50,6 +63,13 @@
                         }
 
                     }
+                 $scope.colaboradoresFuncion=function(valor){
+                 	
+                        $scope.colaboradores2[0]=$scope.colaboradores;		
+                        console.log($scope.colaboradores2[0]);			
+					}                	
+                 
+                 
                  $scope.verIndicador=function(row){
                      $scope.indicador=row;
                  }
@@ -99,6 +119,7 @@
                         $scope.itemsperPage = 5;
                     });
                 }
-                    $scope.traerAll();
+	               $scope.colaboradoresFuncion(0);
+	               $scope.traerAll();
             }]);
 })();
