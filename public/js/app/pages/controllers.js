@@ -2,12 +2,24 @@
     angular.module('pages.controllers',[])
         .controller('PageController',['$window','$scope', '$routeParams','$location','crudService' ,'$filter','$route','$log',
             function($window,$scope, $routeParams,$location,crudService,$filter,$route,$log){
-                  $scope.alert=true;              
+                  $scope.alert=true;  
+                  $scope.bandera=true;  
+                  $scope.bandera1=false;            
                     
                    $scope.ultimaPublicacion = {};
                    $scope.publicaciones=[];
                    $scope.currentPage=1;
                     //Trae el ultimo registro ordenado por fecha
+                    $scope.cambiar_pestaña = function(op) {
+                        if (op===1) {
+                            $scope.bandera=true;  
+                            $scope.bandera1=false; 
+                        }else{
+                            $scope.bandera=false;  
+                            $scope.bandera1=true; 
+                        }
+
+                    }
                  $scope.pageChanged = function() {
                  	 crudService.search('publishers_all',0,$scope.currentPage).then(function (data) {
                             $scope.publicaciones = data.data;

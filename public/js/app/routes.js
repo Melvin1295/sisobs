@@ -6,13 +6,18 @@
             .when('/pages', {
                     templateUrl: '/js/app/pages/views/index.html',
                     controller: 'PageController'
-                })
+                }) 
             .when('/pages/blog', {
                     templateUrl: '/pages/form-blog',
                     controller: 'PageController'
                 })
             .when('/pages/contact', {
                     templateUrl: '/pages/form-contact',
+                    controller: 'PageController'
+                })
+
+            .when('/pages/indicadores', {
+                    templateUrl: '/pages/form-indicadores',
                     controller: 'PageController'
                 })
                  
