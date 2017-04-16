@@ -69,7 +69,7 @@
                      
                      <div class="form-group">
                       <label for="nombres">Descripcion</label>
-                      <textarea rows="2" cols="50" class="form-control" name="glosa" placeholder="Descripcion"</ ng-model="colaborador.glosa">
+                      <textarea rows="2" cols="50" class="form-control" name="descripcion" placeholder="Descripcion"</ ng-model="colaborador.descripcion">
                         
                       </textarea>
 
