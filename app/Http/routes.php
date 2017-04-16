@@ -81,18 +81,14 @@ Route::get('pages/publisherItem/{id?}',['as'=>'person','uses'=>'PageController@i
 Route::get('pages/form-publisherItem',['as'=>'person','uses'=>'PageController@form_publisherItem']);
 Route::get('pages/contact',['as'=>'person','uses'=>'PageController@index']);
 Route::get('pages/form-contact',['as'=>'person','uses'=>'PageController@form_contact']);
-<<<<<<< HEAD
 Route::get('pages/editoriales',['as'=>'person','uses'=>'PageController@index']);
 Route::get('pages/form-editorials',['as'=>'person','uses'=>'PageController@form_editorials']);
 Route::get('pages/form-verEditorial',['as'=>'person','uses'=>'PageController@form_verEditorial']);
 Route::get('pages/verEditorial/{id?}',['as'=>'person','uses'=>'PageController@index']);
-=======
 
 Route::get('pages/indicadores',['as'=>'person','uses'=>'PageController@index']);
 Route::get('pages/form-indicadores',['as'=>'person','uses'=>'PageController@form_indicadores']);
->>>>>>> 71bfcae0f8f80b691925e9796972e8681ac713cc
 /* fin rutas de pagina web */
-
 Route::group(['middleware' => 'role'], function () {
 Route::get('stores',['as'=>'store','uses'=>'StoresController@index']);
 Route::get('stores/create',['as'=>'store_create','uses'=>'StoresController@index']);

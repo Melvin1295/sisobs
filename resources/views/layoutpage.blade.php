@@ -81,7 +81,7 @@
                 	<li class="active" ><a href="/pages" onclick="myFunction()">Inicio</a></li>                  
                    
                     <li><a href="/pages/blog" onclick="myFunction()">Publicaciones</a></li>
-                    <li><a href="/page" onclick="myFunction()">Indicadores</a></li>
+                    <li><a href="/pages/indicadores" onclick="myFunction()">Indicadores</a></li>
                     <li><a href="/pages/editoriales" onclick="myFunction()">Editoriales</a></li>
                     <li><a href="/pages/contact" onclick="myFunction()">Contactenos</a></li>                        
                 </ul>

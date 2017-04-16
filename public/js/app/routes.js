@@ -15,7 +15,7 @@
                     templateUrl: '/pages/form-contact',
                     controller: 'PageController'
                 })
-<<<<<<< HEAD
+
             .when('/pages/editoriales', {
                     templateUrl: '/pages/form-editorials',
                     controller: 'PageController'
@@ -28,14 +28,13 @@
                     templateUrl: '/pages/form-verEditorial',
                     controller: 'PageController'
                 })
-=======
+
 
             .when('/pages/indicadores', {
                     templateUrl: '/pages/form-indicadores',
                     controller: 'PageController'
                 })
                  
->>>>>>> 71bfcae0f8f80b691925e9796972e8681ac713cc
           
                 //----------------------------------------------------------------------
             .when('/authors', {

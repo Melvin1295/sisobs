@@ -2,11 +2,14 @@
     angular.module('pages.controllers',[])
         .controller('PageController',['$window','$scope', '$routeParams','$location','crudService' ,'$filter','$route','$log',
             function($window,$scope, $routeParams,$location,crudService,$filter,$route,$log){
-                  $scope.alert=true;              
-                    
+                   $scope.alert=true;              
+                   $scope.bandera=true;  
+                   $scope.bandera1=false;  
                    $scope.ultimaPublicacion = {};
                    $scope.publicaciones=[];
                    $scope.editoriales=[];
+                   $scope.indicadores=[];
+                   $scope.indicador={};
                    $scope.editorial={};
                    $scope.publicacione={};
                    $scope.currentPage=1;
@@ -32,6 +35,24 @@
                                 $scope.editorial=data;
                             });
 	                  }
+	                  if($location.path() == '/pages/indicadores') {
+                             crudService.search('indicators_all',0).then(function (data){
+	                        $scope.indicadores = data.data;
+	                     });
+	                  }
+                    $scope.cambiar_pestana = function(op) {
+                        if (op===1) {
+                            $scope.bandera=true;  
+                            $scope.bandera1=false; 
+                        }else{
+                            $scope.bandera=false;  
+                            $scope.bandera1=true; 
+                        }
+
+                    }
+                 $scope.verIndicador=function(row){
+                     $scope.indicador=row;
+                 }
                  $scope.verDetalle=function(item){
                  	  $location.path('/pages/publisherItem/'+item.id);                	
                  }
