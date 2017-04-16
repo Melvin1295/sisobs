@@ -139,49 +139,21 @@
             <div id="testimonials-carousel">
                 
                 <!-- TESTIMONIAL ITEM - START -->
-                <div class="item">
+                <div class="item" ng-repeat="row in colaboradores" >
                     <div class="row">
                         <div class="col-xs-3 col-sm-3 col-md-2 col-sm-offset-1 col-md-offset-2">
-                            <img src="assets/images/avatar_04.jpg" class="img-responsive img-circle" alt="">
+                            <img src="{{row.imagen}}" class="img-responsive img-circle" alt="">
                         </div>
                         <div class="col-xs-9 col-sm-7 col-md-6">
-                            <p>Es una breve descripcion del perfil del profesional al servicio de la Salud Sexual Repro.</p>
-                            <h4>John Doe</h4>
-                            <span>Freelance Web Developer</span>
+                            <p>{{row.descripcion}}</p>
+                            <h4>{{row.nombres}} {{row.apellidos}}</h4>
+                            <span>{{row.cargo}}</span>
                         </div>
                     </div>
                 </div>
                 <!-- TESTIMONIAL ITEM - END -->
                 
-                <!-- TESTIMONIAL ITEM - START -->
-                <div class="item">
-                    <div class="row">
-                        <div class="col-xs-3 col-sm-3 col-md-2 col-sm-offset-1 col-md-offset-2">
-                            <img src="assets/images/avatar_02.jpg" class="img-responsive img-circle" alt="">
-                        </div>
-                        <div class="col-xs-9 col-sm-7 col-md-6">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor dictum nibh, ac gravida orci porttitor et. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam posuere magna a dapibus luctus.</p>
-                            <h4>Paul Smith</h4>
-                            <span>CEO of Company</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- TESTIMONIAL ITEM - END -->
-                
-                <!-- TESTIMONIAL ITEM - START -->
-                <div class="item">
-                    <div class="row">
-                        <div class="col-xs-3 col-sm-3 col-md-2 col-sm-offset-1 col-md-offset-2">
-                            <img src="assets/images/avatar_03.jpg" class="img-responsive img-circle" alt="">
-                        </div>
-                        <div class="col-xs-9 col-sm-7 col-md-6">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor dictum nibh, ac gravida orci porttitor et. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam posuere magna a dapibus luctus.</p>
-                            <h4>Kate Moore</h4>
-                            <span>Art Director</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- TESTIMONIAL ITEM - END -->
+               
                 
             </div>
         </div>
@@ -197,45 +169,24 @@
     =========================== -->
     <section class="content-item"   id="recent-posts">
         <div class="container">
-            <button ng-click="hola()">hola</button>
+           
             <div class="content-headline">
-                <h2>Recent Posts</h2>
-                <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+                <h2>Publicaciones Recientes</h2>
             </div>
             <div class="row">
                 
                 <!-- RECENT POST - START -->
-                <div class="col-sm-4">
+                <div class="col-sm-4" ng-repeat="row in ultPubicaciones">
                     <div class="recent-post">
-                        <h4><a href="blogitem.html">Introducing WordPress 4.0 “Benny”</a></h4>
-                        <div class="date">27/02/2014</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis lacus ac semper viverra. Etiam consequat odio sollicitudin metus condimentum, quis hendrerit.</p>
-                        <a href="blogitem.html" class="btn btn-normal">Read More</a>
+                        <h4><a href="blogitem.html">{{row.titulo}}</a></h4>
+                        <div class="date">{{row.fecha}}</div>
+                        <p>{{row.descripcion_corta}}</p>
+                        <a ng-click="verDetalle(row)" class="btn btn-normal">Read More</a>
                     </div>
                 </div>
                 <!-- RECENT POST - START -->
                 
-                <!-- RECENT POST - START -->
-                <div class="col-sm-4">
-                    <div class="recent-post">
-                        <h4><a href="blogitem.html">Nature Center: Earth Day Festival</a></h4>
-                        <div class="date">18/02/2014</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis lacus ac semper viverra. Etiam consequat odio sollicitudin metus condimentum, quis hendrerit.</p>
-                        <a href="blogitem.html" class="btn btn-normal">Read More</a>
-                    </div>
-                </div>
-                <!-- RECENT POST - START -->
                 
-                <!-- RECENT POST - START -->
-                <div class="col-sm-4">
-                    <div class="recent-post">
-                        <h4><a href="blogitem.html">Two New Stores Set to Open</a></h4>
-                        <div class="date">05/02/2014</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis lacus ac semper viverra. Etiam consequat odio sollicitudin metus condimentum, quis hendrerit.</p>
-                        <a href="blogitem.html" class="btn btn-normal">Read More</a>
-                    </div>
-                </div>
-                <!-- RECENT POST - START -->
                 
             </div>
         </div>

@@ -53,5 +53,21 @@ class DetPublisherRepo extends BaseRepo{
                     ->first();
         return $publisher;
     }
+    public function getPublisher()
+    {
+        $publisher =DetPublisher::join("employees","employees.id","=","det_publishers.employee_id")
+                     ->select(\DB::raw("det_publishers.id,employees.nombres,employees.apellidos,det_publishers.titulo,det_publishers.descripcion_corta,
+                                employees.imagen as imagenEmployee,det_publishers.imagen,
+                                CONCAT((SUBSTRING(det_publishers.fecha_publicacion,9,2)),'/',
+                                (SUBSTRING(det_publishers.fecha_publicacion,6,2)),'/',
+                                (SUBSTRING(det_publishers.fecha_publicacion,1,4)))as fecha,SUBSTRING(det_publishers.fecha_publicacion,9,2) as dia,
+                                SUBSTRING(det_publishers.fecha_publicacion,6,2) as mes,SUBSTRING(det_publishers.fecha_publicacion,12,5) as hora,
+                                det_publishers.descripcion,det_publishers.archivo_adjunto"))
+                    ->where('det_publishers.estado',1)
+                    ->orderBy('det_publishers.fecha_publicacion','desc')
+                    ->limit(3)
+                    ->get();
+        return $publisher;
+    }
     
 } 
