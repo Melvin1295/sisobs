@@ -27,13 +27,11 @@ class EditorialRepo extends BaseRepo{
     {
         $publisher =Editorial::where('estado',1)
                     ->orderBy('fecha_publicacion','desc')
-<<<<<<< HEAD
+
                     ->paginate(6);
-=======
-                    ->paginate(15);
-        
->>>>>>> 71bfcae0f8f80b691925e9796972e8681ac713cc
-        return $publisher;
+
+        return  $publisher;
+
     }
     
 } 
