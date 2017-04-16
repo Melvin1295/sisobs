@@ -6,8 +6,13 @@
                     
                    $scope.ultimaPublicacion = {};
                    $scope.publicaciones=[];
+                   $scope.publicacione={};
                    $scope.currentPage=1;
                     //Trae el ultimo registro ordenado por fecha
+                 $scope.verDetalle=function(item){
+                 	  $scope.publicacione=item;
+                 	  $location.path('/pages/publisherItem');
+                 }
                  $scope.pageChanged = function() {
                  	 crudService.search('publishers_all',0,$scope.currentPage).then(function (data) {
                             $scope.publicaciones = data.data;

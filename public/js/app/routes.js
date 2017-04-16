@@ -15,7 +15,10 @@
                     templateUrl: '/pages/form-contact',
                     controller: 'PageController'
                 })
-                 
+             .when('/pages/publisherItem', {
+                    templateUrl: '/pages/form-publisherItem',
+                    controller: 'PageController'
+                })
           
                 //----------------------------------------------------------------------
             .when('/authors', {

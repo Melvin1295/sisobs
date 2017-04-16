@@ -28,6 +28,9 @@ class PageController extends Controller {
     public function form_contact(){
     	return View('pages.form_contact');
     }
+    public function form_publisherItem(){
+        return View('pages.form_publisherItem');
+    }
 
     
 }

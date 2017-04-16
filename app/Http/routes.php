@@ -77,6 +77,8 @@ Route::get('api/authorsdata/search/{q?}',['as'=>'person_search', 'uses'=>'Author
 Route::get('pages',['as'=>'person','uses'=>'PageController@index']);
 Route::get('pages/blog',['as'=>'person','uses'=>'PageController@index']);
 Route::get('pages/form-blog',['as'=>'person','uses'=>'PageController@form_blog']);
+Route::get('pages/publisherItem',['as'=>'person','uses'=>'PageController@index']);
+Route::get('pages/form-publisherItem',['as'=>'person','uses'=>'PageController@form_publisherItem']);
 Route::get('pages/contact',['as'=>'person','uses'=>'PageController@index']);
 Route::get('pages/form-contact',['as'=>'person','uses'=>'PageController@form_contact']);
 /* fin rutas de pagina web */

@@ -17,7 +17,7 @@
                             	<img src="@{{item.imagenEmployee}}" class="img-responsive" alt="">
                                 <div class="date"><div class="number">@{{item.dia}}</div><div>@{{item.mes}}</div></div>
                             </div>
-                            <h3><a href="blogitem.html">@{{item.titulo}}</a></h3>
+                            <h3><a ng-click="verDetalle(item)">@{{item.titulo}}</a></h3>
                             <div class="date-xs">@{{item.fecha}}</div>
                             <p><img class="img-responsive pull-right" src="@{{item.imagen}}" alt="">@{{item.descripcion_corta}}</p>
                         	<ul class="blog-tags list-unstyled list-inline">
@@ -58,7 +58,7 @@
                         <h3>Publicaciones Recientes</h3>
                         <div class="box posts">
                             <ul class="list-unstyled">
-                                <li ng-repeat="item in publicaciones"><i class="fa fa-chevron-right"></i><a href="">@{{item.titulo}}</a><div>@{{item.fecha}}</div></li>
+                                <li ng-repeat="item in publicaciones"><i class="fa fa-chevron-right"></i><a ng-click="verDetalle(item)">@{{item.titulo}}</a><div>@{{item.fecha}}</div></li>
                             </ul>
                         </div>
                        
