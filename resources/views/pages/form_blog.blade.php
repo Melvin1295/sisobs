@@ -21,12 +21,7 @@
                             <div class="date-xs">@{{item.fecha}}</div>
                             <p><img class="img-responsive pull-right" src="@{{item.imagen}}" alt="">@{{item.descripcion_corta}}</p>
                         	<ul class="blog-tags list-unstyled list-inline">
-                                <li><a href=""><i class="fa fa-tag"></i>book</a></li>
-                                <li><a href=""><i class="fa fa-tag"></i>music</a></li>
-                                <li><a href=""><i class="fa fa-tag"></i>nature</a></li>
-                                <li><a href=""><i class="fa fa-tag"></i>read</a></li>
-                                <li><a href=""><i class="fa fa-tag"></i>songs</a></li>
-                                <li><a href=""><i class="fa fa-tag"></i>sunshine</a></li>  
+                                <li><a href="" ng-click="verDetalle(item)"><i class="fa fa-tag"></i>Ver +</a></li>
                             </ul>
                         </div>
                         <!-- BLOG POST 1 - END -->

@@ -15,8 +15,16 @@
                     templateUrl: '/pages/form-contact',
                     controller: 'PageController'
                 })
-             .when('/pages/publisherItem', {
+            .when('/pages/editoriales', {
+                    templateUrl: '/pages/form-editorials',
+                    controller: 'PageController'
+                })
+             .when('/pages/publisherItem/:id', {
                     templateUrl: '/pages/form-publisherItem',
+                    controller: 'PageController'
+                })
+             .when('/pages/verEditorial/:id', {
+                    templateUrl: '/pages/form-verEditorial',
                     controller: 'PageController'
                 })
           

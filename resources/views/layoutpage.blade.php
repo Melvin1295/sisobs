@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="pages">
 <head>
+
     <!-- ==========================
     	Meta Tags 
     =========================== -->
@@ -23,6 +24,7 @@
     <!-- ==========================
     	Fonts 
     =========================== -->
+
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -71,67 +73,17 @@
   <header class="navbar navbar-default navbar-static-top" >
     	<div class="container">
             <div class="navbar-header">
-                <a href="index.html" class="navbar-brand"><img src="assets/images/logo.png" class="img-responsive" alt=""></a>
+                <a href="/pages" onclick="myFunction()" class="navbar-brand"><img src="/images/logotipo.png" class="img-responsive" alt=""></a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></button>
             </div>
             <div class="navbar-collapse collapse">
             	<ul class="nav navbar-nav">
-                	<li class="active" ><a href="/pages" onclick="myFunction()">Home</a></li>                    
-                    <li class="dropdown megamenu">
-                    	<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Pages <i class="fa fa-caret-down"></i></a>
-                      	<ul class="dropdown-menu">
-                            <li class="col-sm-4 col-md-3">
-                            	<ul class="list-unstyled">
-                                    <li><a href="index.html" onclick="myFunction()">Homepage - Default <span class="label label-primary">New</span></a></li>
-                                    <li><a href="homepage-2.html">Homepage - Project <span class="label label-primary">New</span></a></li>
-                                    <li><a href="homepage-3.html">Homepage - Event <span class="label label-primary">New</span></a></li>
-                                    <li><a href="homepage-4.html">Homepage - Video <span class="label label-primary">New</span></a></li>
-                                    <li><a href="homepage-5.html">Homepage - Coming Soon <span class="label label-primary">New</span></a></li>
-                                    <li><a href="homepage-6.html">Homepage - Classic <span class="label label-success">Updated</span></a></li>
-                                </ul>
-                            </li>
-                            <li class="col-sm-4 col-md-3">
-                            	<ul class="list-unstyled">
-                                    <li><a href="/pages/blog" onclick="myFunction()">Blog</a></li>
-                                    <li><a href="blogitem.html">Blog Item</a></li>
-                                    <li><a href="gallery.html">Gallery</a></li>
-                                    <li><a href="galleryitem.html">Gallery Item</a></li>
-                                    <li><a href="portfolio.html">Portfolio <span class="label label-primary">New</span></a></li>
-                                    <li><a href="portfolioitem.html">Portfolio Item <span class="label label-primary">New</span></a></li>
-                                </ul>
-                            </li>
-                            <li class="col-sm-4 col-md-3">
-                            	<ul class="list-unstyled">
-                                	<li><a href="pricing.html">Pricing Plans</a></li>
-                                    <li><a href="faq.html">FAQ</a></li>
-                                    <li><a href="error403.html">Error 403</a></li>
-                                    <li><a href="error404.html">Error 404</a></li>
-                                    <li><a href="signup.html">Sign Up</a></li>
-                                    <li><a href="signin.html">Sign In</a></li>
-                                </ul>
-                            </li>
-                            <li class="col-md-3 hidden-xs hidden-sm">
-                            	<img src="assets/images/macbook.png" class="img-responsive" alt="">
-                            </li>
-                      	</ul>
-                    </li>
-                    <li class="dropdown">
-                    	<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropdown Example <i class="fa fa-caret-down"></i></a>
-                      	<ul class="dropdown-menu">
-                            <li><a href="#">Dropdown link #1</a></li>
-                            <li><a href="#">Dropdown link #2</a></li>
-                            <li><a href="#">Dropdown link #3</a></li>
-                            <li><a href="#">Dropdown link #4</a></li>
-                      	</ul>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li>
-
-                        <script>
-                            function myFunction() {
-                                //alert("hola");
-                               document.write('<?php $ruta=$_SERVER['REQUEST_URI']; ?>');
-                            }
-                        </script>
+                	<li class="active" ><a href="/pages" onclick="myFunction()">Inicio</a></li>                  
+                   
+                    <li><a href="/pages/blog" onclick="myFunction()">Publicaciones</a></li>
+                    <li><a href="/page" onclick="myFunction()">Indicadores</a></li>
+                    <li><a href="/pages/editoriales" onclick="myFunction()">Editoriales</a></li>
+                    <li><a href="/pages/contact" onclick="myFunction()">Contactenos</a></li>                        
                 </ul>
                 <div class="navbar-right hidden-xs">
                 	<form id="search-form" class="hidden-xs hidden-sm">
@@ -142,18 +94,23 @@
                             </div>
                         </fieldset>
                     </form>
-                	<ul class="list-unstyled list-inline" id="secondary-nav">
-                    	<li><a href="signin.html">Sign In</a></li>
-                        <li><a href="signup.html">Sign Up</a></li>
-                    </ul>
+                	
                 </div>
             </div>
         </div>
+                        <script>
+                            function myFunction() {
+                                //alert("hola");
+                               document.write('<?php $ruta=$_SERVER['REQUEST_URI']; ?>');
+                            }
+                        </script>
         </header>
+       
      
     <?php $ruta=$_SERVER['REQUEST_URI']; ?>
     
     @if($ruta == ('/pages') )
+
      <!-- ==========================
         JUMBOTRON - START
     =========================== --> 
@@ -220,124 +177,39 @@
   <div class="content-wrapper">
        @yield('content')  
      @if($ruta == ('/pages') )
-    <!-- ==========================
-        TESTIMONIALS - START
-    =========================== -->
-    <section class="content-item" id="testimonials">
-        <div class="container">
-            <div class="content-headline">
-                <h2>Equipo de Profesionales</h2>
-                <h3>Especialistas al Servicio de las Mujeres del Perú.</h3>
-            </div>
-            <div id="testimonials-carousel">
-                
-                <!-- TESTIMONIAL ITEM - START -->
-                <div class="item">
-                    <div class="row">
-                        <div class="col-xs-3 col-sm-3 col-md-2 col-sm-offset-1 col-md-offset-2">
-                            <img src="assets/images/avatar_04.jpg" class="img-responsive img-circle" alt="">
-                        </div>
-                        <div class="col-xs-9 col-sm-7 col-md-6">
-                            <p>Es una breve descripcion del perfil del profesional al servicio de la Salud Sexual Repro.</p>
-                            <h4>John Doe</h4>
-                            <span>Freelance Web Developer</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- TESTIMONIAL ITEM - END -->
-                
-                <!-- TESTIMONIAL ITEM - START -->
-                <div class="item">
-                    <div class="row">
-                        <div class="col-xs-3 col-sm-3 col-md-2 col-sm-offset-1 col-md-offset-2">
-                            <img src="assets/images/avatar_02.jpg" class="img-responsive img-circle" alt="">
-                        </div>
-                        <div class="col-xs-9 col-sm-7 col-md-6">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor dictum nibh, ac gravida orci porttitor et. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam posuere magna a dapibus luctus.</p>
-                            <h4>Paul Smith</h4>
-                            <span>CEO of Company</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- TESTIMONIAL ITEM - END -->
-                
-                <!-- TESTIMONIAL ITEM - START -->
-                <div class="item">
-                    <div class="row">
-                        <div class="col-xs-3 col-sm-3 col-md-2 col-sm-offset-1 col-md-offset-2">
-                            <img src="assets/images/avatar_03.jpg" class="img-responsive img-circle" alt="">
-                        </div>
-                        <div class="col-xs-9 col-sm-7 col-md-6">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor dictum nibh, ac gravida orci porttitor et. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam posuere magna a dapibus luctus.</p>
-                            <h4>Kate Moore</h4>
-                            <span>Art Director</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- TESTIMONIAL ITEM - END -->
-                
-            </div>
-        </div>
-    </section>
-    <!-- ==========================
-        TESTIMONIALS - END
-    =========================== --> 
-
-    <!-- ==========================
-        RECENT POSTS - START
-    =========================== -->
-    <section class="content-item" id="recent-posts">
-        <div class="container">
-            <div class="content-headline">
-                <h2>Recent Posts</h2>
-                <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
-            </div>
-            <div class="row">
-                
-                <!-- RECENT POST - START -->
-                <div class="col-sm-4">
-                    <div class="recent-post">
-                        <h4><a href="blogitem.html">Introducing WordPress 4.0 “Benny”</a></h4>
-                        <div class="date">27/02/2014</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis lacus ac semper viverra. Etiam consequat odio sollicitudin metus condimentum, quis hendrerit.</p>
-                        <a href="blogitem.html" class="btn btn-normal">Read More</a>
-                    </div>
-                </div>
-                <!-- RECENT POST - START -->
-                
-                <!-- RECENT POST - START -->
-                <div class="col-sm-4">
-                    <div class="recent-post">
-                        <h4><a href="blogitem.html">Nature Center: Earth Day Festival</a></h4>
-                        <div class="date">18/02/2014</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis lacus ac semper viverra. Etiam consequat odio sollicitudin metus condimentum, quis hendrerit.</p>
-                        <a href="blogitem.html" class="btn btn-normal">Read More</a>
-                    </div>
-                </div>
-                <!-- RECENT POST - START -->
-                
-                <!-- RECENT POST - START -->
-                <div class="col-sm-4">
-                    <div class="recent-post">
-                        <h4><a href="blogitem.html">Two New Stores Set to Open</a></h4>
-                        <div class="date">05/02/2014</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis lacus ac semper viverra. Etiam consequat odio sollicitudin metus condimentum, quis hendrerit.</p>
-                        <a href="blogitem.html" class="btn btn-normal">Read More</a>
-                    </div>
-                </div>
-                <!-- RECENT POST - START -->
-                
-            </div>
-        </div>
-    </section>
+      
     <!-- ==========================
         RECENT POSTS - END
     =========================== -->
     @endif
+    @if($ruta == ('/pages/contact') )
+           <section class="content-item grey" id="contact">
+                <div class="container">
+                    <div id="googleMap" style="top:-80px;margin-bottom:-100px; width:100%;height:300px;"></div>
+
+                    <script>
+                        function myMap() {
+                            var mapProp = {
+                                center: new google.maps.LatLng(-12.08462, -77.06774510000002),
+                                zoom: 15,
+                            };
+
+                            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                position: new google.maps.LatLng(-12.08462, -77.06774510000002),
+                                title: 'Hello World!'
+                            });
+                        }
+                    </script>       
+                </div>  
     
+                </div>  
+     @endif
   </div>
   
 </body>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbF3aN2aKHhnjrRjSHhUlBPzN53whHB60&callback=myMap"></script>
   <script src="{{ asset('/vendor/angular/angular.js') }}"></script>
   <script src="/vendor/moment/moment.js"></script>
   <script src="/vendor/angular-route/angular-route.js"></script>
@@ -348,7 +220,8 @@
   <script src="/js/app/servicesglobal.js"></script>
   <script src="/vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true"></script>
+   <script src="/js/app/pages/app.js"></script>
+    <script src="/js/app/pages/controllers.js"></script>
 
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
@@ -363,6 +236,7 @@
     <script src="{{ asset('assets/js/creative-brands.js') }}"></script>
     <script src="{{ asset('assets/js/color-switcher.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+
     
  @section('js-customize')
  @show

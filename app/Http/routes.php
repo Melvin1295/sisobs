@@ -77,10 +77,14 @@ Route::get('api/authorsdata/search/{q?}',['as'=>'person_search', 'uses'=>'Author
 Route::get('pages',['as'=>'person','uses'=>'PageController@index']);
 Route::get('pages/blog',['as'=>'person','uses'=>'PageController@index']);
 Route::get('pages/form-blog',['as'=>'person','uses'=>'PageController@form_blog']);
-Route::get('pages/publisherItem',['as'=>'person','uses'=>'PageController@index']);
+Route::get('pages/publisherItem/{id?}',['as'=>'person','uses'=>'PageController@index']);
 Route::get('pages/form-publisherItem',['as'=>'person','uses'=>'PageController@form_publisherItem']);
 Route::get('pages/contact',['as'=>'person','uses'=>'PageController@index']);
 Route::get('pages/form-contact',['as'=>'person','uses'=>'PageController@form_contact']);
+Route::get('pages/editoriales',['as'=>'person','uses'=>'PageController@index']);
+Route::get('pages/form-editorials',['as'=>'person','uses'=>'PageController@form_editorials']);
+Route::get('pages/form-verEditorial',['as'=>'person','uses'=>'PageController@form_verEditorial']);
+Route::get('pages/verEditorial/{id?}',['as'=>'person','uses'=>'PageController@index']);
 /* fin rutas de pagina web */
 
 Route::group(['middleware' => 'role'], function () {
