@@ -169,7 +169,6 @@
                                 $scope.updateEditorials();
                             });
                         }else{
-                            $scope.editorial.archivo_adjunto="";
                             $scope.updateEditorials();
                         }
                     }                       

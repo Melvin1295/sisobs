@@ -167,7 +167,7 @@
                                 $scope.updateColaboradores();
                             });
                         }else{
-                            $scope.colaborador.imagen="";
+                            
                             $scope.updateColaboradores();
                         }
                     }                       
