@@ -107,5 +107,19 @@ class EditorialsController extends Controller {
         }
         return "/images/editoriales/".$time."_".$file;      
     }
+
+
+    public function editorialsUltimo($q)
+    {
+        $editorials = $this->editorialRepo->searchUltimo();
+
+        return response()->json($editorials);
+    }
+    public function editorials_all($q)
+    {
+        $editorials = $this->editorialRepo->editorials_all();
+
+        return response()->json($editorials);
+    }
     
 }

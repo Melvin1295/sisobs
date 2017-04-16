@@ -16,5 +16,18 @@ class EditorialRepo extends BaseRepo{
                     ->paginate(15);
         return $editorials;
     }
+    public function searchUltimo()
+    {
+        $publisher =Editorial::where('estado',1)
+                    ->orderBy('fecha_publicacion','desc')
+                    ->first();
+        return $publisher;
+    }
+    public function editorials_all()
+    {
+        $publisher =Editorial::where('estado',1)
+                    ->paginate(15);
+        return $publisher;
+    }
     
 } 

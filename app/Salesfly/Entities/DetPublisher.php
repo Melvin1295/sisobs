@@ -17,4 +17,7 @@ class DetPublisher extends \Eloquent {
                     'fecha_publicacion',
                     'estado'
                     ];
+                    public function autor(){
+            return $this->belongsTo('Salesfly\Salesfly\Entities\Author','employee_id');
+        }
 } 

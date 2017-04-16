@@ -21,5 +21,20 @@ class IndicatorRepo extends BaseRepo{
                     ->paginate($c);
         return $indicator;
     }
+    public function searchUltimo()
+    {
+        $publisher =Indicator::where('estado',1)
+                    ->orderBy('fecha_publicacion','desc')
+                    ->with('province')
+                    ->first();
+        return $publisher;
+    }
+    public function indicators_all()
+    {
+        $publisher =Indicator::where('estado',1)
+                    ->with('province')
+                    ->paginate(15);
+        return $publisher;
+    }
     
 } 

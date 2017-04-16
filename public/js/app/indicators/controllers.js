@@ -21,7 +21,7 @@
                             $scope.indicators = data.data;
                         });
                     }
-                };
+                }; 
 
 
                 var id = $routeParams.id;
@@ -172,5 +172,24 @@
                         }
                     }                       
                 }
+                //Trae el ultimo registro ordenado por fecha
+                $scope.traerUltimo= function(){
+                    crudService.search('indicatorsUltimo',0,1).then(function (data){
+                        $scope.ultimo = data;
+                        console.log('$scope.ultimo');
+                        console.log($scope.ultimo);
+                    });
+                }
+                //trae todos los registros paginados en 15
+                $scope.traerAll= function(){
+                    crudService.search('indicators_all',0,1).then(function (data){
+                        $scope.todos = data.data;
+                        console.log('$scope.todos');
+                        console.log($scope.todos);
+                        console.log(data);
+                    });
+                }
+                $scope.traerAll();
+                $scope.traerUltimo();
             }]);
 })();
