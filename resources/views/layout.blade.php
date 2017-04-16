@@ -160,6 +160,7 @@
                   <li><a href="/editorials"><i class="fa fa-circle-o"></i>Editoriales </a></li>
                   
                   <li><a href="/indicators"><i class="fa fa-circle-o"></i>Indicadores </a></li>
+                  <li><a href="/colaboradores"><i class="fa fa-circle-o"></i>Colaboradores </a></li>
 
               </ul>
             </li>
