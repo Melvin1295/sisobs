@@ -167,7 +167,6 @@
                                 $scope.updateIndicators();
                             });
                         }else{
-                            $scope.indicator.archivo_adjunto="";
                             $scope.updateIndicators();
                         }
                     }                       
