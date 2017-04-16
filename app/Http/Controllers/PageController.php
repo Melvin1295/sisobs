@@ -28,8 +28,19 @@ class PageController extends Controller {
     public function form_contact(){
     	return View('pages.form_contact');
     }
+<<<<<<< HEAD
+    public function form_publisherItem(){
+        return View('pages.form_publisherItem');
+    }
+    public function form_editorials(){
+        return View('pages.form_editorials');
+    }
+    public function form_verEditorial(){
+        return View('pages.form_verEditorial');
+=======
     public function form_indicadores(){
         return View('pages.form_indicadores');
+>>>>>>> 71bfcae0f8f80b691925e9796972e8681ac713cc
     }
 
     

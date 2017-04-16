@@ -1,4 +1,5 @@
 <section class="content">
+
      <!-- ==========================
         TEAM - END 
     =========================== -->
@@ -15,7 +16,7 @@
             <div class="row">
                     
                 <div class="col-sm-7">
-                <h2>Leave a message</h2>
+                <h2>Escribanos</h2>
                     
                     <form id="contactForm">
                         <div class="contact-alert-wrapper"></div>
@@ -47,27 +48,28 @@
                             <button type="submit" class="btn btn-normal">Send Message</button>
                         </div>
                     </form>
+                    
                 </div>
-                <div class="col-sm-5">
-                    <h2>Contacts</h2>
-                    <div class="box" id="contacts">
+               <div class="col-sm-5">
+                     <h2>Contactenos</h2>
+                    <div class="box" id="contacts" >
                         <ul class="list-unstyled">
                             <li><i class="fa fa-home"></i>212-222 Broadway, New York, NY 10038, USA</li>
                             <li><i class="fa fa-envelope"></i>info@mycompany.com</li>
                             <li><i class="fa fa-phone"></i>+420 123 456 789</li>
                             <li><i class="fa fa-globe"></i>www.mycompany.com</li>
-                        </ul>
-                        <h3>Opening hours</h3>
-                        <ul class="list-unstyled">
+                        </ul>                       
+                      <ul class="list-unstyled">
                             <li><b>Monday-Friday:</b> 9:00 - 16:00</li>
                             <li><b>Saturday:</b> 9:00 - 12:00</li>
                             <li><b>Sunday:</b> Closed</li>
                         </ul>
-                    </div>
+                     </div>
+                   
                     
-                </div> 
             </div>
-        </div>
+            </div>
+           
     </section>
     <!-- ==========================
         CONTACT - END 
