@@ -12,7 +12,8 @@ class Publisher extends \Eloquent {
                     'tipo',
                     'archivo_adjunto',
                     'estado',
-                    'usuario_id'
+                    'usuario_id',
+                    'categoria'
                     ];
                     public function province(){
             return $this->belongsTo('Salesfly\Salesfly\Entities\Province','province_id');

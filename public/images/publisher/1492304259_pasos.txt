@@ -1,0 +1,116 @@
+-----------------------
+///Actualizar Ubunto///
+-----------------------
+	sudo apt-get update
+
+-----------------------
+///Intalar Ngnix///
+-----------------------
+	sudo apt-get install nginx
+
+-----------------------
+///Instalar MySql///
+-----------------------
+	sudo apt-get install mysql-server
+	sudo mysql_install_db
+-----------------------
+///Intalar php5///
+-----------------------
+	sudo apt-get install php5-fpm php5-mysql
+	sudo nano /etc/php5/fpm/php.ini
+		→modificar a esto:  cgi.fix_pathinfo=0
+	sudo service php5-fpm restart
+
+-------------------------------
+///configurar defaul php///
+-------------------------------
+	sudo nano /etc/nginx/sites-available/default
+	
+	→agregar→index.php
+	
+	→copiar→
+ # pass the PHP scripts to FastCGI server listening on /var/run/php5-fpm.sock
+        	location ~ \.php$ {
+                try_files $uri /index.php =404;
+                fastcgi_pass unix:/var/run/php5-fpm.sock;
+                fastcgi_index index.php;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                include fastcgi_params;
+        	}
+
+-------------------------------
+///instalar php myadmin///
+-------------------------------
+	sudo apt-get install phpmyadmin
+	ln -s /usr/share/phpmyadmin /usr/share/nginx/html/
+	sudo service nginx restart
+
+-------------------------------
+///instalar node///
+-------------------------------
+
+---------------------------
+///instalar git///
+///https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-14-04///
+--------------------------
+cd ..
+cd ..
+sudo apt-get install git
+
+------------------------
+///instalar composer///
+///https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-14-04///
+------------------------
+cd 
+sudo apt-get install curl php5-cli git
+s
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+sudo apt-get install php5-curl
+sudo service nginx restart
+sudo service php5-fpm restart
+
+
+sudo nano .env
+--Copiar--
+APP_ENV=local
+APP_DEBUG=true
+APP_KEY=SomeRandomString
+DB_HOST=localhost
+DB_DATABASE=homestead
+DB_USERNAME=homestead
+DB_PASSWORD=secret
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+QUEUE_DRIVER=sync
+MAIL_DRIVER=smtp
+MAIL_HOST=mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+------------------
+
+----------------------------------------------------------------------
+sudo service nginx restart
+sudo php artisan key:generate
+-------------------------------
+→crear bd
+sudo php artisan migrate --seed
+
+sudo npm install -g pm2
+pm2 start nodeserverinit.js
+pm2 list
+sudo pm2 startup ubuntu
+
+-----------------
+-----------------
+Links
+-----------------
+-----------------
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-14-04
+https://github.com/godsaveme/piperxyzub-fr/blob/master/salesfly.dev
+https://nodejs.org/en/download/
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis
+
+	
+

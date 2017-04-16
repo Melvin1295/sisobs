@@ -13,7 +13,8 @@ class DetPublisherManager extends BaseManager {
             'orden'=> '',
             'employee_id'=> '',
             'fecha_publicacion'=> '',
-            'estado'=> ''
+            'estado'=> '',
+            'categoria'=> ''
                   ];
         return $rules;
     }}

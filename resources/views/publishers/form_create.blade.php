@@ -29,8 +29,8 @@
                                               </ul>
                                             </div>
 
-
-
+                  <div class="row">
+                    <div class="col-md-10">
                     <div class="form-group" ng-class="{true: 'has-error'}[ publisherCreateForm.titulo.$error.required && publisherCreateForm.$submitted || publisherCreateForm.titulo.$dirty && publisherCreateForm.titulo.$invalid]">
                       <label for="nombres">Titulo</label>
                       <input type="text" class="form-control" name="titulo" placeholder="Titulo"</ ng-model="publisher.titulo" required>
@@ -38,6 +38,26 @@
                         <span ng-show="publisherCreateForm.titulo.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
                       </label>
                     </div>
+                      
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group" ng-class="{true: 'has-error'}[ publisherCreateForm.categoria.$error.required && publisherCreateForm.$submitted || publisherCreateForm.categoria.$dirty && publisherCreateForm.categoria.$invalid]">
+                                            <label>Categoria</label>
+                                            <select name="categoria" class="form-control" ng-model="publisher.categoria" required="true">
+                                             <option value="">-- Elige Categoria --</option>
+                                             <option value="1">Revistas</option>
+                                             <option value="2">Diarios</option>
+                                             <option value="3">Gacetas</option>
+
+                                            </select>
+                        <label ng-show="publisherCreateForm.$submitted || publisherCreateForm.categoria.$dirty && publisherCreateForm.categoria.$invalid">
+                        <span ng-show="publisherCreateForm.categoria.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+                      </label>
+                      </div>
+                    </div>
+                  </div>
+
+                    
                     <div class="row">
                       <div class="col-md-6">
                           <div class="form-group" ng-class="{true: 'has-error'}[ publisherCreateForm.fecha_publicacion.$error.required && publisherCreateForm.$submitted || publisherCreateForm.fecha_publicacion.$dirty && publisherCreateForm.fecha_publicacion.$invalid]">

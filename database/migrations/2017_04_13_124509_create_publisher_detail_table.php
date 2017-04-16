@@ -22,6 +22,7 @@ class CreatePublisherDetailTable extends Migration
             $table->string('imagen')->nullable();
             $table->integer('orden')->nullable();
             $table->integer('employee_id')->unsigned();
+            $table->integer('categoria');
             //$table->integer('publisher_id')->unsigned();
             $table->smallInteger('estado')->default(1);
 
