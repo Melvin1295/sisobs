@@ -154,6 +154,19 @@
                 .when('/menus/edit/:id',{
                     templateUrl:'/menus/form-edit',
                     controller: 'MenuController'
+                })   
+                //-----------------------------------------------          
+                .when('/colaboradores', {
+                    templateUrl: '/js/app/colaboradores/views/index.html',
+                    controller: 'ColaboradorController'
+                })
+                .when('/colaboradores/create',{
+                    templateUrl:'/colaboradores/form-create',
+                    controller: 'ColaboradorController'
+                })
+                .when('/colaboradores/edit/:id',{
+                    templateUrl:'/colaboradores/form-edit',
+                    controller: 'ColaboradorController'
                 })               
                               
                 

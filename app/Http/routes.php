@@ -196,8 +196,21 @@ Route::put('api/menus/edit',['as'=>'person_edit', 'uses'=>'MenuController@edit']
 Route::post('api/menus/destroy',['as'=>'person_destroy', 'uses'=>'MenuController@destroy']);
 Route::get('api/menus/search/{q?}',['as'=>'person_search', 'uses'=>'MenuController@search']);
 Route::get('api/menus/find/{id}',['as'=>'person_find', 'uses'=>'MenuController@find']);
+//===============================================================
+Route::get('colaboradores',['as'=>'person','uses'=>'ColaboradorController@index']);
+Route::get('colaboradores/create',['as'=>'person_create','uses'=>'ColaboradorController@index']);
+Route::get('colaboradores/edit/{id?}', ['as' => 'person_edit', 'uses' => 'ColaboradorController@index']);
+Route::get('colaboradores/form-create',['as'=>'person_form_create','uses'=>'ColaboradorController@form_create']);
+Route::get('colaboradores/form-edit',['as'=>'person_form_edit','uses'=>'ColaboradorController@form_edit']);
+Route::get('api/colaboradores/all',['as'=>'person_all', 'uses'=>'ColaboradorController@all']);
+Route::get('api/colaboradores/paginate/',['as' => 'person_paginate', 'uses' => 'ColaboradorController@paginatep']);
+Route::post('api/colaboradores/create',['as'=>'person_create', 'uses'=>'ColaboradorController@create']);
+Route::put('api/colaboradores/edit',['as'=>'person_edit', 'uses'=>'ColaboradorController@edit']);
+Route::post('api/colaboradores/destroy',['as'=>'person_destroy', 'uses'=>'ColaboradorController@destroy']);
+Route::get('api/colaboradores/search/{q?}',['as'=>'person_search', 'uses'=>'ColaboradorController@search']);
+Route::get('api/colaboradores/find/{id}',['as'=>'person_find', 'uses'=>'ColaboradorController@find']);
 
-
+Route::post('api/colaboradores/uploadFile',['as'=>'product_disabled', 'uses'=>'ColaboradorController@uploadFile']);
 
 
 

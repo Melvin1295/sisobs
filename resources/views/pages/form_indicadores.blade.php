@@ -1,7 +1,6 @@
 <style>
 .vertical-menu {
 }
-
 .vertical-menu a {
     background-color: #f3f3f3;
     color: black;
@@ -9,24 +8,22 @@
     padding: 12px;
     text-decoration: none;
 }
-
 .vertical-menu a:hover {
     background-color: #CB2027;
 }
-
 .vertical-menu a.active {
     background-color: #4CAF50;
     color: white;
 }
 </style>
 <section class="content">
-	  <!-- ==========================
-    	BLOG - START
+      <!-- ==========================
+        BLOG - START
     =========================== --> 
     <section class="content-item grey" id="blog-timeline">
-    	<div class="container">
-        	<div class="row">
-            	
+        <div class="container">
+            <div class="row">
+                
                 <!-- BLOG POSTS - START -->
                 <div class="col-xs-3">
                     <div id="slideshow-links">                                   <!-- Nav tabs -->
