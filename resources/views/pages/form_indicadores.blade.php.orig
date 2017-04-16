@@ -21,10 +21,17 @@
       <!-- ==========================
         BLOG - START
     =========================== --> 
+<<<<<<< HEAD
     <section class="content-item grey" style="  margin-bottom: -70px;" id="blog-timeline">
+    	<div class="container">
+        	<div class="row">
+            	
+=======
+    <section class="content-item grey" id="blog-timeline">
         <div class="container">
             <div class="row">
                 
+>>>>>>> 5a6557a795c511ffa8d29e973b166debbd511627
                 <!-- BLOG POSTS - START -->
                 <div class="col-xs-4">
                     <div id="slideshow-links">                                   <!-- Nav tabs -->
