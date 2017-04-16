@@ -131,6 +131,8 @@ Route::post('api/editorials/destroy',['as'=>'person_destroy', 'uses'=>'Editorial
 Route::get('api/editorials/search/{q?}',['as'=>'person_search', 'uses'=>'EditorialsController@search']);
 Route::get('api/editorials/find/{id}',['as'=>'person_find', 'uses'=>'EditorialsController@find']);
 Route::post('api/editorials/uploadFile',['as'=>'product_disabled', 'uses'=>'EditorialsController@uploadFile']);
+Route::get('api/editorialsUltimo/search/{q?}',['as'=>'product_disabled', 'uses'=>'EditorialsController@editorialsUltimo']);
+Route::get('api/editorials_all/search/{q?}',['as'=>'product_disabled', 'uses'=>'EditorialsController@editorials_all']);
 //===============================================================
 Route::get('sliders',['as'=>'person','uses'=>'SliderController@index']);
 Route::get('sliders/create',['as'=>'person_create','uses'=>'SliderController@index']);
@@ -175,6 +177,8 @@ Route::post('api/indicators/destroy',['as'=>'person_destroy', 'uses'=>'Indicator
 Route::get('api/indicators/search/{q?}',['as'=>'person_search', 'uses'=>'IndicatorController@search']);
 Route::get('api/indicators/find/{id}',['as'=>'person_find', 'uses'=>'IndicatorController@find']);
 Route::post('api/indicators/uploadFile',['as'=>'product_disabled', 'uses'=>'IndicatorController@uploadFile']);
+Route::get('api/indicatorsUltimo/search/{q?}',['as'=>'product_disabled', 'uses'=>'IndicatorController@indicatorsUltimo']);
+Route::get('api/indicators_all/search/{q?}',['as'=>'product_disabled', 'uses'=>'IndicatorController@indicators_all']);
 //===============================================================
 Route::get('menus',['as'=>'person','uses'=>'MenuController@index']);
 Route::get('menus/create',['as'=>'person_create','uses'=>'MenuController@index']);

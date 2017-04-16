@@ -107,5 +107,18 @@ class IndicatorController extends Controller {
         }
         return "/images/indicadores/".$time."_".$file;      
     }
+
+    public function indicatorsUltimo($q)
+    {
+        $indicators = $this->indicatorRepo->searchUltimo();
+
+        return response()->json($indicators);
+    }
+    public function indicators_all($q)
+    {
+        $indicators = $this->indicatorRepo->indicators_all();
+
+        return response()->json($indicators);
+    }
     
 }

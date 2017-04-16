@@ -14,4 +14,7 @@ class Publisher extends \Eloquent {
                     'estado',
                     'usuario_id'
                     ];
+                    public function province(){
+            return $this->belongsTo('Salesfly\Salesfly\Entities\Province','province_id');
+        }
 }
