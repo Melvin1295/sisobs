@@ -28,6 +28,34 @@
                                 <li ng-repeat="row in errors track by $index"><strong >@{{row}}</strong></li>
                             </ul>
                         </div>
+
+                        <div class="row">
+                    <div class="col-md-10">
+                    <div class="form-group" ng-class="{true: 'has-error'}[ publisherEditForm.titulo.$error.required && publisherEditForm.$submitted || publisherEditForm.titulo.$dirty && publisherEditForm.titulo.$invalid]">
+                      <label for="nombres">Titulo</label>
+                      <input type="text" class="form-control" name="titulo" placeholder="Titulo"</ ng-model="publisher.titulo" required>
+                      <label ng-show="publisherEditForm.$submitted || publisherEditForm.titulo.$dirty && publisherEditForm.titulo.$invalid">
+                        <span ng-show="publisherEditForm.titulo.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+                      </label>
+                    </div>
+                      
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group" ng-class="{true: 'has-error'}[ publisherEditForm.categoria.$error.required && publisherEditForm.$submitted || publisherEditForm.categoria.$dirty && publisherEditForm.categoria.$invalid]">
+                                            <label>Categoria</label>
+                                            <select name="categoria" class="form-control" ng-model="publisher.categoria" required="true">
+                                             <option value="">-- Elige Categoria --</option>
+                                             <option value="1">Revistas</option>
+                                             <option value="2">Diarios</option>
+                                             <option value="3">Gacetas</option>
+
+                                            </select>
+                        <label ng-show="publisherEditForm.$submitted || publisherEditForm.categoria.$dirty && publisherEditForm.categoria.$invalid">
+                        <span ng-show="publisherEditForm.categoria.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+                      </label>
+                      </div>
+                    </div>
+                  </div>
                         <div class="row">
                           <div class="col-md-8">
                                   <div class="form-group" ng-class="{true: 'has-error'}[ publisherEditForm.titulo.$error.required && publisherEditForm.$submitted || publisherEditForm.titulo.$dirty && publisherEditForm.titulo.$invalid]">

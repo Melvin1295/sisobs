@@ -10,7 +10,8 @@ class PublisherManager extends BaseManager {
             'tipo'=> '',
             'archivo_adjunto'=> '',
             'estado'=> '',
-            'usuario_id'=> ''
+            'usuario_id'=> '',
+            'categoria'=> ''
                   ];
         return $rules;
     }}
