@@ -1,3 +1,24 @@
+<style>
+.vertical-menu {
+}
+
+.vertical-menu a {
+    background-color: #f3f3f3;
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.vertical-menu a:hover {
+    background-color: #CB2027;
+}
+
+.vertical-menu a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
 <section class="content">
 	  <!-- ==========================
     	BLOG - START
@@ -9,38 +30,28 @@
                 <!-- BLOG POSTS - START -->
                 <div class="col-xs-3">
                     <div id="slideshow-links">                                   <!-- Nav tabs -->
+                                    
+                                    <div ng-if="bandera">
                                     <ul class="nav nav-tabs nav-justified" id="slideshow-tabs">
-                                        <li ><a href="#" ng-click="@{{cambiar_pestaña()}}"><span></span>Indicadores @{{bandera1}}</a></li>
-                                        <li><a href="#" ><span></span>Provincias</a></li>
-                                    </ul>
+                                        <li class="active"><a href="#" ng-click="cambiar_pestana(1)"><span></span>Indicadores</a></li>
+                                        <li ><a   href="#" ng-click="cambiar_pestana(2)" ><span></span>Provincias</a></li>
+                                        </ul>
+                                    </div>
+                                    <div ng-if="!bandera">
+                                    <ul class="nav nav-tabs nav-justified" id="slideshow-tabs">
+                                        <li><a href="#" ng-click="cambiar_pestana(1)"><span></span>Indicadores</a></li>
+                                        <li class="active" ><a   href="#" ng-click="cambiar_pestana(2)" ><span></span>Provincias</a></li>
+                                         </ul>
+                                    </div>
+                                        
+                                    
                     </div>
                 
                 <!-- BLOG POSTS - END -->
-                <style>
-.vertical-menu {
-}
-
-.vertical-menu a {
-    background-color: #eee;
-    color: black;
-    display: block;
-    padding: 12px;
-    text-decoration: none;
-}
-
-.vertical-menu a:hover {
-    background-color: #ccc;
-}
-
-.vertical-menu a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-</style>
+                
             
-                <section class="content-item" id="slideshow">
                     <div ng-if="bandera">
-                <div class="vertical-menu col-sm-12">
+                <div class="vertical-menu">
                                           <a href="#" style="">hhhh 1</a>
                                           <a href="#">Link 2</a>
                                           <a href="#">Link 3</a>
@@ -48,7 +59,7 @@
                                         </div>
             </div>
             <div ng-if="bandera1">
-                <div class="vertical-menu col-sm-12">
+                <div class="vertical-menu">
                                           <a href="#" style="">vbn 1</a>
                                           <a href="#">Link 2</a>
                                           <a href="#">Link 3</a>
@@ -56,7 +67,6 @@
                                         </div>
             </div>
 
-                    </section>
                 </div>
                 <!-- SIDEBAR - START -->
                 

@@ -10,7 +10,7 @@
                    $scope.publicaciones=[];
                    $scope.currentPage=1;
                     //Trae el ultimo registro ordenado por fecha
-                    $scope.cambiar_pestaña = function(op) {
+                    $scope.cambiar_pestana = function(op) {
                         if (op===1) {
                             $scope.bandera=true;  
                             $scope.bandera1=false; 
