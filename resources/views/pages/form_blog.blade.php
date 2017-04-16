@@ -14,11 +14,11 @@
                     	<!-- BLOG POST 1 - START -->
                         <div class="blog-post" ng-repeat="item in publicaciones">
                         	<div class="blog-info">
-                            	<img src="@{{item.autor.imagen}}" class="img-responsive" alt="">
-                                <div class="date"><div class="number">18</div><div>Dec</div></div>
+                            	<img src="@{{item.imagenEmployee}}" class="img-responsive" alt="">
+                                <div class="date"><div class="number">@{{item.dia}}</div><div>@{{item.mes}}</div></div>
                             </div>
                             <h3><a href="blogitem.html">@{{item.titulo}}</a></h3>
-                            <div class="date-xs">18/12/2014</div>
+                            <div class="date-xs">@{{item.fecha}}</div>
                             <p><img class="img-responsive pull-right" src="@{{item.imagen}}" alt="">@{{item.descripcion_corta}}</p>
                         	<ul class="blog-tags list-unstyled list-inline">
                                 <li><a href=""><i class="fa fa-tag"></i>book</a></li>
@@ -35,9 +35,9 @@
                         
                     </div>
                     
-                    <div class="text-center">
-                    	<a href="#" class="btn btn-normal btn-lg">Load More</a>
-                    </div>
+                    <div class="box-footer clearfix">
+                  <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm no-margin pull-right" items-per-page="itemsperPage" boundary-links="true" rotate="false" num-pages="numPages" ng-change="pageChanged()"></pagination>
+                </div>
                     
                 </div>
                 <!-- BLOG POSTS - END -->
@@ -58,7 +58,7 @@
                         <h3>Publicaciones Recientes</h3>
                         <div class="box posts">
                             <ul class="list-unstyled">
-                                <li ng-repeat="item in publicaciones"><i class="fa fa-chevron-right"></i><a href="">@{{item.titulo}}</a><div>27/02/2014</div></li>
+                                <li ng-repeat="item in publicaciones"><i class="fa fa-chevron-right"></i><a href="">@{{item.titulo}}</a><div>@{{item.fecha}}</div></li>
                             </ul>
                         </div>
                        
