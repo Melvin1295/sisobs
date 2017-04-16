@@ -118,6 +118,7 @@ Route::post('api/publishers/uploadFile',['as'=>'product_disabled', 'uses'=>'Publ
 
 Route::get('api/publishersUltimo/search/{q?}',['as'=>'product_disabled', 'uses'=>'PublishersController@publishersUltimo']);
 Route::get('api/publishers_all/search/{q?}',['as'=>'product_disabled', 'uses'=>'PublishersController@publishers_all']);
+Route::get('api/publisher_id/search/{q?}',['as'=>'product_disabled', 'uses'=>'PublishersController@publisher_id']);
 
 //===============================================================
 Route::get('editorials',['as'=>'person','uses'=>'EditorialsController@index']);

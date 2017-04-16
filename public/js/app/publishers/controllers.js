@@ -198,24 +198,15 @@
                         $scope.updatePublishers();
                     }
                 }
-                //Trae el ultimo registro ordenado por fecha
-                $scope.traerUltimo= function(){
-                    crudService.search('publishersUltimo',0,1).then(function (data){
-                        $scope.ultimo = data;
-                        console.log('$scope.ultimo');
-                        console.log($scope.ultimo);
+                //
+                $scope.traer_id= function(){
+                    var id=3;
+                    crudService.search('publisher_id',id,1).then(function (data){
+                        $scope.iddd = data;
+                        console.log('$scope.iddd');
+                        console.log($scope.iddd);
                     });
                 }
-                //trae todos los registros paginados en 15
-                $scope.traerAll= function(){
-                    crudService.search('publishers_all',0,1).then(function (data){
-                        $scope.todos = data.data;
-                        console.log('$scope.todos');
-                        console.log($scope.todos);
-                        console.log(data);
-                    });
-                }
-                $scope.traerAll();
-                $scope.traerUltimo();
+                $scope.traer_id();
             }]);
 })();
