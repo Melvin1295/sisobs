@@ -42,7 +42,7 @@ class UserController2 extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'store_id' => $data['store_id'],
+            //'store_id' => $data['store_id'],
             'role_id' => $data['role_id'],
             'estado' => $data['estado']
             //'image' => $data['image']
@@ -54,7 +54,7 @@ class UserController2 extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
-            'store_id' => 'required|integer',
+            //'store_id' => 'required|integer',
             'role_id' => 'required|integer',
             'estado' => 'required|integer',
             'image' => ''
@@ -132,7 +132,7 @@ class UserController2 extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users,email,'.$user->id,
-            'store_id' => 'required|integer',
+            //'store_id' => 'required|integer',
             'role_id' => 'required|integer',
             'estado' => 'required|integer',
             'image' => ''
@@ -145,7 +145,7 @@ class UserController2 extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users,email,'.$user->id,
             'password' => 'required|confirmed|min:6',
-            'store_id' => 'required|integer',
+            //'store_id' => 'required|integer',
             'role_id' => 'required|integer',
             'estado' => 'required|integer',
             'image' => ''

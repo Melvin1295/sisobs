@@ -9,15 +9,15 @@
                 $scope.errors;
                 $scope.success;
                 $scope.query = '';
-                $scope.roles = [{key1:'1',value1:'Administrador'},{key1:'2',value1:'Cajero'}];
-                $scope.user.role_id = '2';
+                //$scope.roles = [{key1:'1',value1:'Administrador'},{key1:'2',value1:'Cajero'}];
+                $scope.user.role_id = 2;
                 $scope.estados = [{key:'0',value:'Deshabilitado'},{key:'1',value:'Habilitado'}];
                 $scope.user.estado = '1';
                 $scope.showChange = false;
 
                 $scope.changePass = function(){
                     $scope.showChange = !$scope.showChange;
-                }
+                } 
                 
 
                 $scope.changePass1 = function(){
@@ -66,11 +66,15 @@
                     crudService.byId(id,'users').then(function (data) {
                         $log.log(data);
                         $scope.user = data;
+                        $scope.user.estado = ""+$scope.user.estado;
 
                     });
-                    crudService.select('users','stores').then(function (data){
-                        $scope.stores = data;
+                    crudService.search('roles_all',0,1).then(function (data){
+                        $scope.roles = data;
                     });
+                    /*crudService.select('users','stores').then(function (data){
+                        $scope.stores = data;
+                    });*/
                 }else{
                     crudService.paginate('users',1).then(function (data) {
                         $scope.users = data.data;
@@ -80,11 +84,16 @@
                         $scope.itemsperPage = 15;
 
                     });
-                    crudService.select('users','stores').then(function (data){
+                    crudService.search('roles_all',0,1).then(function (data){
+                        $scope.roles = data;
+                        console.log($scope.roles);
+                        console.log(data);
+                    });
+                    /*crudService.select('users','stores').then(function (data){
                         $scope.stores = data;
                        // $scope.user.store_id;
                         $scope.user.store_id = '1';
-                    });
+                    });*/
                 }
 
                 /*socket.on('user.update', function (data) {

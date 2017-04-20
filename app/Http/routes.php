@@ -217,6 +217,9 @@ Route::get('api/colaboradores/find/{id}',['as'=>'person_find', 'uses'=>'Colabora
 
 Route::post('api/colaboradores/uploadFile',['as'=>'product_disabled', 'uses'=>'ColaboradorController@uploadFile']);
 
+//===============================================================
+Route::get('api/roles_all/search/{q?}',['as'=>'product_disabled', 'uses'=>'RolController@roles_all']);
+
 
 
 
