@@ -85,6 +85,8 @@ Route::get('pages/editoriales',['as'=>'person','uses'=>'PageController@index']);
 Route::get('pages/form-editorials',['as'=>'person','uses'=>'PageController@form_editorials']);
 Route::get('pages/form-verEditorial',['as'=>'person','uses'=>'PageController@form_verEditorial']);
 Route::get('pages/verEditorial/{id?}',['as'=>'person','uses'=>'PageController@index']);
+Route::get('pages/reclamo',['as'=>'person','uses'=>'PageController@index']);
+Route::get('pages/form-reclamo',['as'=>'person','uses'=>'PageController@form_reclamo']);
 
 Route::get('pages/indicadores',['as'=>'person','uses'=>'PageController@index']);
 Route::get('pages/form-indicadores',['as'=>'person','uses'=>'PageController@form_indicadores']);

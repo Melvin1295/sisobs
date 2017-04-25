@@ -19,7 +19,7 @@ Paginas
 @section('js-customize')
     <script src="/js/app/pages/app.js"></script>
     <script src="/js/app/pages/controllers.js"></script>
-    
+ 
 
 @stop
 

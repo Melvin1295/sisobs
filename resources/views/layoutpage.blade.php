@@ -165,7 +165,9 @@
             <!-- SLIDESHOW ITEM - END -->
             
         </div>
+        
     </section>
+
     <!-- ==========================
         JUMBOTRON - END 
     =========================== --> 
@@ -219,10 +221,11 @@
   <script src="/js/app/routes.js"></script>
   <script src="/js/app/servicesglobal.js"></script>
   <script src="/vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  
    <script src="/js/app/pages/app.js"></script>
     <script src="/js/app/pages/controllers.js"></script>
 
+    <script src="{{ asset('assets/js/jquery-latest.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
