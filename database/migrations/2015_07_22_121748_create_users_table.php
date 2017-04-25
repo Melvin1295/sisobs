@@ -18,10 +18,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->text('image');
-            $table->integer('store_id')->unsigned();
+            //$table->integer('store_id')->unsigned();
             $table->integer('role_id')->unsigned();
             $table->foreign('role_id')->references('id')->on('roles');
-            $table->foreign('store_id')->references('id')->on('stores');
+            //$table->foreign('store_id')->references('id')->on('stores');
             $table->tinyInteger('estado'); 
             $table->rememberToken();
             $table->timestamps();
