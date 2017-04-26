@@ -25,7 +25,7 @@
                     <div class="box-body">
                         <div class="callout callout-danger" ng-show="errors">
                             <ul>
-                                <li ng-repeat="row in errors track by $index"><strong >@{{row}}</strong></li>
+                                 <li ng-repeat="row in errors track by $index"><strong >@{{row}}</strong></li>
                             </ul>
                         </div>
 
@@ -84,16 +84,14 @@
                     </div>
                      
                      <div class="form-group" ng-class="{true: 'has-error'}[ editorialEditForm.descripcion_corta.$error.required && editorialEditForm.$submitted || editorialEditForm.descripcion_corta.$dirty && editorialEditForm.descripcion_corta.$invalid]">
-                      <label for="nombres">Descripcion Corta</label>
-                      <textarea rows="4" cols="50" class="form-control" name="descripcion_corta" placeholder="Descripcion Corta"</ ng-model="editorial.descripcion_corta" required>
+                      <label for="nombres">Descripcion Corta (@{{cantidadLetas}} / 500)</label>
+                      <textarea rows="4" cols="50" class="form-control" name="descripcion_corta" placeholder="Descripcion Corta" ng-model="editorial.descripcion_corta" required maxlength="500" ng-change="contarLetras()">
                         
                       </textarea>
                       <label ng-show="editorialEditForm.$submitted || editorialEditForm.descripcion_corta.$dirty && editorialEditForm.descripcion_corta.$invalid">
                         <span ng-show="editorialEditForm.descripcion_corta.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
                       </label>
                     </div>
-
-
                     <div class="form-group" ng-class="{true: 'has-error'}[ editorialEditForm.descripcion.$error.required && editorialEditForm.$submitted || editorialEditForm.descripcion.$dirty && editorialEditForm.descripcion.$invalid]">
                       <label for="nombres">Descripcion</label>
                       <textarea rows="10" cols="50" class="form-control" name="descripcion" placeholder="Descripcion"</ ng-model="editorial.descripcion" required>

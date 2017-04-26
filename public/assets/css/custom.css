@@ -840,6 +840,20 @@ div .box.tags ul li i {
 	color:#777777;
 	margin:20px;
 	padding:5px 0;
+	text-align: left;
+	text-align : justify;
+}
+
+.pricing-plan .price pre {
+	background-color:#E2E2E2;
+	border:8px solid #EBEBEB;
+	font-size:14px;
+	font-weight:400;
+	color:#777777;
+	margin:20px;
+	padding:5px 0;
+	text-align: left;
+	text-align : justify;
 }
 
 .pricing-plan .price span {

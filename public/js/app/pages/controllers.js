@@ -37,6 +37,12 @@
 	                 if($location.path() == '/pages/editoriales') {
 	                 	 crudService.search('editorials_all',0,$scope.currentPage).then(function (data){
 	                        $scope.editoriales = data.data;
+                            for (var i = 0; i < $scope.editoriales.length; i++) {
+                                $scope.editoriales[i].descripcion_corta.replace('\n','</br>');
+                                $scope.editoriales[i].descripcion.replace('\n','</br>');
+                            }
+                            //$scope.editoriales[0].descripcion_corta.replace('\n','</br>');
+                            //console.log($scope.editoriales[0].descripcion_corta);
 	                        $scope.maxSize = 10;
 	                        $scope.totalItems = data.total;
 	                        $scope.currentPage = data.current_page;
@@ -46,6 +52,7 @@
 	                  if($location.path() == '/pages/verEditorial/'+id) {
                             crudService.byId(id,"editorials").then(function (data){
                                 $scope.editorial=data;
+                                $scope.editorial.descripcion.replace('\n','</br>');
                             });
 	                  }
 	                  if($location.path() == '/pages/indicadores') {
@@ -95,6 +102,8 @@
                 $scope.pageChanged2 = function() {
                  	 	 crudService.search('editorials_all',0,$scope.currentPage).then(function (data){
 	                        $scope.editoriales = data.data;
+                            
+                            console.log("Entre pa");
 	                        $scope.maxSize = 10;
 	                        $scope.totalItems = data.total;
 	                        $scope.currentPage = data.current_page;

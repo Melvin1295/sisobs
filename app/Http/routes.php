@@ -221,5 +221,21 @@ Route::post('api/colaboradores/uploadFile',['as'=>'product_disabled', 'uses'=>'C
 Route::get('api/roles_all/search/{q?}',['as'=>'product_disabled', 'uses'=>'RolController@roles_all']);
 
 
+//===============================================================
+Route::get('contacts',['as'=>'person','uses'=>'ContactsController@index']);
+Route::get('contacts/create',['as'=>'person_create','uses'=>'ContactsController@index']);
+Route::get('contacts/edit/{id?}', ['as' => 'person_edit', 'uses' => 'ContactsController@index']);
+Route::get('contacts/form-create',['as'=>'person_form_create','uses'=>'ContactsController@form_create']);
+Route::get('contacts/form-edit',['as'=>'person_form_edit','uses'=>'ContactsController@form_edit']);
+Route::get('api/contacts/all',['as'=>'person_all', 'uses'=>'ContactsController@all']);
+Route::get('api/contacts/paginate/',['as' => 'person_paginate', 'uses' => 'ContactsController@paginatep']);
+Route::post('api/contacts/create',['as'=>'person_create', 'uses'=>'ContactsController@create']);
+Route::put('api/contacts/edit',['as'=>'person_edit', 'uses'=>'ContactsController@edit']);
+Route::post('api/contacts/destroy',['as'=>'person_destroy', 'uses'=>'ContactsController@destroy']);
+Route::get('api/contacts/search/{q?}',['as'=>'person_search', 'uses'=>'ContactsController@search']);
+Route::get('api/contacts/find/{id}',['as'=>'person_find', 'uses'=>'ContactsController@find']);
+//===============================================================
+
+
 
 

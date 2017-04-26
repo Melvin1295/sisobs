@@ -181,7 +181,12 @@
                 .when('/colaboradores/edit/:id',{
                     templateUrl:'/colaboradores/form-edit',
                     controller: 'ColaboradorController'
-                })               
+                })  
+                //-----------------------------------------------          
+                .when('/contacts', {
+                    templateUrl: '/js/app/contacts/views/index.html',
+                    controller: 'contactController'
+                })                
                               
                 
                 
