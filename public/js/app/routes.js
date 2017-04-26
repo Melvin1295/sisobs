@@ -34,6 +34,11 @@
                     templateUrl: '/pages/form-indicadores',
                     controller: 'PageController'
                 })
+
+            .when('/pages/reclamo', {
+                    templateUrl: '/pages/form-reclamo',
+                    controller: 'PageController'
+                })
                  
           
                 //----------------------------------------------------------------------

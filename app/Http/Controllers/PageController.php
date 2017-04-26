@@ -41,6 +41,9 @@ class PageController extends Controller {
     public function form_indicadores(){
         return View('pages.form_indicadores');
     }
+    public function form_reclamo(){
+        return View('pages.form_reclamo');
+    }
 
     
 }

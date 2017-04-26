@@ -1,5 +1,43 @@
 <section class="content">
 
+<style>
+
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  background-color: rgba(0,0,0,0.8); 
+  padding: 7px;
+  margin-top:  -10%;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 3%;
+  border-radius: 5px 5px 5px 5px;
+}
+.prev {
+  
+  left: 3%;
+  border-radius: 3px 5px 5px 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+
+
+</style>
+
+
+
       <!-- ==========================
         SERVICES - START
     =========================== --> 
@@ -41,7 +79,7 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-justified" id="slideshow-tabs">
                         <li class="active"><a href="#tab1" data-toggle="tab"><span></span>Misión</a></li>
-                        <li><a href="#tab2" data-toggle="tab"><span></span>Visión</a></li>
+                        <li><a href="#tab2" data-toggle="tab"><span></span>Visión<timer /></a></li>
                         <li><a href="#tab3" data-toggle="tab"><span></span>Objetivos</a></li>
                     </ul>
                 </div>
@@ -134,13 +172,14 @@
         <div class="container">
             <div class="content-headline">
                 <h2>Equipo de Profesionales</h2>
-                <h3>Especialistas al Servicio de las Mujeres del Perú.</h3>
+                <h3>{{pageActual}}</h3>
+
             </div>
             <div id="testimonials-carousel">
                 
                 <!-- TESTIMONIAL ITEM - START -->
-                <div class="item" ng-repeat="row in colaboradores" >
-                    <div class="row">
+                <div class="item" ng-repeat="row in colaboradores" ng-if="$index==index">
+                    <div class="row" >
                         <div class="col-xs-3 col-sm-3 col-md-2 col-sm-offset-1 col-md-offset-2">
                             <img src="{{row.imagen}}" class="img-responsive img-circle" alt="">
                         </div>
@@ -150,7 +189,11 @@
                             <span>{{row.cargo}}</span>
                         </div>
                     </div>
+                    <button class="prev" ng-click="currentSlideLess($index)">&#10094;</button>
+                    <button class="next" ng-click="currentSlide($index)">&#10095;</button>
                 </div>
+                    
+                
                 <!-- TESTIMONIAL ITEM - END -->
                 
                
@@ -190,7 +233,7 @@
                 
             </div>
         </div>
+       
     </section>
-    
     
 </section>
