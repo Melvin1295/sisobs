@@ -44,7 +44,8 @@ class UserController2 extends Controller
             'password' => bcrypt($data['password']),
             //'store_id' => $data['store_id'],
             'role_id' => $data['role_id'],
-            'estado' => $data['estado']
+            'estado' => $data['estado'],
+            'ubigeo_id' => $data['ubigeo_id']
             //'image' => $data['image']
         ]);
     }
@@ -57,7 +58,8 @@ class UserController2 extends Controller
             //'store_id' => 'required|integer',
             'role_id' => 'required|integer',
             'estado' => 'required|integer',
-            'image' => ''
+            'image' => '',
+            'ubigeo_id'=>''
         ]);
     }
     public function create(Request $request)
@@ -135,7 +137,8 @@ class UserController2 extends Controller
             //'store_id' => 'required|integer',
             'role_id' => 'required|integer',
             'estado' => 'required|integer',
-            'image' => ''
+            'image' => '',
+            'ubigeo_id' => ''
         ]);
     }
      protected function validatorChangePasword(array $data)
@@ -148,7 +151,8 @@ class UserController2 extends Controller
             //'store_id' => 'required|integer',
             'role_id' => 'required|integer',
             'estado' => 'required|integer',
-            'image' => ''
+            'image' => '',
+            'ubigeo_id' => ''
         ]);
     }
     public function edit(Request $request)

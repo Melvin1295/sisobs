@@ -24,12 +24,12 @@ class ContactsController extends Controller {
 
     public function all()
     {
-        $contacts = $this->contactRepo->paginate(15);
+        $contacts = $this->contactRepo->paginaterepo(15);
         return response()->json($contacts);
     }
 
     public function paginatep(){
-        $contacts = $this->contactRepo->paginate(15);
+        $contacts = $this->contactRepo->paginaterepo(15);
         return response()->json($contacts);
     }
 
@@ -46,8 +46,8 @@ class ContactsController extends Controller {
 
     public function create(Request $request)
     {
-        $user = \Auth::user();
-        $request->merge(array('usuario_id' => $user->id));
+        //$user = \Auth::user();
+        //$request->merge(array('usuario_id' => $user->id));
         $contacts = $this->contactRepo->getModel();
         $manager = new ContactManager($contacts,$request->all());
         $manager->save();

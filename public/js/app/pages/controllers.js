@@ -16,6 +16,10 @@
                    $scope.editorial={};
                    $scope.publicacione={};
                    $scope.reclamo={};
+                   $scope.reclamo.flag1=false;
+                   $scope.reclamo.flag2=false;
+                   $scope.reclamo.flag3=false;
+                   $scope.reclamo.flag4=false;
                    $scope.currentPage=1;
                    $scope.index=0;
                    $scope.pageActual='';
@@ -123,9 +127,86 @@
                         console.log($scope.ultimo);
                     });
                 };
-                $scope.registrarReclamo=function(){
-               	   console.log($scope.reclamo);
+                
+                //================RECLAMOS======================
+                 $scope.registrarReclamo = function(){
+                   if ($scope.reclamoCreateForm.$valid) {
+                            $scope.reclamo.ubigeo_id=$scope.DistritoSelect;
+                            if ($scope.reclamo.flag1) {
+                                $scope.reclamo.flag1 = 1;
+                            }else{
+                              $scope.reclamo.flag1 = 0;
+                            }
+                            if ($scope.reclamo.flag2) {
+                                $scope.reclamo.flag2 = 1;
+                            }else{
+                              $scope.reclamo.flag2 = 0;
+                            }
+                            if ($scope.reclamo.flag3) {
+                                $scope.reclamo.flag3 = 1;
+                            }else{
+                              $scope.reclamo.flag3 = 0;
+                            }
+                            if ($scope.reclamo.flag4) {
+                                $scope.reclamo.flag4 = 1;
+                            }else{
+                              $scope.reclamo.flag4 = 0;
+                            }
+                            $log.log($scope.reclamo);
+                                crudService.create($scope.reclamo, 'reclamos').then(function (data) {
+                                    
+                                    if (data['estado'] == true) {
+                                    //$scope.success = data['nombres'];
+                                        alert('Reclamo Registrado Correctamente');
+                                        //$location.path('/docentes');
+                                        $scope.reclamo={};
+
+                                    } else {
+                                        $scope.errors = data;
+
+                                    }
+                                });
+                    }                                  
                 }
+                 crudService.all('ubigeoDepartamento').then(function(data){  
+                        $scope.Departamentos = data;
+                    });
+                $scope.CargarProvincia = function(){
+                    $scope.Provincias ={};
+                    $scope.ProvinciaSelect=null;
+                    $scope.DistritoSelect=null;
+                    crudService.recuperarUnDato('ubigeoProvincia',$scope.DepertamentoSelect).then(function(data){  
+                        $scope.Provincias = data;
+                        //$scope.provinciaSelect=data[0].provincia;
+                    });
+                }
+                $scope.CargarDistrito = function(){
+                    $scope.Distritos ={};
+                    $scope.DistritoSelect=null;
+                    crudService.recuperarDosDato('ubigeoDistrito',$scope.DepertamentoSelect,$scope.ProvinciaSelect).then(function(data){  
+                        $scope.Distritos = data;
+                    });
+                }
+                //================RECLAMOS======================
+                 $scope.registrarMensaje = function(){
+                   if ($scope.contactoCreateForm.$valid) {
+                      crudService.create($scope.contacto, 'contacts').then(function (data) {
+                          
+                          if (data['estado'] == true) {
+                          //$scope.success = data['nombres'];
+                              alert('Mensaje Registrado Correctamente');
+                              $scope.contacto={};
+                              //$location.path('/pages/contact');
+                              //$window.reload();
+
+                          } else {
+                              $scope.errors = data;
+
+                          }
+                      });
+                    }                                  
+                }
+                //==============================================
 
                 var slideIndex = 1;
 

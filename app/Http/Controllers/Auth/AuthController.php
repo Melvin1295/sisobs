@@ -51,7 +51,8 @@ class AuthController extends Controller
             //'store_id' => 'required|integer',
             'role_id' => 'required|integer',
             'estado' => 'required|integer',
-            'image' => ''
+            'image' => '',
+            'ubigeo_id' => ''
         ]);
     }
      public function createUSEr(Request $request)
@@ -94,7 +95,8 @@ class AuthController extends Controller
             //'store_id' => 'required|integer',
             'role_id' => 'required|integer',
             'estado' => 'required|integer',
-            'image' => ''
+            'image' => '',
+            'ubigeo_id' => ''
         ]);
     }
 
@@ -113,8 +115,9 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
             //'store_id' => $data['store_id'],
             'role_id' => $data['role_id'],
-            'estado' => $data['estado']
+            'estado' => $data['estado'],
             //'image' => $data['image']
+            'ubigeo_id' => $data['ubigeo_id']
         ]);
     }
 
@@ -132,8 +135,9 @@ class AuthController extends Controller
             'email' => $data['email'],
             //'store_id' => $data['store_id'],
             'role_id' => $data['role_id'],
-            'estado' => $data['estado']
+            'estado' => $data['estado'],
             //'image' => $data['image']
+            'ubigeo_id' => $data['ubigeo_id']
         ]);
         return $user;
     }

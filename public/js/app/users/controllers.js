@@ -75,6 +75,10 @@
                     /*crudService.select('users','stores').then(function (data){
                         $scope.stores = data;
                     });*/
+                    crudService.all('ubigeoDepartamento').then(function(data){  
+                        $scope.Departamentos = data;
+                        console.log($scope.Departamentos);
+                    });
                 }else{
                     crudService.paginate('users',1).then(function (data) {
                         $scope.users = data.data;
@@ -87,13 +91,32 @@
                     crudService.search('roles_all',0,1).then(function (data){
                         $scope.roles = data;
                         console.log($scope.roles);
-                        console.log(data);
                     });
                     /*crudService.select('users','stores').then(function (data){
                         $scope.stores = data;
                        // $scope.user.store_id;
                         $scope.user.store_id = '1';
                     });*/
+                    crudService.all('ubigeoDepartamento').then(function(data){  
+                        $scope.Departamentos = data;
+                    });
+                }
+
+                $scope.CargarProvincia = function(){
+                    $scope.Provincias ={};
+                    $scope.ProvinciaSelect=null;
+                    $scope.DistritoSelect=null;
+                    crudService.recuperarUnDato('ubigeoProvincia',$scope.DepertamentoSelect).then(function(data){  
+                        $scope.Provincias = data;
+                        //$scope.provinciaSelect=data[0].provincia;
+                    });
+                } 
+                $scope.CargarDistrito = function(){
+                    $scope.Distritos ={};
+                    $scope.DistritoSelect=null;
+                    crudService.recuperarDosDato('ubigeoDistrito',$scope.DepertamentoSelect,$scope.ProvinciaSelect).then(function(data){  
+                        $scope.Distritos = data;
+                    });
                 }
 
                 /*socket.on('user.update', function (data) {
@@ -122,6 +145,8 @@
                 $scope.createUser = function(){
 
                     if ($scope.userCreateForm.$valid) {
+                        $scope.user.ubigeo_id=$scope.DistritoSelect;
+                        console.log($scope.user);
                         var f = document.getElementById('userImage').files[0] ? document.getElementById('userImage').files[0] : null;
                         //alert(f);
                         var r = new FileReader();
@@ -168,6 +193,7 @@
 
                 $scope.updateUser = function(){
                     if ($scope.userCreateForm.$valid) {
+                        $scope.user.ubigeo_id=$scope.DistritoSelect;
                         var f = document.getElementById('userImage').files[0] ? document.getElementById('userImage').files[0] : null;
                         //alert(f);
                         var r = new FileReader();

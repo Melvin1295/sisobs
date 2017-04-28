@@ -1,0 +1,81 @@
+<!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Reclamos
+            <small>Panel de Control</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Reclamos</li>
+          </ol>
+
+          
+        </section>
+
+        <section class="content">
+        </br>
+          <div class="row">
+            <div class="col-md-12">
+
+
+              <div class="box">
+
+                <div class="box-header with-border">
+                  <h3 class="box-title">Reclamos</h3>
+                  <div class="box-tools">
+                  <form ng-keyup="searchReclamo()">
+                    <div class="input-group" style="width: 200px;">
+                      <input type="text" ng-model="query"  name="table_search" class="form-control input-sm pull-right" placeholder="Search" />
+                      <div class="input-group-btn">
+                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                    </form>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="box-body table-responsive no-padding">
+                  <table class="table table-bordered">
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Establecimiento</th>
+                      <th>Nombre</th>  
+                      <th>Ubigeo</th>                     
+                      <th>Correo</th>
+                      <th>Telefono</th>
+                      <th>M1</th>
+                      <th>M2</th>
+                      <th>M3</th>
+                      <th>M4</th>
+                      <th style="width: 30%">Reclamo</th>
+                    </tr>
+                    
+                    <tr ng-repeat="row in reclamos">
+                      <td>{{$index + 1}}</td>
+                      <td>{{row.establecimiento}}</td>
+                      <td>{{row.nombres}}</td> 
+                      <td>{{row.ubigeo.departamento+'/'+row.ubigeo.provincia+'/'+row.ubigeo.distrito}}</td> 
+                      <td>{{row.correo}}</td> 
+                      <td>{{row.telefono}}</td> 
+                       <td>{{row.flag1==1?'SI':'NO'}}</td> 
+                       <td>{{row.flag2==1?'SI':'NO'}}</td> 
+                       <td>{{row.flag3==1?'SI':'NO'}}</td> 
+                       <td>{{row.flag4==1?'SI':'NO'}}</td> 
+                      <td>{{row.descripcion_reclamo}}</td> 
+                      
+                    </tr>
+                    
+                    
+                  </table>
+                  </div>
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix">
+                  <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm no-margin pull-right" items-per-page="itemsperPage" boundary-links="true" rotate="false" num-pages="numPages" ng-change="pageChanged()"></pagination>
+
+
+
+                </div>
+              </div><!-- /.box -->
+            </div>  
+          </div>
+        </section>

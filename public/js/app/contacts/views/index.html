@@ -34,48 +34,24 @@
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                    <div class="row">
-                        <div class="col-sm-10">
-                            <div ng-show="success" class="callout callout-info">
-                                <strong>{{success}} se ha creado correctamente!</strong>
-                            </div>
-                        </div>
-                    </div>
-                  <div class="callout callout-info"  ng-show="editorial.id >0">
-                    <h4>¿ Estás seguro que deseas eliminar a "{{editorial.nombre}}" ?</h4>
-                    <p>
-                      <button type="button" class="btn btn-danger" ng-click="destroyEditorials()">Si</button>
-                      <button type="button" class="btn btn-default" ng-click="cancelEditorials()">No</button>
-                    </p>
-                  </div>
+
                   <div class="box-body table-responsive no-padding">
                   <table class="table table-bordered">
                     <tr>
                       <th style="width: 10px">#</th>
-                      <th>Nombre</th>
-                      <th>Fecha</th>
-                      <th>Titulo</th>
-                      <th>Descripcion Corta</th>
-                      <th>Año</th>
-                      <th style="width: 40px">Estado</th>
-                      <th style="width: 40px">Ver</th>
-                      <th style="width: 40px">Editar</th>
-                      <th style="width: 40px">Eliminar</th>
+                      <th>Nombres</th>
+                      <th>Email</th>
+                      <th>Telefono</th>
+                      <th>Mensaje</th>
                     </tr>
                     
-                    <tr ng-repeat="row in editorials">
+                    <tr ng-repeat="row in contacts">
                       <td>{{$index + 1}}</td>
-                      <td>{{row.nombre}}</td>
-                      <td>{{row.fecha_publicacion}}</td>
+                      <td>{{row.nombres}}</td>
+                      <td>{{row.email}}</td>
 
-                      <td>{{row.titulo_descripcion}}</td>
-                      <td>{{row.descripcion_corta}}</td>
-                      <td>{{row.anio}}</td>
-
-                      <td><a ng-click="updateEstadoEditorials(row)" class="btn btn-default btn-xs">{{row.estado == 1? 'Desactivar':'Activar'}}</a>
-                        <td><a  ng-disabled="row.archivo_adjunto==''" href="{{row.archivo_adjunto}}" target="_blank" class="btn btn-success btn-xs">Archivo</a></td>
-                      <td><a ng-click="editEditorials(row)" class="btn btn-warning btn-xs">Editar</a></td>
-                      <td><a ng-click="deleteEditorials(row)" class="btn btn-danger btn-xs">Eliminar</a></td>
+                      <td>{{row.telefono}}</td>
+                      <td>{{row.descripcion}}</td>
                       
                     </tr>
                     

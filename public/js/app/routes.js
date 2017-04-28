@@ -191,7 +191,66 @@
                 .when('/contacts', {
                     templateUrl: '/js/app/contacts/views/index.html',
                     controller: 'contactController'
-                })                
+                }) 
+                //------------------
+                //RUTES UBIGEOS
+                .when('/ubigeos', {
+                    templateUrl: '/js/app/ubigeos/views/index.html',
+                    controller: 'UbigeoController'
+                })
+                .when('/ubigeos/create',{
+                    templateUrl:'/ubigeos/form-create',
+                    controller: 'UbigeoController'
+                })
+                .when('/ubigeos/edit/:id',{
+                    templateUrl:'/ubigeos/form-edit',
+                    controller: 'UbigeoController'
+                })    
+                //-----------------------------------------------          
+                .when('/reclamos', {
+                    templateUrl: '/js/app/reclamos/views/index.html',
+                    controller: 'ReclamoController'
+                }) 
+                //------------------ 
+                //-----------------------------------------------          
+                .when('/medicamentos', {
+                    templateUrl: '/js/app/medicamentos/views/index.html',
+                    controller: 'MedicamentoController'
+                })
+                .when('/medicamentos/create',{
+                    templateUrl:'/medicamentos/form-create',
+                    controller: 'MedicamentoController'
+                })
+                .when('/medicamentos/edit/:id',{
+                    templateUrl:'/medicamentos/form-edit',
+                    controller: 'MedicamentoController'
+                })   
+                //-----------------------------------------------          
+                .when('/tipomedicamentos', {
+                    templateUrl: '/js/app/tipomedicamentos/views/index.html',
+                    controller: 'TipoMedicamentoController'
+                })
+                .when('/tipomedicamentos/create',{
+                    templateUrl:'/tipomedicamentos/form-create',
+                    controller: 'TipoMedicamentoController'
+                })
+                .when('/tipomedicamentos/edit/:id',{
+                    templateUrl:'/tipomedicamentos/form-edit',
+                    controller: 'TipoMedicamentoController'
+                })   
+                //-----------------------------------------------          
+                .when('/reportemedicamentos', {
+                    templateUrl: '/js/app/reportemedicamentos/views/index.html',
+                    controller: 'ReporteMedicamentoController'
+                })
+                .when('/reportemedicamentos/create',{
+                    templateUrl:'/reportemedicamentos/form-create',
+                    controller: 'ReporteMedicamentoController'
+                })
+                .when('/reportemedicamentos/edit/:id',{
+                    templateUrl:'/reportemedicamentos/form-edit',
+                    controller: 'ReporteMedicamentoController'
+                })             
                               
                 
                 

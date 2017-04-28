@@ -11,9 +11,18 @@ class ContactRepo extends BaseRepo{
 
     public function search($q)
     {
-        $menus =Contact::where('titulo','like', $q.'%')
+        $contacto =Contact::where('titulo','like', $q.'%')
+                    
+                    ->orderBy('id','desc')
                     ->paginate(15);
-        return $menus;
+        return $contacto;
+    }
+
+    public function paginaterepo($c){
+         $contacto =Contact::orderBy('id','desc')
+                    ->paginate($c);
+
+        return $contacto;
     }
     
 } 

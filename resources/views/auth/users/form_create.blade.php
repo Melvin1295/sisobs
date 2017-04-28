@@ -55,6 +55,7 @@
                                           </div></div>
                     </div>
 
+
                     <div class="row">
 
                       <div class="col-md-6">
@@ -75,6 +76,41 @@
                        </div>
                        </div>
                     </div>
+
+                    <div class="row" >
+                            <div  class="col-md-4">
+                               <div class="form-group" ng-class="{true: 'has-error'}[ userCreateForm.DepertamentoSelect.$error.required  && userCreateForm.$submitted || userCreateForm.DepertamentoSelect.$dirty && userCreateForm.DepertamentoSelect.$invalid]">
+                                  <label>Departamento</label>
+                                  <select ng-click="CargarProvincia()" class="form-control ng-pristine ng-valid ng-touched" name="DepertamentoSelect" ng-model="DepertamentoSelect" ng-options="item.departamento as item.departamento for item in Departamentos" required><option value="">-- Elige Departamento --</option></select>
+                                  <label ng-show="userCreateForm.$submitted || userCreateForm.DepertamentoSelect.$dirty && userCreateForm.DepertamentoSelect.$invalid">
+                        <span ng-show="userCreateForm.DepertamentoSelect.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+                        <span ng-show="userCreateForm.DepertamentoSelect.$error.email"><i class="fa fa-times-circle-o"></i>Formato incorrecto.</span>
+                      </label>
+                              </div>
+                            </div>
+                            
+                            <div  class="col-md-4">
+                               <div class="form-group" ng-class="{true: 'has-error'}[ userCreateForm.ProvinciaSelect.$error.required  && userCreateForm.$submitted || userCreateForm.ProvinciaSelect.$dirty && userCreateForm.ProvinciaSelect.$invalid]">
+                                  <label>Provinca</label>
+                                  <select ng-disabled="DepertamentoSelect==null" ng-click="CargarDistrito()" class="form-control ng-pristine ng-valid ng-touched" name="ProvinciaSelect" ng-model="ProvinciaSelect" ng-options="item.provincia as item.provincia for item in Provincias" required><option value="">-- Elige Provincia --</option></select>
+                                  <label ng-show="userCreateForm.$submitted || userCreateForm.ProvinciaSelect.$dirty && userCreateForm.ProvinciaSelect.$invalid">
+                        <span ng-show="userCreateForm.ProvinciaSelect.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+                        <span ng-show="userCreateForm.ProvinciaSelect.$error.email"><i class="fa fa-times-circle-o"></i>Formato incorrecto.</span>
+                      </label>
+                              </div>
+                            </div>
+
+                            <div  class="col-md-4">
+                               <div class="form-group" ng-class="{true: 'has-error'}[ userCreateForm.DistritoSelect.$error.required  && userCreateForm.$submitted || userCreateForm.DistritoSelect.$dirty && userCreateForm.DistritoSelect.$invalid]">
+                                  <label>Distrito</label>
+                                  <select ng-disabled="DepertamentoSelect==null || ProvinciaSelect==undefined" class="form-control ng-pristine ng-valid ng-touched" name="DistritoSelect" ng-model="DistritoSelect" ng-options="item.id as item.distrito for item in Distritos" required><option value="">-- Elige Distrito --</option></select>
+                                  <label ng-show="userCreateForm.$submitted || userCreateForm.DistritoSelect.$dirty && userCreateForm.DistritoSelect.$invalid">
+                        <span ng-show="userCreateForm.DistritoSelect.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+                        <span ng-show="userCreateForm.DistritoSelect.$error.email"><i class="fa fa-times-circle-o"></i>Formato incorrecto.</span>
+                      </label>
+                              </div>
+                            </div>
+                          </div>
 
                     
                     
@@ -104,6 +140,7 @@
                        <input type="file" ng-model="user.image" id="userImage" name="userImage"/>
                        </div>
                        </div>
+                      </div>
 
 
 
