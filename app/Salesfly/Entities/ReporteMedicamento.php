@@ -8,12 +8,18 @@ class ReporteMedicamento extends \Eloquent {
     
     protected $fillable = [ 
                     'mes',
+                    'anio',
+                    'tipo',
                     'descripcion',
                     'glosa',
                     'estado',
-                    'user_id'
+                    'user_id',
+                    'medicamento_id'
                     ];
      public function usuario(){
         return $this->belongsTo('Salesfly\Salesfly\Entities\User','user_id');
+    }
+    public function medicamento(){
+        return $this->belongsTo('Salesfly\Salesfly\Entities\Medicamento','medicamento_id');
     }
 }

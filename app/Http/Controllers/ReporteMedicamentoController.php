@@ -62,17 +62,18 @@ class ReporteMedicamentoController extends Controller {
         $request["user_id"]= $user->id;
         $detreporte = $request->detreporte;
 
-        $reportemedicamentos = $this->reporteMedicamentoRepo->getModel();
-        $manager = new ReporteMedicamentoManager($reportemedicamentos,$request->all());
-        $manager->save();
-        $temporal=$reportemedicamentos->id;
+        //$reportemedicamentos = $this->reporteMedicamentoRepo->getModel();
+        //$manager = new ReporteMedicamentoManager($reportemedicamentos,$request->all());
+        //$manager->save();
+        //$temporal=$reportemedicamentos->id;
 
-        $detReporteMedicamentoRepo;
+        //$detReporteMedicamentoRepo;
         foreach($detreporte as $objeto){
-            $objeto['reporte_mediamento_id'] = $temporal;
-            $detReporteMedicamentoRepo = new DetReporteMedicamentoRepo;
-            $insertar=new DetReporteMedicamentoManager($detReporteMedicamentoRepo->getModel(),$objeto);
-            $insertar->save();
+            $objeto['user_id'] = $user->id;
+
+            $reportemedicamentos = $this->reporteMedicamentoRepo->getModel();
+            $manager = new ReporteMedicamentoManager($reportemedicamentos,$objeto);
+            $manager->save();
           
             $detReporteMedicamentoRepo = null;
         }

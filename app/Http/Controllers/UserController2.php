@@ -49,6 +49,13 @@ class UserController2 extends Controller
             //'image' => $data['image']
         ]);
     }
+    protected function rol_user()
+    {
+        $user = \Auth::user();
+        $rol = $user->role_id;
+        $user_id=$user->id;
+        return response()->json(['rol'=>$rol]);
+    }
      protected function validator(array $data)
     {
         return Validator::make($data, [

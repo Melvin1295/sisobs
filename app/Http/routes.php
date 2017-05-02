@@ -58,6 +58,7 @@ Route::put('api/editPasword/edit',['as'=>'user_edit', 'uses'=>'UserController2@e
 Route::get('api/users/search/{q?}',['as'=>'user_search', 'uses'=>'Auth\AuthController@search']);
 Route::get('api/users/find/{id}',['as'=>'user_find', 'uses'=>'Auth\AuthController@find']);
 Route::get('api/users/stores',['as' => 'user_stores_select','uses' => 'Auth\AuthController@store_select']);
+Route::get('api/rol_users/all',['as'=>'user_all', 'uses'=>'UserController2@rol_user']);
 
 Route::get('authors',['as'=>'person','uses'=>'AuthorController@index']);
 Route::get('authors/create',['as'=>'person_create','uses'=>'AuthorController@index']);

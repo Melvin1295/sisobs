@@ -7,6 +7,8 @@
                 $scope.errors = null;
                 $scope.success;
                 $scope.query = '';
+                $scope.anios=["2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014",
+                "2015","2016","2017","2018","2019","2020"];
                 $scope.toggle = function () {
                     $scope.show = !$scope.show;
                 };
@@ -61,7 +63,7 @@
                 };
 
                 $scope.createReporteMedicamentos = function(){
-                    if ($scope.reporteMedicamentoCreateForm.$valid) {
+                    if ($scope.detreportemedicamentos.length > 0 ) {
                         $scope.reportemedicamento.detreporte=$scope.detreportemedicamentos;
                         crudService.create($scope.reportemedicamento, 'reportemedicamentos').then(function (data) {
                            
@@ -75,6 +77,8 @@
 
                             }
                         });
+                    }else{
+                        alert("Reporte algun medicamento");
                     }
                 }
 
@@ -147,14 +151,20 @@
 
 
                 $scope.addMedicamento = function(){
-                    if ($scope.medicamentoSelected.descripcion==undefined) {
+                    if ($scope.medicamentoSelected==undefined) {
                         alert("Seleccione Correctamente un Medicamento");
                         $scope.medicamentoSelected=undefined;
                     }else{
                         $scope.detreportemedicamento.medicamento_id=$scope.medicamentoSelected.id;
                         $scope.detreportemedicamento.medicamento=$scope.medicamentoSelected.descripcion;
+                        $scope.detreportemedicamento.anio=$scope.reportemedicamento.anio;
+                        $scope.detreportemedicamento.mes=$scope.reportemedicamento.mes;
+                        $scope.detreportemedicamento.tipo=$scope.reportemedicamento.tipo;
+                        $scope.detreportemedicamento.descripcion=$scope.reportemedicamento.descripcion;
+
                         $scope.detreportemedicamentos.push($scope.detreportemedicamento);
-                        $scope.detreportemedicamento={}
+                        $scope.detreportemedicamento = {};
+                        $scope.reportemedicamento={}
                         $scope.medicamentoSelected=undefined;
                         console.log($scope.detreportemedicamentos);
                     }

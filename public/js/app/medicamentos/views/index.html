@@ -60,9 +60,9 @@
                       <th>Medicamento</th>
                       <th>Tipo</th>
                       <th>Descripcion</th>
-                      <th style="width: 40px">Estado</th>
-                      <th style="width: 40px">Editar</th>
-                      <th style="width: 40px">Eliminar</th>
+                      <th style="width: 40px" ng-if=rol_user==1>Estado</th>
+                      <th style="width: 40px" ng-if=rol_user==1>Editar</th>
+                      <th style="width: 40px" ng-if=rol_user==1>Eliminar</th>
                     </tr>
                     
                     <tr ng-repeat="row in medicamentos">
@@ -72,10 +72,10 @@
                       <td>{{row.glosa}}</td>
 
 
-                      <td><a ng-click="updateEstadoMedicamentos(row)" class="btn btn-default btn-xs">{{row.estado == 1? 'Desactivar':'Activar'}}</a>
+                      <td ng-if=rol_user==1 ><a ng-click="updateEstadoMedicamentos(row)" class="btn btn-default btn-xs">{{row.estado == 1? 'Desactivar':'Activar'}}</a>
 
-                      <td><a ng-click="editMedicamentos(row)" class="btn btn-warning btn-xs">Editar</a></td>
-                      <td><a ng-click="deleteMedicamentos(row)" class="btn btn-danger btn-xs">Eliminar</a></td>
+                      <td ng-if=rol_user==1 ><a ng-click="editMedicamentos(row)" class="btn btn-warning btn-xs">Editar</a></td>
+                      <td ng-if=rol_user==1 ><a ng-click="deleteMedicamentos(row)" class="btn btn-danger btn-xs">Eliminar</a></td>
                       
                     </tr>
                     

@@ -141,6 +141,7 @@
           <ul class="sidebar-menu">
             <li class="header">Navegación</li>
             <li><a href="/"><i class="fa fa-home"></i> <span>Home</span></a></li>
+            @if($role == 1)
             <li class=""><a href="/users" ><i class="fa fa-circle-o"></i>Usuarios</a></li>
              <li><a href="/ubigeos"><i class="fa fa-circle-o"></i>Ubigeos </a></li>
 
@@ -156,7 +157,9 @@
                   <li><a href="/colaboradores"><i class="fa fa-circle-o"></i>Colaboradores </a></li>
 
                   <li><a href="/tipomedicamentos"><i class="fa fa-circle-o"></i>Tipo Medicamentos </a></li>
+                  @endif
                   <li><a href="/medicamentos"><i class="fa fa-circle-o"></i>Medicamentos </a></li>
+                  <li><a href="/reportemedicamentos"><i class="fa fa-circle-o"></i>Reporte Medicamentos </a></li>
 
 
             <!--@if($role == 1)

@@ -7,9 +7,12 @@ class ReporteMedicamentoManager extends BaseManager {
         $rules = [              
             'mes'=> '',
             'descripcion'=> '',
+            'anio'=> '',
+            'tipo'=> '',
             'glosa'=> '',
             'estado'=> '',
-            'user_id'=> ''
+            'user_id'=> '',
+            'medicamento_id'=> ''
                   ];
         return $rules;
     }

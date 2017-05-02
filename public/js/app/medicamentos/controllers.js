@@ -25,7 +25,9 @@
 
 
                 var id = $routeParams.id;
-
+                crudService.all('rol_users',1).then(function (data) {
+                            $scope.rol_user = data.rol;
+                        });
                 if(id)
                 {  
                     crudService.byId(id,'medicamentos').then(function (data) {

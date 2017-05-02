@@ -57,21 +57,24 @@
                   <table class="table table-bordered">
                     <tr>
                       <th style="width: 10px">#</th>
+                      <th>Departamento</th>
+                      <th>Medicamento</th>
+                      <th>Año</th>
                       <th>Mes</th>
-                      <th>Ucuario</th>
+                      <th>Usuario</th>
+                      <th>Estado</th>
                       <th>Descripcion</th>
-                      <th style="width: 40px">Eliminar</th>
                     </tr>
                     
                     <tr ng-repeat="row in reportemedicamentos">
                       <td>{{$index + 1}}</td>
+                      <td>{{row.departamento}}</td>
+                      <td>{{row.medicamento.descripcion}}</td>
+                      <td>{{row.anio}}</td>
                       <td>{{row.mes}}</td>
-                      <td>{{row.usuario.name}}</td>
+                      <td>{{row.name}}</td>
+                      <td>{{row.tipo}}</td>
                       <td>{{row.descripcion}}</td>
-
-
-
-                      <td><a ng-click="deleteReporteMedicamentos(row)" class="btn btn-danger btn-xs">Eliminar</a></td>
                       
                     </tr>
                     
