@@ -118,7 +118,9 @@ class EditorialsController extends Controller {
     public function editorials_all($q)
     {
         $editorials = $this->editorialRepo->editorials_all();
-
+        
+        //var_dump($editorials[0]->descripcion_corta);
+        //die();
         return response()->json($editorials);
     }
     

@@ -32,7 +32,7 @@
 
                     <div class="form-group" ng-class="{true: 'has-error'}[ editorialCreateForm.nombre.$error.required && editorialCreateForm.$submitted || editorialCreateForm.nombre.$dirty && editorialCreateForm.nombre.$invalid]">
                       <label for="nombres">Nombre</label>
-                      <input type="text" class="form-control" name="nombre" placeholder="Nombre"</ ng-model="editorial.nombre" required>
+                      <input type="text" class="form-control" name="nombre" placeholder="Nombre" ng-model="editorial.nombre" required >
                       <label ng-show="editorialCreateForm.$submitted || editorialCreateForm.nombre.$dirty && editorialCreateForm.nombre.$invalid">
                         <span ng-show="editorialCreateForm.nombre.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
                       </label>
@@ -81,8 +81,8 @@
                     </div>
                      
                      <div class="form-group" ng-class="{true: 'has-error'}[ editorialCreateForm.descripcion_corta.$error.required && editorialCreateForm.$submitted || editorialCreateForm.descripcion_corta.$dirty && editorialCreateForm.descripcion_corta.$invalid]">
-                      <label for="nombres">Descripcion Corta</label>
-                      <textarea rows="4" cols="50" class="form-control" name="descripcion_corta" placeholder="Descripcion Corta"</ ng-model="editorial.descripcion_corta" required>
+                      <label for="nombres">Descripcion Corta (@{{cantidadLetas}} / 500)</label>
+                      <textarea rows="4" cols="50" class="form-control" name="descripcion_corta" placeholder="Descripcion Corta" ng-model="editorial.descripcion_corta" required maxlength="500" ng-change="contarLetras()">
                         
                       </textarea>
                       <label ng-show="editorialCreateForm.$submitted || editorialCreateForm.descripcion_corta.$dirty && editorialCreateForm.descripcion_corta.$invalid">

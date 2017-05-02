@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('123bbb456'),
                 'estado' => 1,
                 'role_id' => 1,
-                'store_id' => 1,
+                //'store_id' => 1,
                 'image' => '/images/users/default.jpg',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")

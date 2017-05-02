@@ -6,10 +6,24 @@
                 $scope.editorial;
                 $scope.errors = null;
                 $scope.success;
-                $scope.query = '';
+                $scope.query = ''
+                $scope.cantidadLetas=0;
                 $scope.toggle = function () {
                     $scope.show = !$scope.show;
                 };
+
+                $scope.contarLetras = function() {
+                    //$scope.cantidadLetas=$scope.editorial.descripcion_corta.length();
+                    var texto = $scope.editorial.descripcion_corta;
+                    console.log(texto);
+                    if (texto != undefined) {
+                        $scope.cantidadLetas = texto.length;
+                    }else{
+                        $scope.cantidadLetas = 0;
+                    }
+                    
+                    console.log($scope.cantidadLetas);
+                }
 
                 $scope.pageChanged = function() {
                     if ($scope.query.length > 0) {

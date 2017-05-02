@@ -33,15 +33,33 @@
                                             </div>
                     <div class="row">
                         <div class="col-md-6">
-
-                    <div class="form-group" ng-class="{true: 'has-error'}[ userCreateForm.name.$error.required && userCreateForm.$submitted || userCreateForm.name.$dirty && userCreateForm.name.$invalid]">
+                          <div class="form-group" ng-class="{true: 'has-error'}[ userCreateForm.name.$error.required && userCreateForm.$submitted || userCreateForm.name.$dirty && userCreateForm.name.$invalid]">
                       <label for="name">Nombres y Apellidos del Usuario</label>
                       <input type="text" class="form-control" name="name" placeholder="Nombres" ng-model="user.name" required>
                       <label ng-show="userCreateForm.$submitted || userCreateForm.name.$dirty && userCreateForm.name.$invalid">
                         <span ng-show="userCreateForm.name.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
                       </label>
                     </div>
-                    <div class="form-group" ng-class="{true: 'has-error'}[ userCreateForm.email1.$error.required  && userCreateForm.$submitted || userCreateForm.email1.$dirty && userCreateForm.email1.$invalid]">
+                        </div>
+                        <div class="col-md-6">
+
+                     <div class="form-group" ng-class="{true: 'has-error'}[ userCreateForm.role.$error.required  && userCreateForm.$submitted || userCreateForm.role.$dirty && userCreateForm.role.$invalid]">
+                                               <label>Rol</label>
+                                                    <select name="role" class="form-control" ng-model="user.role_id" ng-options="role.id as role.name for role in roles">
+
+                                                 </select>
+                                                 <label ng-show="userCreateForm.$submitted || userCreateForm.role.$dirty && userCreateForm.role.$invalid">
+                                                                         <span ng-show="userCreateForm.role.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+
+                                                                       </label>
+                                          </div></div>
+                    </div>
+
+
+                    <div class="row">
+
+                      <div class="col-md-6">
+                      <div class="form-group" ng-class="{true: 'has-error'}[ userCreateForm.email1.$error.required  && userCreateForm.$submitted || userCreateForm.email1.$dirty && userCreateForm.email1.$invalid]">
                       <label for="email">Email</label>
                       <input type="email" class="form-control" name="email1" placeholder="user@compañia.pe" ng-model="user.email" required>
                       <label ng-show="userCreateForm.$submitted || userCreateForm.email1.$dirty && userCreateForm.email1.$invalid">
@@ -49,8 +67,55 @@
                         <span ng-show="userCreateForm.email1.$error.email"><i class="fa fa-times-circle-o"></i>Formato incorrecto.</span>
                       </label>
                     </div>
+                      </div>
+
+                      <div class="col-md-6">
+                       <div class="form-group">
+                       <label for="estado">Estado</label>
+                            <select class="form-control" name="estado" ng-model="user.estado" ng-options="item.key as item.value for item in estados"></select>
+                       </div>
+                       </div>
+                    </div>
+
+                    <div class="row" >
+                            <div  class="col-md-4">
+                               <div class="form-group" ng-class="{true: 'has-error'}[ userCreateForm.DepertamentoSelect.$error.required  && userCreateForm.$submitted || userCreateForm.DepertamentoSelect.$dirty && userCreateForm.DepertamentoSelect.$invalid]">
+                                  <label>Departamento</label>
+                                  <select ng-click="CargarProvincia()" class="form-control ng-pristine ng-valid ng-touched" name="DepertamentoSelect" ng-model="DepertamentoSelect" ng-options="item.departamento as item.departamento for item in Departamentos" required><option value="">-- Elige Departamento --</option></select>
+                                  <label ng-show="userCreateForm.$submitted || userCreateForm.DepertamentoSelect.$dirty && userCreateForm.DepertamentoSelect.$invalid">
+                        <span ng-show="userCreateForm.DepertamentoSelect.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+                        <span ng-show="userCreateForm.DepertamentoSelect.$error.email"><i class="fa fa-times-circle-o"></i>Formato incorrecto.</span>
+                      </label>
+                              </div>
+                            </div>
+                            
+                            <div  class="col-md-4">
+                               <div class="form-group" ng-class="{true: 'has-error'}[ userCreateForm.ProvinciaSelect.$error.required  && userCreateForm.$submitted || userCreateForm.ProvinciaSelect.$dirty && userCreateForm.ProvinciaSelect.$invalid]">
+                                  <label>Provinca</label>
+                                  <select ng-disabled="DepertamentoSelect==null" ng-click="CargarDistrito()" class="form-control ng-pristine ng-valid ng-touched" name="ProvinciaSelect" ng-model="ProvinciaSelect" ng-options="item.provincia as item.provincia for item in Provincias" required><option value="">-- Elige Provincia --</option></select>
+                                  <label ng-show="userCreateForm.$submitted || userCreateForm.ProvinciaSelect.$dirty && userCreateForm.ProvinciaSelect.$invalid">
+                        <span ng-show="userCreateForm.ProvinciaSelect.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+                        <span ng-show="userCreateForm.ProvinciaSelect.$error.email"><i class="fa fa-times-circle-o"></i>Formato incorrecto.</span>
+                      </label>
+                              </div>
+                            </div>
+
+                            <div  class="col-md-4">
+                               <div class="form-group" ng-class="{true: 'has-error'}[ userCreateForm.DistritoSelect.$error.required  && userCreateForm.$submitted || userCreateForm.DistritoSelect.$dirty && userCreateForm.DistritoSelect.$invalid]">
+                                  <label>Distrito</label>
+                                  <select ng-disabled="DepertamentoSelect==null || ProvinciaSelect==undefined" class="form-control ng-pristine ng-valid ng-touched" name="DistritoSelect" ng-model="DistritoSelect" ng-options="item.id as item.distrito for item in Distritos" required><option value="">-- Elige Distrito --</option></select>
+                                  <label ng-show="userCreateForm.$submitted || userCreateForm.DistritoSelect.$dirty && userCreateForm.DistritoSelect.$invalid">
+                        <span ng-show="userCreateForm.DistritoSelect.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+                        <span ng-show="userCreateForm.DistritoSelect.$error.email"><i class="fa fa-times-circle-o"></i>Formato incorrecto.</span>
+                      </label>
+                              </div>
+                            </div>
+                          </div>
+
+                    
+                    
                     <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                     <div class="form-group" ng-class="{true: 'has-error'}[ userCreateForm.pass1.$error.required  && userCreateForm.$submitted || userCreateForm.pass1.$dirty && userCreateForm.pass1.$invalid]">
                       <label for="email">Password</label>
                       <input type="password" class="form-control" name="pass1" id="pass1" placeholder="pass" ng-model="user.password" ng-minlength=6 required>
@@ -59,7 +124,7 @@
                         <span ng-show="userCreateForm.pass1.$error.minlength"><i class="fa fa-times-circle-o"></i>Mínimo 6 caracteres.</span>
                       </label>
                     </div></div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                     <div class="form-group" ng-class="{true: 'has-error'}[ userCreateForm.pass2.$error.required  && userCreateForm.$submitted || userCreateForm.pass2.$dirty && userCreateForm.pass2.$invalid]">
                       <label for="email">Confirmación de contraseña</label>
                       <input type="password" class="form-control" name="pass2" placeholder="pass" ng-model="user.password_confirmation" pw-check="pass1" required >
@@ -68,10 +133,19 @@
                         <span ng-show="userCreateForm.pass2.$error.pwmatch">  Contraseñas no coinciden.</span>
                       </label>
                     </div></div>
-                    </div>
-                 </div>
 
-                 <div class="col-md-6">
+                    <div class="col-md-6">
+                       <div class="form-group">
+                       <label>Imagen</label>
+                       <input type="file" ng-model="user.image" id="userImage" name="userImage"/>
+                       </div>
+                       </div>
+                      </div>
+
+
+
+
+                 <!--<div class="col-md-6">
 
                    <div class="form-group" ng-class="{true: 'has-error'}[ userCreateForm.store.$error.required  && userCreateForm.$submitted || userCreateForm.store.$dirty && userCreateForm.store.$invalid]">
                           <label>Tienda</label>
@@ -82,34 +156,9 @@
                                                     <span ng-show="userCreateForm.store.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
 
                                                   </label>
-                     </div>
-                     <div class="row">
-                     <div class="col-md-6">
+                     </div>-->
+                       
 
-                     <div class="form-group" ng-class="{true: 'has-error'}[ userCreateForm.role.$error.required  && userCreateForm.$submitted || userCreateForm.role.$dirty && userCreateForm.role.$invalid]">
-                                               <label>Rol</label>
-                                                    <select name="role" class="form-control" ng-model="user.role_id" ng-options="role.key1 as role.value1 for role in roles">
-
-                                                 </select>
-                                                 <label ng-show="userCreateForm.$submitted || userCreateForm.role.$dirty && userCreateForm.role.$invalid">
-                                                                         <span ng-show="userCreateForm.role.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
-
-                                                                       </label>
-                                          </div></div>
-                        <div class="col-md-6">
-                       <div class="form-group">
-                       <label for="estado">Estado</label>
-                            <select class="form-control" name="estado" ng-model="user.estado" ng-options="item.key as item.value for item in estados"></select>
-                       </div>
-                       </div></div>
-                       <div class="form-group">
-                       <label>Imagen</label>
-                       <input type="file" ng-model="user.image" id="userImage" name="userImage"/>
-                       </div>
-
-                 </div>
-
-             </div>
 
 
 

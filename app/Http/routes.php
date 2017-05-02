@@ -58,6 +58,7 @@ Route::put('api/editPasword/edit',['as'=>'user_edit', 'uses'=>'UserController2@e
 Route::get('api/users/search/{q?}',['as'=>'user_search', 'uses'=>'Auth\AuthController@search']);
 Route::get('api/users/find/{id}',['as'=>'user_find', 'uses'=>'Auth\AuthController@find']);
 Route::get('api/users/stores',['as' => 'user_stores_select','uses' => 'Auth\AuthController@store_select']);
+Route::get('api/rol_users/all',['as'=>'user_all', 'uses'=>'UserController2@rol_user']);
 
 Route::get('authors',['as'=>'person','uses'=>'AuthorController@index']);
 Route::get('authors/create',['as'=>'person_create','uses'=>'AuthorController@index']);
@@ -218,6 +219,104 @@ Route::get('api/colaboradores/search/{q?}',['as'=>'person_search', 'uses'=>'Cola
 Route::get('api/colaboradores/find/{id}',['as'=>'person_find', 'uses'=>'ColaboradorController@find']);
 
 Route::post('api/colaboradores/uploadFile',['as'=>'product_disabled', 'uses'=>'ColaboradorController@uploadFile']);
+
+//===============================================================
+Route::get('api/roles_all/search/{q?}',['as'=>'product_disabled', 'uses'=>'RolController@roles_all']);
+
+
+//===============================================================
+Route::get('contacts',['as'=>'person','uses'=>'ContactsController@index']);
+Route::get('contacts/create',['as'=>'person_create','uses'=>'ContactsController@index']);
+Route::get('contacts/edit/{id?}', ['as' => 'person_edit', 'uses' => 'ContactsController@index']);
+Route::get('contacts/form-create',['as'=>'person_form_create','uses'=>'ContactsController@form_create']);
+Route::get('contacts/form-edit',['as'=>'person_form_edit','uses'=>'ContactsController@form_edit']);
+Route::get('api/contacts/all',['as'=>'person_all', 'uses'=>'ContactsController@all']);
+Route::get('api/contacts/paginate/',['as' => 'person_paginate', 'uses' => 'ContactsController@paginatep']);
+Route::post('api/contacts/create',['as'=>'person_create', 'uses'=>'ContactsController@create']);
+Route::put('api/contacts/edit',['as'=>'person_edit', 'uses'=>'ContactsController@edit']);
+Route::post('api/contacts/destroy',['as'=>'person_destroy', 'uses'=>'ContactsController@destroy']);
+Route::get('api/contacts/search/{q?}',['as'=>'person_search', 'uses'=>'ContactsController@search']);
+Route::get('api/contacts/find/{id}',['as'=>'person_find', 'uses'=>'ContactsController@find']);
+//===============================================================
+
+//UBIGEOS ROUTES
+    Route::get('ubigeos', ['as' => 'person', 'uses' => 'UbigeosController@index']);
+    Route::get('ubigeos/create', ['as' => 'person_create', 'uses' => 'UbigeosController@index']);
+    Route::get('ubigeos/edit/{id?}', ['as' => 'person_edit', 'uses' => 'UbigeosController@index']);
+    Route::get('ubigeos/form-create', ['as' => 'person_form_create', 'uses' => 'UbigeosController@form_create']);
+    Route::get('ubigeos/form-edit', ['as' => 'person_form_edit', 'uses' => 'UbigeosController@form_edit']);
+    Route::get('api/ubigeos/all', ['as' => 'person_all', 'uses' => 'UbigeosController@all']);
+    Route::get('api/ubigeos/paginate/', ['as' => 'person_paginate', 'uses' => 'UbigeosController@paginatep']);
+    Route::post('api/ubigeos/create', ['as' => 'person_create', 'uses' => 'UbigeosController@create']);
+    Route::put('api/ubigeos/edit', ['as' => 'person_edit', 'uses' => 'UbigeosController@edit']);
+    Route::post('api/ubigeos/destroy', ['as' => 'person_destroy', 'uses' => 'UbigeosController@destroy']);
+    Route::get('api/ubigeos/search/{q?}', ['as' => 'person_search', 'uses' => 'UbigeosController@search']);
+    Route::get('api/ubigeos/find/{id}', ['as' => 'person_find', 'uses' => 'UbigeosController@find']);
+    Route::get('api/ubigeos/validar/{text}','UbigeosController@validarCodigo');
+    Route::get('api/ubigeoDepartamento/all', ['as' => 'person_all', 'uses' => 'UbigeosController@ubigeoDepartament']); 
+    Route::get('api/ubigeoProvincia/recuperarUnDato/{d?}', ['as' => 'person_all', 'uses' => 'UbigeosController@ubigeoProvincia']); 
+    Route::get('api/ubigeoDistrito/recuperarDosDato/{d?}/{p?}', ['as' => 'person_all', 'uses' => 'UbigeosController@ubigeoDistrito']); 
+//END CATEGORIAS ROUTES
+
+    //===============================================================
+Route::get('reclamos',['as'=>'person','uses'=>'ReclamoController@index']);
+Route::get('reclamos/create',['as'=>'person_create','uses'=>'ReclamoController@index']);
+Route::get('reclamos/edit/{id?}', ['as' => 'person_edit', 'uses' => 'ReclamoController@index']);
+Route::get('reclamos/form-create',['as'=>'person_form_create','uses'=>'ReclamoController@form_create']);
+Route::get('reclamos/form-edit',['as'=>'person_form_edit','uses'=>'ReclamoController@form_edit']);
+Route::get('api/reclamos/all',['as'=>'person_all', 'uses'=>'ReclamoController@all']);
+Route::get('api/reclamos/paginate/',['as' => 'person_paginate', 'uses' => 'ReclamoController@paginatep']);
+Route::post('api/reclamos/create',['as'=>'person_create', 'uses'=>'ReclamoController@create']);
+Route::put('api/reclamos/edit',['as'=>'person_edit', 'uses'=>'ReclamoController@edit']);
+Route::post('api/reclamos/destroy',['as'=>'person_destroy', 'uses'=>'ReclamoController@destroy']);
+Route::get('api/reclamos/search/{q?}',['as'=>'person_search', 'uses'=>'ReclamoController@search']);
+Route::get('api/reclamos/find/{id}',['as'=>'person_find', 'uses'=>'ReclamoController@find']);
+//===============================================================
+//===============================================================
+Route::get('tipomedicamentos',['as'=>'person','uses'=>'TipoMedicamentoController@index']);
+Route::get('tipomedicamentos/create',['as'=>'person_create','uses'=>'TipoMedicamentoController@index']);
+Route::get('tipomedicamentos/edit/{id?}', ['as' => 'person_edit', 'uses' => 'TipoMedicamentoController@index']);
+Route::get('tipomedicamentos/form-create',['as'=>'person_form_create','uses'=>'TipoMedicamentoController@form_create']);
+Route::get('tipomedicamentos/form-edit',['as'=>'person_form_edit','uses'=>'TipoMedicamentoController@form_edit']);
+Route::get('api/tipomedicamentos/all',['as'=>'person_all', 'uses'=>'TipoMedicamentoController@all']);
+Route::get('api/tipomedicamentos/paginate/',['as' => 'person_paginate', 'uses' => 'TipoMedicamentoController@paginatep']);
+Route::post('api/tipomedicamentos/create',['as'=>'person_create', 'uses'=>'TipoMedicamentoController@create']);
+Route::put('api/tipomedicamentos/edit',['as'=>'person_edit', 'uses'=>'TipoMedicamentoController@edit']);
+Route::post('api/tipomedicamentos/destroy',['as'=>'person_destroy', 'uses'=>'TipoMedicamentoController@destroy']);
+Route::get('api/tipomedicamentos/search/{q?}',['as'=>'person_search', 'uses'=>'TipoMedicamentoController@search']);
+Route::get('api/tipomedicamentos/find/{id}',['as'=>'person_find', 'uses'=>'TipoMedicamentoController@find']);
+Route::get('api/tipomedicamentosdata/search/{q?}',['as'=>'person_search', 'uses'=>'TipoMedicamentoController@searchall']);
+//===============================================================
+//===============================================================
+Route::get('medicamentos',['as'=>'person','uses'=>'MedicamentoController@index']);
+Route::get('medicamentos/create',['as'=>'person_create','uses'=>'MedicamentoController@index']);
+Route::get('medicamentos/edit/{id?}', ['as' => 'person_edit', 'uses' => 'MedicamentoController@index']);
+Route::get('medicamentos/form-create',['as'=>'person_form_create','uses'=>'MedicamentoController@form_create']);
+Route::get('medicamentos/form-edit',['as'=>'person_form_edit','uses'=>'MedicamentoController@form_edit']);
+Route::get('api/medicamentos/all',['as'=>'person_all', 'uses'=>'MedicamentoController@all']);
+Route::get('api/medicamentos/paginate/',['as' => 'person_paginate', 'uses' => 'MedicamentoController@paginatep']);
+Route::post('api/medicamentos/create',['as'=>'person_create', 'uses'=>'MedicamentoController@create']);
+Route::put('api/medicamentos/edit',['as'=>'person_edit', 'uses'=>'MedicamentoController@edit']);
+Route::post('api/medicamentos/destroy',['as'=>'person_destroy', 'uses'=>'MedicamentoController@destroy']);
+Route::get('api/medicamentos/search/{q?}',['as'=>'person_search', 'uses'=>'MedicamentoController@search']);
+Route::get('api/medicamentos/find/{id}',['as'=>'person_find', 'uses'=>'MedicamentoController@find']);
+Route::get('api/buscarmedicamento/recuperarUnDato/{d?}', ['as' => 'person_all', 'uses' => 'MedicamentoController@buscarmedicamento']); 
+//===============================================================
+//===============================================================
+Route::get('reportemedicamentos',['as'=>'person','uses'=>'ReporteMedicamentoController@index']);
+Route::get('reportemedicamentos/create',['as'=>'person_create','uses'=>'ReporteMedicamentoController@index']);
+Route::get('reportemedicamentos/edit/{id?}', ['as' => 'person_edit', 'uses' => 'ReporteMedicamentoController@index']);
+Route::get('reportemedicamentos/form-create',['as'=>'person_form_create','uses'=>'ReporteMedicamentoController@form_create']);
+Route::get('reportemedicamentos/form-edit',['as'=>'person_form_edit','uses'=>'ReporteMedicamentoController@form_edit']);
+Route::get('api/reportemedicamentos/all',['as'=>'person_all', 'uses'=>'ReporteMedicamentoController@all']);
+Route::get('api/reportemedicamentos/paginate/',['as' => 'person_paginate', 'uses' => 'ReporteMedicamentoController@paginatep']);
+Route::post('api/reportemedicamentos/create',['as'=>'person_create', 'uses'=>'ReporteMedicamentoController@create']);
+Route::put('api/reportemedicamentos/edit',['as'=>'person_edit', 'uses'=>'ReporteMedicamentoController@edit']);
+Route::post('api/reportemedicamentos/destroy',['as'=>'person_destroy', 'uses'=>'ReporteMedicamentoController@destroy']);
+Route::get('api/reportemedicamentos/search/{q?}',['as'=>'person_search', 'uses'=>'ReporteMedicamentoController@search']);
+Route::get('api/reportemedicamentos/find/{id}',['as'=>'person_find', 'uses'=>'ReporteMedicamentoController@find']);
+//===============================================================
+
 
 
 

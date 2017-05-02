@@ -44,7 +44,7 @@
                            <label>Provincia</label>
                                  <select class="form-control ng-pristine ng-valid ng-touched" name="province_id" ng-model="indicator.province_id" ng-options="item.id as item.nombre for item in provincias" required><option value="">-- Elige Provincia --</option></select>
                              <label ng-show="indicatorEditForm.$submitted || indicatorEditForm.province_id.$dirty && indicatorEditForm.province_id.$invalid">
-                                                     <span ng-show="indicatorEditForm.role.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+                                                     <span ng-show="indicatorEditForm.province_id.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
 
                                                    </label>
                         </div>

@@ -9,15 +9,15 @@
                 $scope.errors;
                 $scope.success;
                 $scope.query = '';
-                $scope.roles = [{key1:'1',value1:'Administrador'},{key1:'2',value1:'Cajero'}];
-                $scope.user.role_id = '2';
+                //$scope.roles = [{key1:'1',value1:'Administrador'},{key1:'2',value1:'Cajero'}];
+                $scope.user.role_id = 2;
                 $scope.estados = [{key:'0',value:'Deshabilitado'},{key:'1',value:'Habilitado'}];
                 $scope.user.estado = '1';
                 $scope.showChange = false;
 
                 $scope.changePass = function(){
                     $scope.showChange = !$scope.showChange;
-                }
+                } 
                 
 
                 $scope.changePass1 = function(){
@@ -66,10 +66,18 @@
                     crudService.byId(id,'users').then(function (data) {
                         $log.log(data);
                         $scope.user = data;
+                        $scope.user.estado = ""+$scope.user.estado;
 
                     });
-                    crudService.select('users','stores').then(function (data){
+                    crudService.search('roles_all',0,1).then(function (data){
+                        $scope.roles = data;
+                    });
+                    /*crudService.select('users','stores').then(function (data){
                         $scope.stores = data;
+                    });*/
+                    crudService.all('ubigeoDepartamento').then(function(data){  
+                        $scope.Departamentos = data;
+                        console.log($scope.Departamentos);
                     });
                 }else{
                     crudService.paginate('users',1).then(function (data) {
@@ -80,10 +88,34 @@
                         $scope.itemsperPage = 15;
 
                     });
-                    crudService.select('users','stores').then(function (data){
+                    crudService.search('roles_all',0,1).then(function (data){
+                        $scope.roles = data;
+                        console.log($scope.roles);
+                    });
+                    /*crudService.select('users','stores').then(function (data){
                         $scope.stores = data;
                        // $scope.user.store_id;
                         $scope.user.store_id = '1';
+                    });*/
+                    crudService.all('ubigeoDepartamento').then(function(data){  
+                        $scope.Departamentos = data;
+                    });
+                }
+
+                $scope.CargarProvincia = function(){
+                    $scope.Provincias ={};
+                    $scope.ProvinciaSelect=null;
+                    $scope.DistritoSelect=null;
+                    crudService.recuperarUnDato('ubigeoProvincia',$scope.DepertamentoSelect).then(function(data){  
+                        $scope.Provincias = data;
+                        //$scope.provinciaSelect=data[0].provincia;
+                    });
+                } 
+                $scope.CargarDistrito = function(){
+                    $scope.Distritos ={};
+                    $scope.DistritoSelect=null;
+                    crudService.recuperarDosDato('ubigeoDistrito',$scope.DepertamentoSelect,$scope.ProvinciaSelect).then(function(data){  
+                        $scope.Distritos = data;
                     });
                 }
 
@@ -113,6 +145,8 @@
                 $scope.createUser = function(){
 
                     if ($scope.userCreateForm.$valid) {
+                        $scope.user.ubigeo_id=$scope.DistritoSelect;
+                        console.log($scope.user);
                         var f = document.getElementById('userImage').files[0] ? document.getElementById('userImage').files[0] : null;
                         //alert(f);
                         var r = new FileReader();
@@ -159,6 +193,7 @@
 
                 $scope.updateUser = function(){
                     if ($scope.userCreateForm.$valid) {
+                        $scope.user.ubigeo_id=$scope.DistritoSelect;
                         var f = document.getElementById('userImage').files[0] ? document.getElementById('userImage').files[0] : null;
                         //alert(f);
                         var r = new FileReader();

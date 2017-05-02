@@ -1,0 +1,95 @@
+<!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Medicamentos
+            <small>Panel de Control</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Medicamentos</li>
+          </ol>
+
+          
+        </section>
+
+        <section class="content">
+        <div class="row">
+        <div class="col-md-12">
+          <a href="/medicamentos/create" type="submit" class="btn btn-primary pull-left">Añadir Medicamento</a>
+          </div>
+        </div>
+        </br>
+          <div class="row">
+            <div class="col-md-12">
+
+
+              <div class="box">
+
+                <div class="box-header with-border">
+                  <h3 class="box-title">Medicamentos</h3>
+                  <div class="box-tools">
+                  <form ng-keyup="searchMedicamentos()">
+                    <div class="input-group" style="width: 200px;">
+                      <input type="text" ng-model="query"  name="table_search" class="form-control input-sm pull-right" placeholder="Search" />
+                      <div class="input-group-btn">
+                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                    </form>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <div ng-show="success" class="callout callout-info">
+                                <strong>{{success}} se ha creado correctamente!</strong>
+                            </div>
+                        </div>
+                    </div>
+                  <div class="callout callout-info"  ng-show="medicamento.id >0">
+                    <h4>¿ Estás seguro que deseas eliminar a "{{medicamento.titulo}}" ?</h4>
+                    <p>
+                      <button type="button" class="btn btn-danger" ng-click="destroyMedicamentos()">Si</button>
+                      <button type="button" class="btn btn-default" ng-click="cancelMedicamentos()">No</button>
+                    </p>
+                  </div>
+                  <div class="box-body table-responsive no-padding">
+                  <table class="table table-bordered">
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Medicamento</th>
+                      <th>Tipo</th>
+                      <th>Descripcion</th>
+                      <th style="width: 40px" ng-if=rol_user==1>Estado</th>
+                      <th style="width: 40px" ng-if=rol_user==1>Editar</th>
+                      <th style="width: 40px" ng-if=rol_user==1>Eliminar</th>
+                    </tr>
+                    
+                    <tr ng-repeat="row in medicamentos">
+                      <td>{{$index + 1}}</td>
+                      <td>{{row.descripcion}}</td>
+                      <td>{{row.tipomedicamento.descripcion}}</td>
+                      <td>{{row.glosa}}</td>
+
+
+                      <td ng-if=rol_user==1 ><a ng-click="updateEstadoMedicamentos(row)" class="btn btn-default btn-xs">{{row.estado == 1? 'Desactivar':'Activar'}}</a>
+
+                      <td ng-if=rol_user==1 ><a ng-click="editMedicamentos(row)" class="btn btn-warning btn-xs">Editar</a></td>
+                      <td ng-if=rol_user==1 ><a ng-click="deleteMedicamentos(row)" class="btn btn-danger btn-xs">Eliminar</a></td>
+                      
+                    </tr>
+                    
+                    
+                  </table>
+                  </div>
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix">
+                  <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm no-margin pull-right" items-per-page="itemsperPage" boundary-links="true" rotate="false" num-pages="numPages" ng-change="pageChanged()"></pagination>
+
+
+
+                </div>
+              </div><!-- /.box -->
+            </div>  
+          </div>
+        </section>

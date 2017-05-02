@@ -42,11 +42,19 @@ class UserController2 extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'store_id' => $data['store_id'],
+            //'store_id' => $data['store_id'],
             'role_id' => $data['role_id'],
-            'estado' => $data['estado']
+            'estado' => $data['estado'],
+            'ubigeo_id' => $data['ubigeo_id']
             //'image' => $data['image']
         ]);
+    }
+    protected function rol_user()
+    {
+        $user = \Auth::user();
+        $rol = $user->role_id;
+        $user_id=$user->id;
+        return response()->json(['rol'=>$rol]);
     }
      protected function validator(array $data)
     {
@@ -54,10 +62,11 @@ class UserController2 extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
-            'store_id' => 'required|integer',
+            //'store_id' => 'required|integer',
             'role_id' => 'required|integer',
             'estado' => 'required|integer',
-            'image' => ''
+            'image' => '',
+            'ubigeo_id'=>''
         ]);
     }
     public function create(Request $request)
@@ -132,10 +141,11 @@ class UserController2 extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users,email,'.$user->id,
-            'store_id' => 'required|integer',
+            //'store_id' => 'required|integer',
             'role_id' => 'required|integer',
             'estado' => 'required|integer',
-            'image' => ''
+            'image' => '',
+            'ubigeo_id' => ''
         ]);
     }
      protected function validatorChangePasword(array $data)
@@ -145,10 +155,11 @@ class UserController2 extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users,email,'.$user->id,
             'password' => 'required|confirmed|min:6',
-            'store_id' => 'required|integer',
+            //'store_id' => 'required|integer',
             'role_id' => 'required|integer',
             'estado' => 'required|integer',
-            'image' => ''
+            'image' => '',
+            'ubigeo_id' => ''
         ]);
     }
     public function edit(Request $request)

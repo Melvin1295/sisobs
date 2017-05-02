@@ -18,34 +18,50 @@
                 <div class="col-sm-7">
                 <h2>Escribanos</h2>
                     
-                    <form id="contactForm">
-                        <div class="contact-alert-wrapper"></div>
-                        <div class="form-group control-group">
-                            <div class="controls">
-                                <p class="help-block"></p>
-                                <input type="text" class="form-control" id="name" placeholder="Your Name" data-validation-required-message="Please enter your name." aria-invalid="false">
+                   <form name="contactoCreateForm" role="form" novalidate>
+                        <div class="contact-alert-wrapper"></div> 
+                        <div class="col-sm-12">
+                                  <div class="form-group" ng-class="{true: 'has-error'}[ contactoCreateForm.nombres.$error.required && contactoCreateForm.$submitted || contactoCreateForm.nombres.$dirty && contactoCreateForm.nombres.$invalid]">
+                                    <!--<label>Nombre y Apellidos o Seudonimo *</label>-->
+                                    <input type="text" required ng-model="contacto.nombres" placeholder="Nombre o seudonimo" class="form-control" name="nombres">
+                                    <label ng-show="contactoCreateForm.$submitted || contactoCreateForm.nombres.$dirty && contactoCreateForm.nombres.$invalid">
+                                    <span ng-show="contactoCreateForm.nombres.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+                                  </label>
+                                  </div>
+                                  </div>
+                        <div class="col-sm-12" >
+                                   <div class="form-group" ng-class="{true: 'has-error'}[ contactoCreateForm.email.$error.required && contactoCreateForm.$submitted || contactoCreateForm.email.$dirty && contactoCreateForm.email.$invalid]">
+                                <!--<label>Correo Electronico *</label>-->
+                                <input type="email" required ng-model="contacto.email" placeholder="Email ejemplo@xxxxxxx.xxx" class="form-control" name="email">
+                                    <label ng-show="contactoCreateForm.$submitted || contactoCreateForm.email.$dirty && contactoCreateForm.email.$invalid">
+                                    <span ng-show="contactoCreateForm.email.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+                                  </label>
                             </div>
-                        </div>
-                        <div class="form-group control-group">
-                            <div class="controls">
-                                <p class="help-block"></p>
-                                <input type="email" class="form-control" id="email" placeholder="Your Email Address" data-validation-required-message="Please enter your email address." data-validation-email-message="Not a valid email address." aria-invalid="false">
+                                  </div>
+                        <div class="col-sm-12">
+                                  <div class="form-group" ng-class="{true: 'has-error'}[ contactoCreateForm.telefono.$error.required && contactoCreateForm.$submitted || contactoCreateForm.telefono.$dirty && contactoCreateForm.telefono.$invalid]">
+                                <!--<label>Telefono</label>-->
+                                <input type="text" ng-model="contacto.telefono" placeholder="Telefono" class="form-control" required name="telefono">
+                            
+                                  <label ng-show="contactoCreateForm.$submitted || contactoCreateForm.telefono.$dirty && contactoCreateForm.telefono.$invalid">
+                                    <span ng-show="contactoCreateForm.telefono.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+                                  </label>
+                                  </div>
+                                  </div>
+                                                       
+                            <div class="col-sm-12">
+                                  <div class="form-group" ng-class="{true: 'has-error'}[ contactoCreateForm.descripcion.$error.required && contactoCreateForm.$submitted || contactoCreateForm.descripcion.$dirty && contactoCreateForm.descripcion.$invalid]">
+                                <!--<label>Mensaje *</label>-->
+                                <textarea class="form-control" required ng-model="contacto.descripcion" placeholder="Mensaje ......." rows="5" name="descripcion"></textarea>
+                                    <label ng-show="contactoCreateForm.$submitted || contactoCreateForm.descripcion.$dirty && contactoCreateForm.descripcion.$invalid">
+                                    <span ng-show="contactoCreateForm.descripcion.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+                                  </label>
                             </div>
+                                
+                       
+                        <div class="form-group form-btn" style="text-align: center;">
+                            <button type="submit" class="btn btn-normal" ng-click="registrarMensaje()">Enviar</button>
                         </div>
-                        <div class="form-group control-group">
-                            <div class="controls">
-                                <p class="help-block"></p>
-                                <input type="text" class="form-control" id="phone" placeholder="Your Phone Number" data-validation-required-message="Please enter your phone number." aria-invalid="false">
-                            </div>
-                        </div>
-                        <div class="form-group control-group">
-                            <div class="controls">
-                                <p class="help-block"></p>
-                                <textarea class="form-control" id="message" placeholder="Your Message" data-validation-required-message="Please enter some message." aria-invalid="false"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group form-btn">
-                            <button type="submit" class="btn btn-normal">Send Message</button>
                         </div>
                     </form>
                     
