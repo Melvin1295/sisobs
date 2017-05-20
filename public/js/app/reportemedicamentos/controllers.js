@@ -172,5 +172,13 @@
                 $scope.destroyMedicamento = function($index){
                     $scope.detreportemedicamentos.splice($index,1);
                 }
+
+                $scope.generarExcel= function(){
+                    console.log("Hola !!");
+                    crudService.all('reportemedicamentos-excel').then(function (data){
+                        //$scope.reportemedicamentos = data.data;
+                    });
+                    
+                };
             }]);
 })();

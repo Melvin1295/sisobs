@@ -5,12 +5,12 @@
        	  color: rgba(144, 39, 43, 1);
        }
     </style>
-           <h3>DENUNCIA EN LINEA</h3>
+           <h3>QUEJAS / RECLAMOS EN LINEA</h3>
                    <div class="panel panel-body panel-info">
                    <form name="reclamoCreateForm" role="form" novalidate>
                    	   <div class="row">
                    	   	    <div class="col-sm-12" style="margin-top:-10px;">
-                   	   	    	<label style="font-size: 20px;  color: black;">La Siguiente queja o denuncia es totalmente confidencial.</label>
+                   	   	    	<label style="font-size: 20px;  color: black;">La Siguiente queja o reclamo es totalmente confidencial.</label>
                    	   	    </div>
                    	   </div>
                    	   <div class="row">
@@ -26,7 +26,7 @@
                    	   	    	<input type="checkbox" ng-model="reclamo.flag2" class="form-control">
                    	   	    </div>
                    	   	    <div class="col-sm-11">
-                   	   	    	<label>¿Le entregaron medicamentos incompletos?</label>
+                   	   	    	<label>¿Entregaron medicamentos incompletos?</label>
                    	   	    </div>
                    	   </div>
                    	   <div class="row">
@@ -115,7 +115,7 @@
                    	   <div class="row">                   	   	    
                    	   	    <div class="col-sm-12">
                                   <div class="form-group" ng-class="{true: 'has-error'}[ reclamoCreateForm.descripcion_reclamo.$error.required && reclamoCreateForm.$submitted || reclamoCreateForm.descripcion_reclamo.$dirty && reclamoCreateForm.descripcion_reclamo.$invalid]">
-                   	   	    	<label>Queja / Reclamo respecto a sus medicamentos *</label>
+                   	   	    	<label>Queja / Reclamo *</label>
                    	   	    	<textarea class="form-control" required ng-model="reclamo.descripcion_reclamo" placeholder="Descripcion ......." rows="5" name="descripcion_reclamo"></textarea>
                                     <label ng-show="reclamoCreateForm.$submitted || reclamoCreateForm.descripcion_reclamo.$dirty && reclamoCreateForm.descripcion_reclamo.$invalid">
                                     <span ng-show="reclamoCreateForm.descripcion_reclamo.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>

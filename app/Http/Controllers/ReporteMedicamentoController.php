@@ -4,12 +4,14 @@ namespace Salesfly\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 use Salesfly\Salesfly\Repositories\ReporteMedicamentoRepo;
 use Salesfly\Salesfly\Managers\ReporteMedicamentoManager;
 
 use Salesfly\Salesfly\Repositories\DetReporteMedicamentoRepo;
 use Salesfly\Salesfly\Managers\DetReporteMedicamentoManager;
+use Salesfly\Salesfly\Entities\ReporteMedicamento;
 
 class ReporteMedicamentoController extends Controller {
 
@@ -114,6 +116,21 @@ class ReporteMedicamentoController extends Controller {
         $reportemedicamentos = $this->reporteMedicamentoRepo->search($q,$rol,$user_id);
 
         return response()->json($reportemedicamentos);
+    }
+
+    public function exportar()
+    {
+        Excel::create('Laravel Excel', function($excel) {
+ 
+            $excel->sheet('reporte_mediamentos', function($sheet) {
+ 
+                $products = ReporteMedicamento::all();
+ 
+                $sheet->fromArray($products);
+ 
+            });
+        })->export('xls');
+        return Book::all();
     }
     
 }
