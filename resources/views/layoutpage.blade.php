@@ -82,8 +82,8 @@
                    
                     <li><a href="/pages/blog" onclick="myFunction()">Publicaciones</a></li>
                     <li><a href="/pages/indicadores" onclick="myFunction()">Indicadores</a></li>
-                    <li><a href="/pages/editoriales" onclick="myFunction()">Editoriales</a></li>
-                    <li><a href="/pages/contact" onclick="myFunction()">Contactenos</a></li>                        
+                    <li><a href="/pages/editoriales" onclick="myFunction()">Incidencias</a></li>
+                    <li><a href="/pages/contact" onclick="myFunction()">Contactenos</a></li> <li><a href="/pages/reclamo" onclick="myFunction()">Quejas/Reclamos</a></li>                       
                 </ul>
                 <div class="navbar-right hidden-xs">
                 	<form id="search-form" class="hidden-xs hidden-sm">

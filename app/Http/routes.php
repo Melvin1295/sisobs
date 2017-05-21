@@ -315,6 +315,9 @@ Route::put('api/reportemedicamentos/edit',['as'=>'person_edit', 'uses'=>'Reporte
 Route::post('api/reportemedicamentos/destroy',['as'=>'person_destroy', 'uses'=>'ReporteMedicamentoController@destroy']);
 Route::get('api/reportemedicamentos/search/{q?}',['as'=>'person_search', 'uses'=>'ReporteMedicamentoController@search']);
 Route::get('api/reportemedicamentos/find/{id}',['as'=>'person_find', 'uses'=>'ReporteMedicamentoController@find']);
+
+
+Route::get('api/reportemedicamentos-excel/all',['as'=>'person_find', 'uses'=>'ReporteMedicamentoController@exportar']);
 //===============================================================
 
 

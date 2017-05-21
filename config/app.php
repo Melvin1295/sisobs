@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -140,6 +140,7 @@ return [
         'JasperPHP\JasperPHPServiceProvider',
         //'Thujohn\Pdf\PdfServiceProvider',
         //'Vsmoraes\Pdf\PdfServiceProvider',
+       Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -207,7 +208,8 @@ return [
 
         /*Custom aliases*/
         'Image'     => Intervention\Image\Facades\Image::class,
-        'Debugbar'  => Barryvdh\Debugbar\Facade::class
+        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

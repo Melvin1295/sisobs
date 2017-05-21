@@ -5,7 +5,7 @@
     <section class="content-item pricing">
     	<div class="container">
         	<div class="content-headline">
-            	<h2>Editoriales</h2>
+            	<h2>Analisis del grupo de incidencia</h2>
             </div>
         	<div class="row">
             	
