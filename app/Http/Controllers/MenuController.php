@@ -86,5 +86,11 @@ class MenuController extends Controller {
 
         return response()->json($menus);
     }
+    public function searchall($q)
+    {
+        $menus = $this->menuRepo->searchall($q);
+
+        return response()->json($menus); 
+    }
     
 }

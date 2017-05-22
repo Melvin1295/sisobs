@@ -20,10 +20,6 @@ class CreateReclamosTable extends Migration
             $table->string('establecimiento')->nullable();
             $table->text('descripcion_reclamo')->nullable();
             $table->smallInteger('estado')->default(1);
-            $table->smallInteger('flag1')->default(0);
-            $table->smallInteger('flag2')->default(0);
-            $table->smallInteger('flag3')->default(0);
-            $table->smallInteger('flag4')->default(0);
 
             $table->integer('ubigeo_id')->unsigned();
 

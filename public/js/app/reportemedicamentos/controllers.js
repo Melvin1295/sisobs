@@ -1,12 +1,15 @@
 (function(){
     angular.module('reportemedicamentos.controllers',[])
-        .controller('ReporteMedicamentoController',['$scope', '$routeParams','$location','crudService' ,'$filter','$route','$log',
-            function($scope, $routeParams,$location,crudService,$filter,$route,$log){
+        .controller('ReporteMedicamentoController',['$scope', '$routeParams','$location','crudService' ,'$filter','$route','$log','$window',
+            function($scope, $routeParams,$location,crudService,$filter,$route,$log,$window){
                 $scope.reportemedicamentos = [];
                 $scope.reportemedicamento;
                 $scope.errors = null;
                 $scope.success;
                 $scope.query = '';
+                $scope.medicamentos=[];
+                $scope.tipo_reporte=[];
+                $scope.rango_busqueda;
                 $scope.anios=["2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014",
                 "2015","2016","2017","2018","2019","2020"];
                 $scope.toggle = function () {
@@ -24,7 +27,7 @@
                         });
                     }
                 };
-
+                //alert("Hola");
 
                 var id = $routeParams.id;
 
@@ -43,6 +46,19 @@
                         $scope.itemsperPage = 2;
 
                     });
+
+                    crudService.search('medicamentos_all',' ').then(function (data){
+                        $scope.medicamentos = data;
+                        console.log($scope.medicamentos);
+                        for (var i = $scope.medicamentos.length - 1; i >= 0; i--) {
+                          $scope.medicamentos[i].flag=false;
+                        }
+                    });
+
+                    crudService.search('tipo_reporte_all',0,1).then(function (data){
+                        $scope.tipo_reporte = data;
+                        console.log($scope.tipo_reporte);
+                    }); 
                 }
 
                 $scope.searchReporteMedicamentos= function(){
@@ -63,9 +79,26 @@
                 };
 
                 $scope.createReporteMedicamentos = function(){
-                    if ($scope.detreportemedicamentos.length > 0 ) {
-                        $scope.reportemedicamento.detreporte=$scope.detreportemedicamentos;
+                    if ($scope.reporteMedicamentoCreateForm.$valid) {
+                        $scope.reportemedicamento.medicamentos=$scope.medicamentos;
                         crudService.create($scope.reportemedicamento, 'reportemedicamentos').then(function (data) {
+                           
+                            if (data['estado'] == true) {
+                                $scope.success = data['nombres'];
+                                alert('Grabado correctamente');
+                                $location.path('/reportemedicamentos');
+                                $window.location.reload();
+
+                            } else {
+                                $scope.errors = data;
+
+                            }
+                        });
+                    }
+                    //if ($scope.detreportemedicamentos.length > 0 ) {
+                        //$scope.reportemedicamento.detreporte=$scope.detreportemedicamentos;
+                        
+                        /*crudService.create($scope.reportemedicamento, 'reportemedicamentos').then(function (data) {
                            
                             if (data['estado'] == true) {
                                 $scope.success = data['nombres'];
@@ -76,10 +109,10 @@
                                 $scope.errors = data;
 
                             }
-                        });
-                    }else{
-                        alert("Reporte algun medicamento");
-                    }
+                        });*/
+                    //}else{
+                        //alert("Reporte algun medicamento");
+                    //}
                 }
 
                 $scope.editReporteMedicamentos = function(row){
@@ -180,5 +213,33 @@
                     });
                     
                 };
+
+                $scope.mostrarMedicamentos = function (det_medicamentos) 
+                {
+                    $scope.det_medicamentos=det_medicamentos;
+                }
+
+                $scope.buscar = function() {
+                    if ($scope.buscarForm.$valid) {
+                        $scope.rango_busqueda.fecha_fin.setDate($scope.rango_busqueda.fecha_fin.getDate()+1);
+                        if ($scope.rango_busqueda.fecha_inicio<$scope.rango_busqueda.fecha_fin) {
+                            var fecha_inicio = $filter('date')($scope.rango_busqueda.fecha_inicio,'yyyy-MM-dd');
+                            var fecha_fin = $filter('date')($scope.rango_busqueda.fecha_fin,'yyyy-MM-dd');
+                            console.log(fecha_fin);
+                            window.open('http://apisisobs.dev/api/reportemedicamentos-excel/recuperarDosDato/'+fecha_inicio+'/'+fecha_fin)
+                            $route.reload();
+                            $window.location.reload();   
+                        }else{
+                            alert("La fecha final debe ser mayor a la fecha inicial");
+                        }
+                        
+                    }
+
+                    //window.reload();
+                    /*crudService.recuperarDosDato('reportemedicamentos-excel',fecha_inicio,fecha_fin).then(function (data){
+                       
+                       return data;
+                    });*/
+                }
             }]);
 })();

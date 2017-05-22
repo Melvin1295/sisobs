@@ -11,13 +11,12 @@ class Reclamo extends \Eloquent {
     						'establecimiento',
     						'descripcion_reclamo',
     						'estado',
-    						'flag1',
-    						'flag2',
-    						'flag3',
-    						'flag4',
     						'ubigeo_id'
     						];
         public function ubigeo(){
             return $this->belongsTo('Salesfly\Salesfly\Entities\Ubigeo','ubigeo_id');
+        }
+        public function quejas(){
+            return $this->hasMany('Salesfly\Salesfly\Entities\DetReclamosTipoQueja');
         }
 }

@@ -4,6 +4,7 @@ namespace Salesfly\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 use Salesfly\Salesfly\Repositories\ContactRepo;
 use Salesfly\Salesfly\Managers\ContactManager;
@@ -11,10 +12,14 @@ use Salesfly\Salesfly\Managers\ContactManager;
 class ContactsController extends Controller {
 
     protected $contactRepo;
+    protected $fecha_inicio;
+    protected $fecha_fin;
 
     public function __construct(ContactRepo $contactRepo)
     {
         $this->contactRepo = $contactRepo;
+        $this->fecha_inicio = 0;
+        $this->fecha_fin = 0;
     }
 
     public function index()
@@ -85,6 +90,22 @@ class ContactsController extends Controller {
         $contacts = $this->contactRepo->search($q);
 
         return response()->json($contacts);
+    }
+    public function exportar($ini,$fin)
+    {
+        $this->fecha_inicio = $ini;
+        $this->fecha_fin = $fin;
+        return Excel::create('Laravel Excel', function($excel) {
+        
+            $excel->sheet('contacts', function($sheet) {
+
+                $contact = $this->contactRepo->exportar($this->fecha_inicio,$this->fecha_fin);
+ 
+                $sheet->fromArray($contact);
+ 
+            });
+        })->export('xls');
+        //return Book::all();
     }
     
 }

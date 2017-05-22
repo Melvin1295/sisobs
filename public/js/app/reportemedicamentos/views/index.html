@@ -29,7 +29,7 @@
                   <h3 class="box-title">Lista de medicamentos reportados</h3>
                   <div class="box-tools">
                   <div class="row">
-                    <div class="col-sm-3"><a type="submit" href="http://apisisobs.dev/api/reportemedicamentos-excel/all" target="_black" class="btn btn-default pull-left">Excel</a></div>
+                    <div class="col-sm-3"><a type="submit"  data-toggle="modal" data-target="#myModalReporte"  target="_black" class="btn btn-default pull-left">Excel</a></div>
 
                     <div class = "col-sm-9">
                       <form ng-keyup="searchReporteMedicamentos()">
@@ -42,7 +42,7 @@
                     </div>
                     </form>
                     </div>
-                  </div>
+                  </div> 
                   
                   
                   </div>
@@ -66,26 +66,30 @@
                   <table class="table table-bordered">
                     <tr>
                       <th style="width: 10px">#</th>
+                      <th>Registro</th>
+                      <th>Usuario</th>
                       <th>Departamento</th>
-                      <th>Medicamento</th>
                       <th>Año</th>
                       <th>Mes</th>
-                      <th>Usuario</th>
+                      
                       <th>Estado</th>
                       <th>Descripcion</th>
+                      <th style="width: 30px">Medicamentos</th>
                     </tr>
                     
                     <tr ng-repeat="row in reportemedicamentos">
                       <td>{{$index + 1}}</td>
-                      <td>{{row.departamento}}</td>
-                      <td>{{row.medicamento.descripcion}}</td>
+                      <td>{{row.created_at}}</td>
+                       <td>{{row.name}}</td>
+                      <td>{{row.departamento+'/'+row.provincia+'/'+row.distrito}}</td> 
                       <td>{{row.anio}}</td>
                       <td>{{row.mes}}</td>
-                      <td>{{row.name}}</td>
+                     
                       <td>{{row.tipo}}</td>
                       <td>{{row.descripcion}}</td>
+                      <td><button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal" ng-click="mostrarMedicamentos(row.det_medicamentos)">Ver</button></td>
                       
-                    </tr>
+                    </tr> 
                     
                     
                   </table>
@@ -101,3 +105,82 @@
             </div>  
           </div>
         </section>
+
+       
+
+
+
+  <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Medicamentos Reportados</h4>
+      </div>
+      <div class="modal-body">
+        <p ng-repeat="row in det_medicamentos">{{row.medicamento.descripcion}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div> 
+</div>
+
+<!-- ====================================================== -->
+  <div id="myModalReporte" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <form name="buscarForm" role="form" novalidate>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Medicamentos Reportados</h4>
+      </div>
+      <div class="modal-body">
+              <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group" ng-class="{true: 'has-error'}[ buscarForm.fecha_inicio.$error.required && buscarForm.$submitted || buscarForm.fecha_inicio.$dirty && buscarForm.fecha_inicio.$invalid]">
+                                      <label for="fecha_inicio">Fecha Inicio</label>
+                                                          <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                              <i class="fa fa-calendar"></i>
+                                                            </div>
+                                        <input type="date" class="form-control" name="fecha_inicio" ng-model="rango_busqueda.fecha_inicio" required>
+                                        <label ng-show="buscarForm.$submitted || buscarForm.fecha_inicio.$dirty && buscarForm.fecha_inicio.$invalid">
+                                                <span ng-show="buscarForm.fecha_inicio.$invalid"><i class="fa fa-times-circle-o"></i>Fecha Inválida.</span>
+                                        </label>
+                                        </div>
+                        </div>  
+                      </div>
+
+                      <div class="col-md-6">
+                          <div class="form-group" ng-class="{true: 'has-error'}[ buscarForm.fecha_fin.$error.required && buscarForm.$submitted || buscarForm.fecha_fin.$dirty && buscarForm.fecha_fin.$invalid]">
+                                      <label for="fecha_fin">Fecha Fin</label>
+                                                          <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                              <i class="fa fa-calendar"></i>
+                                                            </div>
+                                        <input type="date" class="form-control" name="fecha_fin" ng-model="rango_busqueda.fecha_fin" required>
+                                        <label ng-show="buscarForm.$submitted || buscarForm.fecha_fin.$dirty && buscarForm.fecha_fin.$invalid">
+                                                <span ng-show="buscarForm.fecha_fin.$invalid"><i class="fa fa-times-circle-o"></i>Fecha Inválida.</span>
+                                        </label>
+                                        </div>
+                        </div>  
+                      </div>
+              </div>
+          
+      </div>
+
+      <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" href="http://apisisobs.dev/api/reportemedicamentos-excel/recuperarDosDato/2017-05-21/2017-05-23" ng-click="buscar()">Generar Excel</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+      </div>
+      </form>
+    </div>
+
+  </div>
+</div>

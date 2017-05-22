@@ -7,5 +7,6 @@
         'crud.services',
         'routes',
         'ui.bootstrap'
+        
     ]);
 })();

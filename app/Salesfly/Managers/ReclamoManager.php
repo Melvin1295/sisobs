@@ -11,10 +11,6 @@ class ReclamoManager extends BaseManager {
             'establecimiento'=>'',
             'descripcion_reclamo'=>'',
             'estado'=>'',
-            'flag1'=>'',
-            'flag2'=>'',
-            'flag3'=>'',
-            'flag4'=>'',
             'ubigeo_id'=>''
                   ];
         return $rules;

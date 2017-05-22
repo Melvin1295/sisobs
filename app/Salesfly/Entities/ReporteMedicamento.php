@@ -14,12 +14,12 @@ class ReporteMedicamento extends \Eloquent {
                     'glosa',
                     'estado',
                     'user_id',
-                    'medicamento_id'
+                    'tipo_reporte_id'
                     ];
      public function usuario(){
         return $this->belongsTo('Salesfly\Salesfly\Entities\User','user_id');
     }
-    public function medicamento(){
-        return $this->belongsTo('Salesfly\Salesfly\Entities\Medicamento','medicamento_id');
-    }
+    public function det_medicamentos(){
+            return $this->hasMany('Salesfly\Salesfly\Entities\DetReporteMedicamento');
+        }
 }

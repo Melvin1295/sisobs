@@ -7,6 +7,7 @@
                 $scope.errors = null;
                 $scope.success;
                 $scope.query = '';
+                $scope.tipoPublicaciones = [];
                 $scope.toggle = function () {
                     $scope.show = !$scope.show;
                 };
@@ -21,7 +22,7 @@
                             $scope.publishers = data.data;
                         });
                     }
-                };
+                }; 
 
 
                 var id = $routeParams.id;
@@ -35,6 +36,9 @@
                         $scope.publisher = data;
                         $scope.publisher.fecha_publicacion = new Date($scope.publisher.fecha_publicacion);
                     });
+                    crudService.search('tipopublicaciondata',0,1).then(function (data){
+                        $scope.tipoPublicaciones = data;
+                    }); 
                 }else{
                     crudService.search('authorsdata',0,1).then(function (data){
                         $scope.autores = data.data;
@@ -47,6 +51,9 @@
                         $scope.itemsperPage = 2;
 
                     });
+                    crudService.search('tipopublicaciondata',0,1).then(function (data){
+                        $scope.tipoPublicaciones = data;
+                    }); 
                 }
 
                 $scope.searchPublishers = function(){

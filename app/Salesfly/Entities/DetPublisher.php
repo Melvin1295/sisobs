@@ -16,9 +16,14 @@ class DetPublisher extends \Eloquent {
                     'employee_id',
                     'fecha_publicacion',
                     'estado',
-                    'categoria'
+                    'categoria',
+                    'tipo_publicacion_id'
                     ];
                     public function autor(){
             return $this->belongsTo('Salesfly\Salesfly\Entities\Author','employee_id');
         }
+        
+            public function tipoPublicacion(){
+            return $this->belongsTo('Salesfly\Salesfly\Entities\TipoPublicacion','tipo_publicacion_id');
+        } 
 } 

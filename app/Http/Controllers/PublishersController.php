@@ -8,13 +8,17 @@ use Illuminate\Routing\Controller;
 use Salesfly\Salesfly\Repositories\DetPublisherRepo;
 use Salesfly\Salesfly\Managers\DetPublisherManager;
 
+use Salesfly\Salesfly\Repositories\TipoPublicacionRepo;
+//use Salesfly\Salesfly\Managers\DetPublisherManager;
+
 class PublishersController extends Controller {
 
     protected $publisherRepo;
 
-    public function __construct(DetPublisherRepo $publisherRepo)
+    public function __construct(DetPublisherRepo $publisherRepo,TipoPublicacionRepo $tipoPublicacionRepo)
     {
         $this->publisherRepo = $publisherRepo;
+        $this->tipoPublicacionRepo = $tipoPublicacionRepo;
     }
 
     public function index()
@@ -24,12 +28,12 @@ class PublishersController extends Controller {
 
     public function all()
     {
-        $publishers = $this->publisherRepo->paginate(15);
+        $publishers = $this->publisherRepo->paginaterepo(15);
         return response()->json($publishers);
     }
 
     public function paginatep(){
-        $publishers = $this->publisherRepo->paginate(15);
+        $publishers = $this->publisherRepo->paginaterepo(15);
         return response()->json($publishers);
     }
 
@@ -140,6 +144,12 @@ class PublishersController extends Controller {
              
         }
         return "/images/publisher/".$time."_".$file;      
+    }
+    public function searchalltipoPublicacion($q)
+    {
+        $tipoPublicacion = $this->tipoPublicacionRepo->searchall($q);
+
+        return response()->json($tipoPublicacion); 
     }
     
 }

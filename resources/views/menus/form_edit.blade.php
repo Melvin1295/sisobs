@@ -40,9 +40,11 @@
 
                     <div class="form-group" ng-class="{true: 'has-error'}[ menuEditForm.descripcion.$error.required && menuEditForm.$submitted || menuEditForm.descripcion.$dirty && menuEditForm.descripcion.$invalid]">
                       <label for="nombres">Descripcion</label>
-                      <input type="text" class="form-control" name="descripcion" placeholder="Descripcion"</ ng-model="menu.descripcion" required>
+                      <textarea rows="4" cols="50" class="form-control" name="descripcion" placeholder="Descripcion"</ ng-model="menu.descripcion" required>
+                        
+                      </textarea>
                       <label ng-show="menuEditForm.$submitted || menuEditForm.descripcion.$dirty && menuEditForm.descripcion.$invalid">
-                        <span ng-show="menuEditForm.descripcion.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+                        <span ng-show="menuEditForm.titulo.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
                       </label>
                     </div>
             

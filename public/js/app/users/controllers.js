@@ -68,6 +68,26 @@
                         $scope.user = data;
                         $scope.user.estado = ""+$scope.user.estado;
 
+                        crudService.byId($scope.user.ubigeo_id,'ubigeos').then(function(data){  
+                            $scope.ubigeo=data;
+                            crudService.all('ubigeoDepartamento').then(function(data){  
+                                $scope.Departamentos = data;
+                                $scope.DepertamentoSelect = $scope.ubigeo.departamento;
+                                console.log($scope.Departamentos);
+                            }); 
+
+                            crudService.recuperarUnDato('ubigeoProvincia',$scope.ubigeo.departamento).then(function(data){  
+                                $scope.Provincias = data;
+                                $scope.ProvinciaSelect = $scope.ubigeo.provincia;
+                                //$scope.provinciaSelect=data[0].provincia;
+                            });
+                            crudService.recuperarDosDato('ubigeoDistrito',$scope.ubigeo.departamento,$scope.ubigeo.provincia).then(function(data){  
+                                $scope.Distritos = data;
+                                $scope.DistritoSelect = $scope.ubigeo.id;
+                                //$scope.provinciaSelect=data[0].provincia;
+                            });
+                        }); 
+
                     });
                     crudService.search('roles_all',0,1).then(function (data){
                         $scope.roles = data;
@@ -75,10 +95,8 @@
                     /*crudService.select('users','stores').then(function (data){
                         $scope.stores = data;
                     });*/
-                    crudService.all('ubigeoDepartamento').then(function(data){  
-                        $scope.Departamentos = data;
-                        console.log($scope.Departamentos);
-                    });
+
+                    
                 }else{
                     crudService.paginate('users',1).then(function (data) {
                         $scope.users = data.data;
@@ -142,9 +160,10 @@
 
 
 
-                $scope.createUser = function(){
+                $scope.createUser = function(){  
 
                     if ($scope.userCreateForm.$valid) {
+                        console.log('Crear Usuario');
                         $scope.user.ubigeo_id=$scope.DistritoSelect;
                         console.log($scope.user);
                         var f = document.getElementById('userImage').files[0] ? document.getElementById('userImage').files[0] : null;
@@ -154,7 +173,9 @@
                             //alert(e.target.result);
                             $scope.user.image = e.target.result;
 
+                            
                             crudService.create($scope.user, 'users').then(function (data) {
+                                console.log('Crear Usuario');
                                 if (data['estado'] == true) {
                                     $scope.success = data['nombres'];
                                     alert("creado Correctamente usuario");
@@ -178,7 +199,8 @@
                                 $scope.errors = data;
 
                             }
-                        });}
+                        });
+                        }
 
                         if(document.getElementById('userImage').files[0]){
                             r.readAsDataURL(f);

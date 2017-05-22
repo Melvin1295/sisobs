@@ -30,7 +30,7 @@
                                             </div>
 
                   <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                     <div class="form-group" ng-class="{true: 'has-error'}[ publisherCreateForm.titulo.$error.required && publisherCreateForm.$submitted || publisherCreateForm.titulo.$dirty && publisherCreateForm.titulo.$invalid]">
                       <label for="nombres">Titulo</label>
                       <input type="text" class="form-control" name="titulo" placeholder="Titulo"</ ng-model="publisher.titulo" required>
@@ -40,23 +40,23 @@
                     </div>
                       
                     </div>
-                    <div class="col-md-2">
-                      <div class="form-group" ng-class="{true: 'has-error'}[ publisherCreateForm.categoria.$error.required && publisherCreateForm.$submitted || publisherCreateForm.categoria.$dirty && publisherCreateForm.categoria.$invalid]">
-                                            <label>Categoria</label>
-                                            <select name="categoria" class="form-control" ng-model="publisher.categoria" required="true">
-                                             <option value="">-- Elige Categoria --</option>
-                                             <option value="1">Revistas</option>
-                                             <option value="2">Diarios</option>
-                                             <option value="3">Gacetas</option>
+                    <div class="col-md-3">
+                      
 
-                                            </select>
-                        <label ng-show="publisherCreateForm.$submitted || publisherCreateForm.categoria.$dirty && publisherCreateForm.categoria.$invalid">
-                        <span ng-show="publisherCreateForm.categoria.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
-                      </label>
-                      </div>
+
+                 
+
+                      <div class="form-group" ng-class="{true: 'has-error'}[ publisherCreateForm.tipo_publicacion_id.$error.required  && publisherCreateForm.$submitted || publisherCreateForm.tipo_publicacion_id.$dirty && publisherCreateForm.tipo_publicacion_id.$invalid]">
+                               <label>Categoria</label>
+                                     <select class="form-control ng-pristine ng-valid ng-touched" name="tipo_publicacion_id" ng-model="publisher.tipo_publicacion_id" ng-options="item.id as item.descripcion for item in tipoPublicaciones" required><option value="">-- Elige Tipo Medicamento --</option></select>
+                                 <label ng-show="publisherCreateForm.$submitted || publisherCreateForm.tipo_publicacion_id.$dirty && publisherCreateForm.tipo_publicacion_id.$invalid">
+                                                         <span ng-show="publisherCreateForm.tipo_publicacion_id.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+
+                                                       </label>
+                            </div>
+
                     </div>
-                  </div>
-
+                    </div>
                     
                     <div class="row">
                       <div class="col-md-6">

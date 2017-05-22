@@ -15,10 +15,10 @@
                         <li><i class="fa fa-user"></i>@{{publicacione.nombres}} @{{publicacione.apellidos}}</li>
                         <!--<li><i class="fa fa-comments"></i>124 Comments</li>-->
                     </ul>
-                    <p><img class="img-responsive pull-left" src="@{{publicacione.imagen}}" alt="">
+                    <p style="white-space: pre-line; text-align: justify;" ><img class="img-responsive pull-left" src="@{{publicacione.imagen}}" alt="">
                       @{{publicacione.descripcion}}
                      </p>
-                    <a class="btn btn-info btn-sm" href="@{{publicacione.archivo_adjunto}}" target="_blank">Descargar PDF</a>
+                    <a class="btn btn-info btn-sm" ng-if="publicacione.archivo_adjunto.length > 0" href="@{{publicacione.archivo_adjunto}}" target="_blank" >Descargar PDF</a>
                 </div>
                 <!-- BLOG POST - END -->
                 
@@ -28,12 +28,8 @@
                         <h3>Categories</h3>
                         <div class="box categories">
                             <ul class="list-unstyled">
-                                <li><a href=""><i class="fa fa-female"></i>Fashion</a></li>
-                                <li><a href=""><i class="fa fa-paint-brush"></i>Design</a></li>
-                                <li><a href=""><i class="fa fa-music"></i>Music</a></li>
-                                <li><a href=""><i class="fa fa-plane"></i>Travel</a></li>
-                                <li><a href=""><i class="fa fa-hashtag"></i>Uncategorized</a></li>
-                            </ul>
+                                <li ng-repeat="row in tipoPublicaciones"><a ng-click="selectCategoria(row.id,true)" href=""><i class="fa fa-book" ></i>@{{row.descripcion}} </a></li>
+                            </ul> 
                         </div>
                         <h3>Publicaciones Recientes</h3>
                         <div class="box posts">

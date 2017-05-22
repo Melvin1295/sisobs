@@ -87,5 +87,12 @@ class MedicamentoController extends Controller {
         $medicamentos = $this->medicamentoRepo->buscarmedicamento($q);
         return response()->json($medicamentos);
     }
+
+    public function searchall($q)
+    {
+        $medicamentos = $this->medicamentoRepo->searchall($q);
+
+        return response()->json($medicamentos); 
+    }
     
 }

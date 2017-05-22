@@ -20,14 +20,15 @@ class CreateReporteMedicamentosTable extends Migration
             $table->text('descripcion')->nullable();
             $table->string('glosa')->nullable();
             $table->smallInteger('estado')->default(1);
-            $table->integer('medicamento_id')->unsigned();
+            
 
             $table->integer('user_id')->unsigned();
+            $table->integer('tipo_reporte_id')->unsigned();
 
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('medicamento_id')->references('id')->on('medicamentos');
+            $table->foreign('tipo_reporte_id')->references('id')->on('tipos_reporte');
+            
         }); 
     }
 

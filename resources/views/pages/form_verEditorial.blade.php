@@ -17,8 +17,8 @@
                             	<a href="@{{editorial.archivo_adjunto}}" target="_blank"><img src="/images/pdfIcon.png" class="img-responsive" alt=""></a>
                             </div>
                             <h3><a ng-click="verDetalle(item)">@{{editorial.titulo_descripcion}}</a></h3>
-                            <div class="date-xs">@{{editorial.descripcion}}</div><hr>
-                            <p><img class="img-responsive pull-right" alt="">@{{editorial.descripcion}}</p>
+                            <div class="date-xs"></div><hr>
+                            <p style="white-space: pre-line; text-align: justify;" ><img class="img-responsive pull-right" alt="">@{{editorial.descripcion}}</p>
                         	
                         </div>
                         <!-- BLOG POST 1 - END -->
