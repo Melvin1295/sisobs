@@ -140,7 +140,7 @@ return [
         'JasperPHP\JasperPHPServiceProvider',
         //'Thujohn\Pdf\PdfServiceProvider',
         //'Vsmoraes\Pdf\PdfServiceProvider',
-       Maatwebsite\Excel\ExcelServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Application Service Providers...

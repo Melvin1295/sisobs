@@ -319,8 +319,20 @@ Route::get('api/reportemedicamentos/find/{id}',['as'=>'person_find', 'uses'=>'Re
 
 Route::get('api/reportemedicamentos-excel/all',['as'=>'person_find', 'uses'=>'ReporteMedicamentoController@exportar']);
 //===============================================================
+//===============================================================
+Route::get('excels',['as'=>'person','uses'=>'ExcelsController@index']);
+Route::get('excels/create',['as'=>'person_create','uses'=>'ExcelsController@index']);
+Route::get('excels/form-create',['as'=>'person_form_create','uses'=>'ExcelsController@form_create']);
+Route::get('api/departament/all',['as'=>'person_form_create','uses'=>'ExcelsController@getAllDepartament']);
+Route::get('api/provinces/all',['as'=>'person_form_create','uses'=>'ExcelsController@getAllProvince']);
+Route::get('api/distrits/all',['as'=>'person_form_create','uses'=>'ExcelsController@getAllDistrit']);
+Route::get('api/indicators/all',['as'=>'person_form_create','uses'=>'ExcelsController@getAllIndicator']);
+
+Route::post('api/excel/create',['as'=>'person_create', 'uses'=>'ExcelsController@import']);
+Route::post('api/excel/uploadFile',['as'=>'product_disabled', 'uses'=>'ExcelsController@uploadFile']);
 
 
-
-
-
+Route::get('api/searchByIndicator/allByID/{id}','ExcelsController@searchByIndicator');
+Route::get('api/searchByDepartament/allByID/{dep}','IndicatorController@indicators_all2');
+Route::get('api/searchByProvincia/allByID/{dep}','IndicatorController@searchByProvincia');
+Route::get('api/searchByDistrito/allByID/{dep}','IndicatorController@searchByDistrito');

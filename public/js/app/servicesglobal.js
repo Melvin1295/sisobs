@@ -12,6 +12,17 @@
 
                 return deferred.promise;
             }
+            function allById(uri,value)
+            {
+                var deferred = $q.defer();
+                $http.get('/api/'+uri+'/allByID/'+value)
+                    .success(function (data) {
+                        deferred.resolve(data);
+                    });
+
+                return deferred.promise;
+            }
+
 
             function paginate(uri,page)
             {
@@ -58,7 +69,7 @@
                         deferred.resolve(data);
                     }).error(function(data)
                 {
-                    $log.log(data);
+                    //$log.log(data);
                     alert('No se puede Agregar: Datos incorrectos o repetidos');
                 });
                 //    .error(function (data) //add for user , error send by 422 status
@@ -299,6 +310,7 @@
                 Comprueba_caj_for_user1: Comprueba_caj_for_user1,
                 Cuentas:Cuentas,
                 byId:byId,
+                allById: allById,
                 validar:validar,
                 update:update,
                 reporteRangFechas: reporteRangFechas,

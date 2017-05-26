@@ -252,7 +252,15 @@
                     controller: 'ReporteMedicamentoController'
                 })             
                               
-                
+                //-----------------------------------------------          
+                .when('/excels', {
+                    templateUrl: '/js/app/excels/views/index.html',
+                    controller: 'ExcelController'
+                })
+                .when('/excels/create',{
+                    templateUrl:'/excels/form-create',
+                    controller: 'ExcelController'
+                })
                 
                 .otherwise({
                     redirectTo: '/'

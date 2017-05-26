@@ -15,6 +15,9 @@
                    $scope.indicador={};
                    $scope.editorial={};
                    $scope.publicacione={};
+                   $scope.departaments={};
+                   $scope.provinces={};
+                   $scope.distrits={};
                    $scope.reclamo={};
                    $scope.reclamo.flag1=false;
                    $scope.reclamo.flag2=false;
@@ -23,6 +26,21 @@
                    $scope.currentPage=1;
                    $scope.index=0;
                    $scope.pageActual='';
+
+                   $scope.indicadoresDataDep={};
+                   $scope.indicadoresDataProv={};
+                   $scope.indicadoresDataDist={};
+
+                   $scope.dataIndicadorGlobal={};
+
+                   $scope.submenu1='activemenuNuevo';
+                   $scope.submenu2='none';
+                   $scope.submenu3='none';
+                   $scope.submenu4='none';
+
+                   $scope.submenud1='Indicadores Globales';
+                   $scope.list=0;
+
                     //Trae el ultimo registro ordenado por 
                   var id = $routeParams.id;
 
@@ -69,6 +87,21 @@
 	                        $scope.indicadores = data.data;
 	                     });
 	                  }
+                    crudService.all('departament').then(function(data)
+                  {
+                      $scope.departaments=data;                     
+                  });
+
+                   crudService.all('provinces').then(function(data)
+                  {
+                     $scope.provinces=data;
+                  });
+
+                    crudService.all('distrits').then(function(data)
+                  {
+                     $scope.distrits=data;
+                  });
+
                     $scope.cambiar_pestana = function(op) {
                         if (op===1) {
                             $scope.bandera=true;  
@@ -79,15 +112,71 @@
                         }
 
                     }
+
                  $scope.colaboradoresFuncion=function(valor){
                  	
                         $scope.colaboradores2[0]=$scope.colaboradores;		
                         console.log($scope.colaboradores2[0]);			
 					}                	
                  
-                 
+                 $scope.cambiarSumenu=function(val){
+                   if(val == 1){
+                      $scope.submenu1='activemenuNuevo';
+                      $scope.submenu2='none';
+                      $scope.submenu3='none';
+                      $scope.submenu4='none';
+                      $scope.submenud1='Indicadores Globales';
+                       $scope.list=0
+                   }
+                    if(val == 2){
+                      $scope.submenu1='none';
+                      $scope.submenu2='activemenuNuevo';
+                      $scope.submenu3='none';
+                      $scope.submenu4='none';
+                      $scope.submenud1='Indicadores por Departamento';
+                       $scope.list=1;
+                   }
+                    if(val == 3){
+                      $scope.submenu1='none';
+                      $scope.submenu2='none';
+                      $scope.submenu3='activemenuNuevo';
+                      $scope.submenu4='none';
+                      $scope.submenud1='Indicadores por Provincia';
+                       $scope.list=2
+                   }
+                    if(val == 4){
+                      $scope.submenu1='none';
+                      $scope.submenu2='none';
+                      $scope.submenu3='none';
+                      $scope.submenu4='activemenuNuevo';
+                      $scope.submenud1='Indicadores por Distrito';
+                       $scope.list=3;
+                   }
+                   
+                 }
                  $scope.verIndicador=function(row){
                      $scope.indicador=row;
+                     //$log.log($scope.indicador);
+                     //alert(row.id);
+                     crudService.allById('searchByIndicator',row.id).then(function (data) {
+                            $scope.dataIndicadorGlobal = data;
+                        });
+                 }
+                 $scope.verIndicadorD=function(row){
+                    crudService.allById('searchByDepartament',row.id).then(function (data) {
+                            $scope.indicadoresDataDep = data;
+                        });
+                 }
+                 $scope.verIndicadorP=function(row){
+                    crudService.allById('searchByProvincia',row.id).then(function (data) {
+                            $scope.indicadoresDataProv = data;
+                            $log.log($scope.indicadoresDataProv);
+                        });
+                 }
+                 $scope.verIndicadorZ=function(row){
+                    crudService.allById('searchByDistrito',row.id).then(function (data) {
+                            $scope.indicadoresDataDist = data;
+                        });
                  }
                  $scope.verDetalle=function(item){
                  	  $location.path('/pages/publisherItem/'+item.id);                	

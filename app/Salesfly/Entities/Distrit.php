@@ -2,16 +2,13 @@
 namespace Salesfly\Salesfly\Entities;
 use Illuminate\Database\Eloquent\Model;
 
-class Province extends \Eloquent {
+class Distrit extends \Eloquent {
 
-    protected $table = 'provinces';
+    protected $table = 'distrits';
     
     protected $fillable = [ 
                     'nombre',
                     'descripcion',
-                    'codigo',
-                    'pais',
-                    'estado',
-                    'departament_id'
+                    'province_id'
                     ];
 }

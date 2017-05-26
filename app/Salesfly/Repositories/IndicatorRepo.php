@@ -37,5 +37,17 @@ class IndicatorRepo extends BaseRepo{
                     ->paginate(15);
         return $publisher;
     }
+     public function indicators_all2()
+    {
+        $publisher =Indicator::where('estado',1)
+                    ->with('province')
+                    ->get();
+        return $publisher;
+    }
+    public function searchall($q)
+    {
+        $indicator =Indicator::get();
+        return $indicator;
+    }
     
 } 

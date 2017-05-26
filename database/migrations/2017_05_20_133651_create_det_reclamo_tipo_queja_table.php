@@ -21,9 +21,10 @@ class CreateDetReclamoTipoQuejaTable extends Migration
             $table->integer('reclamo_id')->unsigned();
 
             $table->timestamps();
-        }); 
-        $table->foreign('tipo_queja_id')->references('id')->on('tipo_quejas');
+             $table->foreign('tipo_queja_id')->references('id')->on('tipo_quejas');
         $table->foreign('reclamo_id')->references('id')->on('reclamos');
+        }); 
+       
     }
 
     /**

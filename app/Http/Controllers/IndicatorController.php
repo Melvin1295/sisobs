@@ -8,13 +8,17 @@ use Illuminate\Routing\Controller;
 use Salesfly\Salesfly\Repositories\IndicatorRepo;
 use Salesfly\Salesfly\Managers\IndicatorManager;
 
+use Salesfly\Salesfly\Repositories\IndicatorsDataRepo;
+use Salesfly\Salesfly\Managers\IndicatorsDataManager;
+
 class IndicatorController extends Controller {
 
     protected $indicatorRepo;
 
-    public function __construct(IndicatorRepo $indicatorRepo)
+    public function __construct(IndicatorRepo $indicatorRepo,IndicatorsDataRepo $indicatorsDataRepo)
     {
         $this->indicatorRepo = $indicatorRepo;
+        $this->indicatorsDataRepo=$indicatorsDataRepo;
     }
 
     public function index()
@@ -117,6 +121,37 @@ class IndicatorController extends Controller {
     public function indicators_all($q)
     {
         $indicators = $this->indicatorRepo->indicators_all();
+
+        return response()->json($indicators);
+    }
+    public function indicators_all2($dep_id)
+    {
+        $indicators = $this->indicatorRepo->indicators_all2();        
+        for ($i=0; $i < count($indicators); ++$i) { 
+            $indicators[$i]->datos=$this->indicatorsDataRepo->searchByDepartament($indicators[$i]['id'],$dep_id);
+            //var_dump($indicators[$i]->titulo);
+        }
+       // $indicators->datos=$this->indicatorsDataRepo->searchByDepartament($indicador,$dep_id);
+
+        return response()->json($indicators);
+    }
+    public function searchByProvincia($prov){
+        $indicators = $this->indicatorRepo->indicators_all2();        
+        for ($i=0; $i < count($indicators); ++$i) { 
+            $indicators[$i]->datos=$this->indicatorsDataRepo->searchByProvincia($indicators[$i]['id'],$prov);
+            //var_dump($indicators[$i]->titulo);
+        }
+       // $indicators->datos=$this->indicatorsDataRepo->searchByDepartament($indicador,$dep_id);
+
+        return response()->json($indicators);
+    }
+    public function searchByDistrito($distrit){
+        $indicators = $this->indicatorRepo->indicators_all2();        
+        for ($i=0; $i < count($indicators); ++$i) { 
+            $indicators[$i]->datos=$this->indicatorsDataRepo->searchByDistrito($indicators[$i]['id'],$distrit);
+            //var_dump($indicators[$i]->titulo);
+        }
+       // $indicators->datos=$this->indicatorsDataRepo->searchByDepartament($indicador,$dep_id);
 
         return response()->json($indicators);
     }

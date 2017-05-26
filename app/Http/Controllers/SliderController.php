@@ -106,6 +106,7 @@ class SliderController extends Controller {
     }
     public function uploadFile(){
         $file = $_FILES["file"]["name"];
+        //var_dump($_FILES["file"]);
         $time=time();
         if(!is_dir("images/slideshow/"))
             mkdir("images/slideshow/", 0777);
