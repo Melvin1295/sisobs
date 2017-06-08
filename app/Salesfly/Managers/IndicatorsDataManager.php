@@ -29,7 +29,8 @@ class IndicatorsDataManager extends BaseManager {
                     'departament_id'=>'',
                     'province_id'=>'',
                     'distrit_id'=>'',
-                    'indicator_id'=>''
+                    'indicator_id'=>'',
+                    'fuente'=>''
                   ];
         return $rules;
     }

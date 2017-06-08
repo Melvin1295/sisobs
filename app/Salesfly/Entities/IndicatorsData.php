@@ -31,6 +31,7 @@ class IndicatorsData extends \Eloquent {
                     'departament_id',
                     'province_id',
                     'distrit_id',
-                    'indicator_id'
+                    'indicator_id',
+                    'fuente'
                     ];
 }

@@ -23,6 +23,12 @@
                 <div class="box-header with-border">
                   <h3 class="box-title">Reclamos</h3>
                   <div class="box-tools">
+                  <div class="row">
+                  <div class="col-sm-3">
+
+                    <a type="submit"  data-toggle="modal" data-target="#myModalReporte"  target="_black" class="btn btn-default pull-left">Excel</a>
+                  </div>
+                  <div class="col-sm-9">
                   <form ng-keyup="searchReclamo()">
                     <div class="input-group" style="width: 200px;">
                       <input type="text" ng-model="query"  name="table_search" class="form-control input-sm pull-right" placeholder="Search" />
@@ -31,6 +37,8 @@
                       </div>
                     </div>
                     </form>
+                     </div>
+                    </div>
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -43,11 +51,9 @@
                       <th>Ubigeo</th>                     
                       <th>Correo</th>
                       <th>Telefono</th>
-                      <th>M1</th>
-                      <th>M2</th>
-                      <th>M3</th>
-                      <th>M4</th>
-                      <th style="width: 30%">Reclamo</th>
+                      <th >Reclamo</th>
+                      <th style="width: 30px">Quejas</th>
+
                     </tr>
                     
                     <tr ng-repeat="row in reclamos">
@@ -57,11 +63,8 @@
                       <td>{{row.ubigeo.departamento+'/'+row.ubigeo.provincia+'/'+row.ubigeo.distrito}}</td> 
                       <td>{{row.correo}}</td> 
                       <td>{{row.telefono}}</td> 
-                       <td>{{row.flag1==1?'SI':'NO'}}</td> 
-                       <td>{{row.flag2==1?'SI':'NO'}}</td> 
-                       <td>{{row.flag3==1?'SI':'NO'}}</td> 
-                       <td>{{row.flag4==1?'SI':'NO'}}</td> 
                       <td>{{row.descripcion_reclamo}}</td> 
+                      <td><button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal" ng-click="mostrarQuejas(row.quejas)">Ver</button></td>
                       
                     </tr>
                     
@@ -79,3 +82,78 @@
             </div>  
           </div>
         </section>
+
+        <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">QUEJAS / RECLAMOS</h4>
+      </div>
+      <div class="modal-body">
+        <p ng-repeat="row in quejas">{{row.tipo_queja_descripcion.descripcion}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================================================== -->
+  <div id="myModalReporte" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <form name="buscarForm" role="form" novalidate>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Medicamentos Reportados</h4>
+      </div>
+      <div class="modal-body">
+              <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group" ng-class="{true: 'has-error'}[ buscarForm.fecha_inicio.$error.required && buscarForm.$submitted || buscarForm.fecha_inicio.$dirty && buscarForm.fecha_inicio.$invalid]">
+                                      <label for="fecha_inicio">Fecha Inicio</label>
+                                                          <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                              <i class="fa fa-calendar"></i>
+                                                            </div>
+                                        <input type="date" class="form-control" name="fecha_inicio" ng-model="rango_busqueda.fecha_inicio" required>
+                                        <label ng-show="buscarForm.$submitted || buscarForm.fecha_inicio.$dirty && buscarForm.fecha_inicio.$invalid">
+                                                <span ng-show="buscarForm.fecha_inicio.$invalid"><i class="fa fa-times-circle-o"></i>Fecha Inválida.</span>
+                                        </label>
+                                        </div>
+                        </div>  
+                      </div>
+
+                      <div class="col-md-6">
+                          <div class="form-group" ng-class="{true: 'has-error'}[ buscarForm.fecha_fin.$error.required && buscarForm.$submitted || buscarForm.fecha_fin.$dirty && buscarForm.fecha_fin.$invalid]">
+                                      <label for="fecha_fin">Fecha Fin</label>
+                                                          <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                              <i class="fa fa-calendar"></i>
+                                                            </div>
+                                        <input type="date" class="form-control" name="fecha_fin" ng-model="rango_busqueda.fecha_fin" required>
+                                        <label ng-show="buscarForm.$submitted || buscarForm.fecha_fin.$dirty && buscarForm.fecha_fin.$invalid">
+                                                <span ng-show="buscarForm.fecha_fin.$invalid"><i class="fa fa-times-circle-o"></i>Fecha Inválida.</span>
+                                        </label>
+                                        </div>
+                        </div>  
+                      </div>
+              </div>
+          
+      </div>
+
+      <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" href="http://apisisobs.dev/api/reportemedicamentos-excel/recuperarDosDato/2017-05-21/2017-05-23" ng-click="buscar()">Generar Excel</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+      </div>
+      </form>
+    </div>
+
+  </div>
+</div>

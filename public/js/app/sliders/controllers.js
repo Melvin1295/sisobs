@@ -175,11 +175,12 @@
                 }
                 $scope.uploadEditFile = function()
                 { 
+                  
                     if ($scope.sliderEditForm.$valid) {
                         $scope.bandera = true;
                         var file_archivo = $scope.file_archivo;
                         if (file_archivo!=undefined) {
-                            crudService.uploadFile('sliders',file_archivo, name).then(function(data)
+                            crudService.uploadFile1('sliders',file_archivo, "slide-0"+id,id).then(function(data)
                             {
                                 $scope.slider.imagen=data.data;
                                 $scope.updateSliders();

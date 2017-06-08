@@ -45,7 +45,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::group(['middleware' => 'role'], function () {
 Route::get('users/create',['as'=>'user_create','uses'=>'Auth\AuthController@indexU']);
 Route::get('users/form-create',['as'=>'user_form_create','uses'=>'Auth\AuthController@form_create']);
-Route::post('api/users/create',['as'=>'user_create', 'uses'=>'UserController2@create']);
+Route::post('api/users/create',['as'=>'user_create', 'uses'=>'RegisrerUserController@create']);
 Route::post('api/users/destroy',['as'=>'person_destroy', 'uses'=>'UserController2@destroy']);
 });
 Route::get('users/edit/{id?}', ['as' => 'user_edit', 'uses' => 'Auth\AuthController@indexU']);
@@ -53,7 +53,7 @@ Route::get('users/form-edit',['as' => 'user_form_edit','uses' => 'Auth\AuthContr
 Route::get('users',['as'=>'user','uses'=>'Auth\AuthController@indexU']);
 Route::get('api/users/all',['as'=>'user_all', 'uses'=>'Auth\AuthController@all']);
 Route::get('api/users/paginate/',['as' => 'user_paginate', 'uses' => 'Auth\AuthController@paginate']);
-Route::put('api/users/edit',['as'=>'user_edit', 'uses'=>'UserController2@edit']);
+Route::put('api/users/edit',['as'=>'user_edit', 'uses'=>'RegisrerUserController@edit']);
 Route::put('api/editPasword/edit',['as'=>'user_edit', 'uses'=>'UserController2@editpassword']);
 Route::get('api/users/search/{q?}',['as'=>'user_search', 'uses'=>'Auth\AuthController@search']);
 Route::get('api/users/find/{id}',['as'=>'user_find', 'uses'=>'Auth\AuthController@find']);
@@ -159,7 +159,7 @@ Route::post('api/sliders/destroy',['as'=>'person_destroy', 'uses'=>'SliderContro
 Route::get('api/sliders/search/{q?}',['as'=>'person_search', 'uses'=>'SliderController@search']);
 Route::get('api/sliders/find/{id}',['as'=>'person_find', 'uses'=>'SliderController@find']);
 Route::get('api/slidersall/paginate/',['as'=>'person_all', 'uses'=>'SliderController@slidersall']);
-Route::post('api/sliders/uploadFile',['as'=>'product_disabled', 'uses'=>'SliderController@uploadFile']);
+Route::post('api/sliders/uploadFile1/{id}',['as'=>'product_disabled', 'uses'=>'SliderController@uploadFile']);
 
 //===============================================================
 Route::get('provinces',['as'=>'person','uses'=>'ProvincesController@index']);
@@ -204,6 +204,7 @@ Route::put('api/menus/edit',['as'=>'person_edit', 'uses'=>'MenuController@edit']
 Route::post('api/menus/destroy',['as'=>'person_destroy', 'uses'=>'MenuController@destroy']);
 Route::get('api/menus/search/{q?}',['as'=>'person_search', 'uses'=>'MenuController@search']);
 Route::get('api/menus/find/{id}',['as'=>'person_find', 'uses'=>'MenuController@find']);
+Route::get('api/menus_all/search/{q?}',['as'=>'person_search', 'uses'=>'MenuController@searchall']);
 //===============================================================
 Route::get('colaboradores',['as'=>'person','uses'=>'ColaboradorController@index']);
 Route::get('colaboradores/create',['as'=>'person_create','uses'=>'ColaboradorController@index']);
@@ -237,6 +238,7 @@ Route::put('api/contacts/edit',['as'=>'person_edit', 'uses'=>'ContactsController
 Route::post('api/contacts/destroy',['as'=>'person_destroy', 'uses'=>'ContactsController@destroy']);
 Route::get('api/contacts/search/{q?}',['as'=>'person_search', 'uses'=>'ContactsController@search']);
 Route::get('api/contacts/find/{id}',['as'=>'person_find', 'uses'=>'ContactsController@find']);
+Route::get('api/contacts-excel/recuperarDosDato/{ini?}/{fin?}', ['as' => 'person_all', 'uses' => 'ContactsController@exportar']); 
 //===============================================================
 
 //UBIGEOS ROUTES
@@ -271,6 +273,8 @@ Route::put('api/reclamos/edit',['as'=>'person_edit', 'uses'=>'ReclamoController@
 Route::post('api/reclamos/destroy',['as'=>'person_destroy', 'uses'=>'ReclamoController@destroy']);
 Route::get('api/reclamos/search/{q?}',['as'=>'person_search', 'uses'=>'ReclamoController@search']);
 Route::get('api/reclamos/find/{id}',['as'=>'person_find', 'uses'=>'ReclamoController@find']);
+Route::get('api/reclamos-reporte-excel/recuperarDosDato/{ini?}/{fin?}', ['as' => 'person_all', 'uses' => 'ReclamoController@exportar']); 
+//Route::get('api/reclamos-reporte-excel/all',['as'=>'person_find', 'uses'=>'ReclamoController@exportar']);
 //===============================================================
 //===============================================================
 Route::get('tipomedicamentos',['as'=>'person','uses'=>'TipoMedicamentoController@index']);
@@ -301,6 +305,7 @@ Route::post('api/medicamentos/destroy',['as'=>'person_destroy', 'uses'=>'Medicam
 Route::get('api/medicamentos/search/{q?}',['as'=>'person_search', 'uses'=>'MedicamentoController@search']);
 Route::get('api/medicamentos/find/{id}',['as'=>'person_find', 'uses'=>'MedicamentoController@find']);
 Route::get('api/buscarmedicamento/recuperarUnDato/{d?}', ['as' => 'person_all', 'uses' => 'MedicamentoController@buscarmedicamento']); 
+Route::get('api/medicamentos_all/search/{q?}',['as'=>'person_search', 'uses'=>'MedicamentoController@searchall']);
 //===============================================================
 //===============================================================
 Route::get('reportemedicamentos',['as'=>'person','uses'=>'ReporteMedicamentoController@index']);
@@ -317,8 +322,10 @@ Route::get('api/reportemedicamentos/search/{q?}',['as'=>'person_search', 'uses'=
 Route::get('api/reportemedicamentos/find/{id}',['as'=>'person_find', 'uses'=>'ReporteMedicamentoController@find']);
 
 
-Route::get('api/reportemedicamentos-excel/all',['as'=>'person_find', 'uses'=>'ReporteMedicamentoController@exportar']);
+//Route::get('api/reportemedicamentos-excel/all',['as'=>'person_find', 'uses'=>'ReporteMedicamentoController@exportar']);
+Route::get('api/reportemedicamentos-excel/recuperarDosDato/{ini?}/{fin?}', ['as' => 'person_all', 'uses' => 'ReporteMedicamentoController@exportar']); 
 //===============================================================
+
 //===============================================================
 Route::get('excels',['as'=>'person','uses'=>'ExcelsController@index']);
 Route::get('excels/create',['as'=>'person_create','uses'=>'ExcelsController@index']);
@@ -331,8 +338,23 @@ Route::get('api/indicators/all',['as'=>'person_form_create','uses'=>'ExcelsContr
 Route::post('api/excel/create',['as'=>'person_create', 'uses'=>'ExcelsController@import']);
 Route::post('api/excel/uploadFile',['as'=>'product_disabled', 'uses'=>'ExcelsController@uploadFile']);
 
+Route::get('api/tipoquejadata/search/{q?}',['as'=>'person_search', 'uses'=>'ReclamoController@searchalltipoQueja']); 
+//===============================================================
+Route::get('api/tipopublicaciondata/search/{q?}',['as'=>'person_search', 'uses'=>'PublishersController@searchalltipoPublicacion']);
+
+//===============================================================
+Route::get('api/tipo_reporte_all/search/{q?}',['as'=>'person_search', 'uses'=>'ReporteMedicamentoController@searchAlltipoReporte']);
+
+
 
 Route::get('api/searchByIndicator/allByID/{id}','ExcelsController@searchByIndicator');
 Route::get('api/searchByDepartament/allByID/{dep}','IndicatorController@indicators_all2');
 Route::get('api/searchByProvincia/allByID/{dep}','IndicatorController@searchByProvincia');
 Route::get('api/searchByDistrito/allByID/{dep}','IndicatorController@searchByDistrito');
+
+Route::get('api/exportIndicatod/allByID/{id?}', ['as' => 'person_all', 'uses' => 'ExcelsController@exportarGlobal']); 
+Route::get('api/exportIndicatodD/allByID1/{id}/{ind}', ['as' => 'person_all', 'uses' => 'ExcelsController@exportarGlobalD']); 
+Route::get('api/exportIndicatodP/allByID1/{id}/{ind}', ['as' => 'person_all', 'uses' => 'ExcelsController@exportarGlobalP']); 
+Route::get('api/exportIndicatodZ/allByID1/{id}/{ind}', ['as' => 'person_all', 'uses' => 'ExcelsController@exportarGlobalZ']); 
+
+Route::get('api/idicadoresData/all/', ['as' => 'person_all', 'uses' => 'ExcelsController@indicadoresCargados']); 

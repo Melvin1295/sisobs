@@ -22,6 +22,16 @@
 
                 return deferred.promise;
             }
+            function allById1(uri,dep,value)
+            {
+                var deferred = $q.defer();
+                $http.get('/api/'+uri+'/allByID1/'+dep+'/'+value)
+                    .success(function (data) {
+                        deferred.resolve(data);
+                    });
+
+                return deferred.promise;
+            }
 
 
             function paginate(uri,page)
@@ -263,7 +273,29 @@
                 var formData = new FormData();
                 formData.append("name", name);
                 formData.append("file", file);
-                return $http.post('/api/'+uri+'/uploadFile', formData, {
+                return $http.post('/api/'+uri+'/uploadFile/', formData, {
+                    headers: {
+                        "Content-type": undefined
+                    },
+                    transformRequest: angular.identity
+                })
+                .success(function(data)
+                {
+                    deferred.resolve(data);
+                })
+                .error(function(msg, code)
+                {
+                    deferred.reject(msg);
+                })
+                return deferred.promise;
+            }
+            function uploadFile1(uri,file, name,id)
+            {
+                var deferred = $q.defer();
+                var formData = new FormData();
+                formData.append("name", name);
+                formData.append("file", file);
+                return $http.post('/api/'+uri+'/uploadFile1/'+id, formData, {
                     headers: {
                         "Content-type": undefined
                     },
@@ -316,6 +348,7 @@
                 reporteRangFechas: reporteRangFechas,
                 balance:balance,
                 destroy:destroy,
+                allById1: allById1,
                 search: search,
                 getObject: getObject,
                 select:select,
@@ -325,6 +358,7 @@
                 reportProWare,reportProWare,
                 deudasSupplier: deudasSupplier,
                 uploadFile: uploadFile,
+                uploadFile1: uploadFile1,
                 reportCod: reportCod,
                 Comprueba_caj_for_user2: Comprueba_caj_for_user2,
                 listaCashes: listaCashes

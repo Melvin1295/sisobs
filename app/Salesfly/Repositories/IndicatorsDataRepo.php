@@ -22,7 +22,7 @@ class IndicatorsDataRepo extends BaseRepo{
     }
     public function searchByIndicator($indicador)
     {
-        $indicators =IndicatorsData::select(\DB::raw("descripcion,numero,
+        $indicators =IndicatorsData::select(\DB::raw("descripcion,numero,fuente,
             `2000` as N2000,
             `2001` as N2001,
             `2002` as N2002,
@@ -68,7 +68,7 @@ class IndicatorsDataRepo extends BaseRepo{
     }
     public function searchByDepartament($indicador,$dep_id)
     {
-        $indicators =IndicatorsData::select(\DB::raw("descripcion,numero,
+        $indicators =IndicatorsData::select(\DB::raw("descripcion,numero,fuente,
             `2000` as N2000,
             `2001` as N2001,
             `2002` as N2002,
@@ -115,7 +115,7 @@ class IndicatorsDataRepo extends BaseRepo{
     }
     public function searchByProvincia($indicador,$dep_id)
     {
-        $indicators =IndicatorsData::select(\DB::raw("descripcion,numero,
+        $indicators =IndicatorsData::select(\DB::raw("descripcion,numero,fuente,
             `2000` as N2000,
             `2001` as N2001,
             `2002` as N2002,
@@ -162,7 +162,7 @@ class IndicatorsDataRepo extends BaseRepo{
     }
     public function searchByDistrito($indicador,$dep_id)
     {
-        $indicators =IndicatorsData::select(\DB::raw("descripcion,numero,
+        $indicators =IndicatorsData::select(\DB::raw("descripcion,numero,fuente,
             `2000` as N2000,
             `2001` as N2001,
             `2002` as N2002,
@@ -206,5 +206,126 @@ class IndicatorsDataRepo extends BaseRepo{
         ->where('distrit_id',$dep_id)
         ->get();
         return $indicators;
+    }
+    public function excelsDataInidcador($indicador){
+        $indicators =IndicatorsData::select(\DB::raw("descripcion as Descripcion,numero as Tipo,Fuente,
+            `2000` as I2000,
+            `2001` as I2001,
+            `2002` as I2002,
+            `2003` as I2003,
+            `2004` as I2004,
+            `2005` as I2005,
+            `2006` as I2006,
+            `2007` as I2007,
+            `2008` as I2008,
+            `2009` as I2009,
+            `2010` as I2010,
+            `2011` as I2011,
+            `2012` as I2012,
+            `2013` as I2013,
+            `2014` as I2014,
+            `2015` as I2015,
+            `2016` as I2016,
+            `2017` as I2017,
+            `2018` as I2018"))
+        ->where('indicator_id',$indicador)
+        ->where('numero',0)
+        ->get();
+        return $indicators;    
+    }
+     public function excelsDataInidcadorD($dep_id,$indicador){
+        $indicators =IndicatorsData::select(\DB::raw("descripcion as Descripcion,numero as Tipo,Fuente,
+            `2000` as I2000,
+            `2001` as I2001,
+            `2002` as I2002,
+            `2003` as I2003,
+            `2004` as I2004,
+            `2005` as I2005,
+            `2006` as I2006,
+            `2007` as I2007,
+            `2008` as I2008,
+            `2009` as I2009,
+            `2010` as I2010,
+            `2011` as I2011,
+            `2012` as I2012,
+            `2013` as I2013,
+            `2014` as I2014,
+            `2015` as I2015,
+            `2016` as I2016,
+            `2017` as I2017,
+            `2018` as I2018"))
+        ->where('indicator_id',$indicador)
+        ->where('numero',1)
+        ->where('departament_id',$dep_id)
+        ->get();
+        return $indicators;    
+    }
+     public function excelsDataInidcadorP($dep_id,$indicador){
+        $indicators =IndicatorsData::select(\DB::raw("descripcion as Descripcion,numero as Tipo,Fuente,
+            `2000` as I2000,
+            `2001` as I2001,
+            `2002` as I2002,
+            `2003` as I2003,
+            `2004` as I2004,
+            `2005` as I2005,
+            `2006` as I2006,
+            `2007` as I2007,
+            `2008` as I2008,
+            `2009` as I2009,
+            `2010` as I2010,
+            `2011` as I2011,
+            `2012` as I2012,
+            `2013` as I2013,
+            `2014` as I2014,
+            `2015` as I2015,
+            `2016` as I2016,
+            `2017` as I2017,
+            `2018` as I2018"))
+        ->where('indicator_id',$indicador)
+        ->where('numero',2)
+        ->where('province_id',$dep_id)
+        ->get();
+        return $indicators;    
+    }
+    public function excelsDataInidcadorZ($dep_id,$indicador){
+        $indicators =IndicatorsData::select(\DB::raw("descripcion as Descripcion,numero as Tipo,Fuente,
+            `2000` as I2000,
+            `2001` as I2001,
+            `2002` as I2002,
+            `2003` as I2003,
+            `2004` as I2004,
+            `2005` as I2005,
+            `2006` as I2006,
+            `2007` as I2007,
+            `2008` as I2008,
+            `2009` as I2009,
+            `2010` as I2010,
+            `2011` as I2011,
+            `2012` as I2012,
+            `2013` as I2013,
+            `2014` as I2014,
+            `2015` as I2015,
+            `2016` as I2016,
+            `2017` as I2017,
+            `2018` as I2018"))
+        ->where('indicator_id',$indicador)
+        ->where('numero',3)
+        ->where('distrit_id',$dep_id)
+        ->get();
+        return $indicators;    
+    }
+    public function indicadoresCargados(){
+        $indicators =IndicatorsData::join("indicators","indicators.id","=","indicatorsData.indicator_id")
+                                    ->leftjoin("departaments","departaments.id","=","indicatorsData.departament_id")
+                                    ->leftjoin("provinces","provinces.id","=","indicatorsData.province_id")
+                                    ->leftjoin("distrits","distrits.id","=","indicatorsData.distrit_id")
+        ->select(\DB::raw("indicatorsData.descripcion,indicators.titulo, 
+                          if(indicatorsData.numero=0 , 'Global' , if(indicatorsData.numero=1 ,departaments.nombre,
+                          if(indicatorsData.numero=2,provinces.nombre, distrits.nombre))) as  indicador,
+                          if(indicatorsData.numero=0 , 'Indicador Global' , if(indicatorsData.numero=1 ,'Indicador por departamento',
+                          if(indicatorsData.numero=2,    'Indicador por Provincia','Indicador por Distrito'))) as  tipoIndicador,
+                          indicatorsData.created_at"))
+        ->get();
+        return  $indicators;
     }
 } 

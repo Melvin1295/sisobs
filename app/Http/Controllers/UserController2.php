@@ -38,6 +38,7 @@ class UserController2 extends Controller
      protected function create1(array $data)
     {
         //var_dump("expression");die();
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -65,12 +66,15 @@ class UserController2 extends Controller
             //'store_id' => 'required|integer',
             'role_id' => 'required|integer',
             'estado' => 'required|integer',
-            'image' => '',
-            'ubigeo_id'=>''
+            'ubigeo_id'=>'',
+            'image' => ''
+            
         ]);
     }
     public function create(Request $request)
     {
+        //return "Hola";
+
          //var_dump($request->all());die();
        
         //Auth::login($this->create($request->all()));
@@ -82,7 +86,8 @@ class UserController2 extends Controller
             );
         }
         $user = $this->create1($request->except('image'));
-
+        //var_dump($request->all())  ;
+        //die();
         if($request->has('image') and substr($request->input('image'),5,5) === 'image'){
             $image = $request->input('image');
             $mime = $this->get_string_between($image,'/',';');

@@ -24,5 +24,27 @@ class ContactRepo extends BaseRepo{
 
         return $contacto;
     }
-    
+    public function exportar($ini,$fin){ 
+      //return $ini.'---'.$fin;
+         $ontact =Contact::
+
+
+                    select([
+                            'id as Cod_Mensaje',
+                            
+                            'nombres as Nombre',
+                            'email as Email',
+                            'telefono as Telefono',
+                            'descripcion as Mensaje'
+                            //DB::raw("GROUP_CONCAT(tipo_quejas.descripcion SEPARATOR ' / ') as Quejas")
+                            
+                         ])
+                    //->select()
+                    //->groupBy('reclamos.id')
+                    ->whereBetween('created_at',[$ini,$fin])
+                    ->orderBy('id','asc')
+                    ->get();
+
+        return $ontact;
+    }
 } 

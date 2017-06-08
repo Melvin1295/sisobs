@@ -104,17 +104,17 @@ class SliderController extends Controller {
 
         return response()->json($sliders);
     }
-    public function uploadFile(){
+    public function uploadFile($id){
         $file = $_FILES["file"]["name"];
-        //var_dump($_FILES["file"]);
+       // var_dump($id); die();
         $time=time();
         if(!is_dir("images/slideshow/"))
             mkdir("images/slideshow/", 0777);
-        if($file && move_uploaded_file($_FILES["file"]["tmp_name"], "images/slideshow/".$time."_".$file))
+        if($file && move_uploaded_file($_FILES["file"]["tmp_name"], "images/slideshow/slide-0".$id.".jpg"))
         {
              
         }
-        return "/images/slideshow/".$time."_".$file;      
+        return "/images/slideshow/slide-0".$id.".jpg";      
     }
     
 }

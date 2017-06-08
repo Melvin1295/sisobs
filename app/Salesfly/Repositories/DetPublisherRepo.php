@@ -9,9 +9,19 @@ class DetPublisherRepo extends BaseRepo{
         return new DetPublisher;
     }
 
+    public function paginaterepo($q)
+    {
+        $detPublisherRepo =DetPublisher::
+                    with('autor')
+                    ->with('tipoPublicacion')
+                    ->paginate($q);
+        return $detPublisherRepo;
+    }
     public function search($q)
     {
         $detPublisherRepo =DetPublisher::where('titulo','like', $q.'%')
+                    ->with('autor')
+                    ->with('tipoPublicacion')
                     ->paginate(15);
         return $detPublisherRepo;
     }
@@ -19,10 +29,11 @@ class DetPublisherRepo extends BaseRepo{
     {
         $publisher =DetPublisher::where('estado',1)
                     ->with('autor')
+                    ->with('tipoPublicacion')
                     ->orderBy('fecha_publicacion','desc')
                     ->first();
         return $publisher;
-    }
+    } 
     public function publishers_all()
     {
         $publisher =DetPublisher::join("employees","employees.id","=","det_publishers.employee_id")
@@ -31,7 +42,8 @@ class DetPublisherRepo extends BaseRepo{
                                 CONCAT((SUBSTRING(det_publishers.fecha_publicacion,9,2)),'/',
                                 (SUBSTRING(det_publishers.fecha_publicacion,6,2)),'/',
                                 (SUBSTRING(det_publishers.fecha_publicacion,1,4)))as fecha,SUBSTRING(det_publishers.fecha_publicacion,9,2) as dia,
-                                SUBSTRING(det_publishers.fecha_publicacion,6,2) as mes"))
+                                SUBSTRING(det_publishers.fecha_publicacion,6,2) as mes, det_publishers.tipo_publicacion_id")
+                     )
                     ->where('det_publishers.estado',1)
                     ->orderBy('det_publishers.fecha_publicacion','desc')
                     ->paginate(5);
@@ -46,7 +58,7 @@ class DetPublisherRepo extends BaseRepo{
                                 (SUBSTRING(det_publishers.fecha_publicacion,6,2)),'/',
                                 (SUBSTRING(det_publishers.fecha_publicacion,1,4)))as fecha,SUBSTRING(det_publishers.fecha_publicacion,9,2) as dia,
                                 SUBSTRING(det_publishers.fecha_publicacion,6,2) as mes,SUBSTRING(det_publishers.fecha_publicacion,12,5) as hora,
-                                det_publishers.descripcion,det_publishers.archivo_adjunto"))
+                                det_publishers.descripcion,det_publishers.archivo_adjunto, det_publishers.tipo_publicacion_id"))
                     ->where('det_publishers.estado',1)
                     ->orderBy('det_publishers.fecha_publicacion','desc')
                     ->where('det_publishers.id',$id)
@@ -62,7 +74,7 @@ class DetPublisherRepo extends BaseRepo{
                                 (SUBSTRING(det_publishers.fecha_publicacion,6,2)),'/',
                                 (SUBSTRING(det_publishers.fecha_publicacion,1,4)))as fecha,SUBSTRING(det_publishers.fecha_publicacion,9,2) as dia,
                                 SUBSTRING(det_publishers.fecha_publicacion,6,2) as mes,SUBSTRING(det_publishers.fecha_publicacion,12,5) as hora,
-                                det_publishers.descripcion,det_publishers.archivo_adjunto"))
+                                det_publishers.descripcion,det_publishers.archivo_adjunto, det_publishers.tipo_publicacion_id"))
                     ->where('det_publishers.estado',1)
                     ->orderBy('det_publishers.fecha_publicacion','desc')
                     ->limit(3)

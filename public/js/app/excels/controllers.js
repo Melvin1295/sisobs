@@ -14,6 +14,7 @@
               $scope.indicatorData.distrit_id =0;
               $scope.indicatorData.indicator_id=0;
               $scope.tipoIndicador=0;
+              $scope.listInidcadores={}; //nuevo variable XD
 
                   crudService.all('departament').then(function(data)
                   {
@@ -34,6 +35,9 @@
                   {
                      $scope.indicators=data;
                   });
+                  crudService.all('idicadoresData').then(function (data){
+                        $scope.listInidcadores = data;
+                    });
                 $scope.import1=function(){
                     $scope.indicatorData.numero=$scope.tipoIndicador;
                     crudService.create($scope.indicatorData,'excel').then(function(data)

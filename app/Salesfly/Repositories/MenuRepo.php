@@ -15,5 +15,10 @@ class MenuRepo extends BaseRepo{
                     ->paginate(15);
         return $menus;
     }
+    public function searchall($q)
+    {
+        $tipo =Menu::get();
+        return $tipo;
+    }
     
 } 

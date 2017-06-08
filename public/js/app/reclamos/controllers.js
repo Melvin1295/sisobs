@@ -1,7 +1,9 @@
 (function(){
     angular.module('reclamos.controllers',[])
-        .controller('ReclamoController',['$scope', '$routeParams','$location','crudService' ,'$filter','$route','$log',
-            function($scope, $routeParams,$location,crudService,$filter,$route,$log){
+        .controller('ReclamoController',['$scope', '$routeParams','$location','crudService' 
+            ,'$filter','$route','$log','$window',
+            function($scope ,$routeParams,$location,crudService
+                ,$filter,$route,$log,$window){
                 $scope.reclamos = [];
                 $scope.reclamo;
                 $scope.errors = null;
@@ -32,6 +34,8 @@
                         $scope.reclamo = data;
                         $scope.reclamo.fecha_publicacion = new Date($scope.reclamo.fecha_publicacion);
                     });
+
+                   
                 }else{   
                     crudService.paginate('reclamos',1).then(function (data) {
                         $scope.reclamos = data.data;
@@ -59,6 +63,29 @@
                 }
                     
                 };
+
+                $scope.mostrarQuejas = function (quejas) 
+                {
+                    console.log(quejas);
+                    $scope.quejas=quejas;
+                }
+
+                $scope.buscar = function() {
+                    if ($scope.buscarForm.$valid) {
+                        $scope.rango_busqueda.fecha_fin.setDate($scope.rango_busqueda.fecha_fin.getDate()+1);
+                        if ($scope.rango_busqueda.fecha_inicio<$scope.rango_busqueda.fecha_fin) {
+                            var fecha_inicio = $filter('date')($scope.rango_busqueda.fecha_inicio,'yyyy-MM-dd');
+                            var fecha_fin = $filter('date')($scope.rango_busqueda.fecha_fin,'yyyy-MM-dd');
+                            console.log(fecha_fin);
+                            window.open('http://apisisobs.dev/api/reclamos-reporte-excel/recuperarDosDato/'+fecha_inicio+'/'+fecha_fin)
+                            $route.reload();
+                            $window.location.reload();   
+                        }else{
+                            alert("La fecha final debe ser mayor a la fecha inicial");
+                        }
+                        
+                    }
+                }
 
                 /*$scope.createMenus = function(){
                     if ($scope.menuCreateForm.$valid) {

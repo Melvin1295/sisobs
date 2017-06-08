@@ -1755,7 +1755,7 @@ ul.blog-tags li i {
 
 #homepage-1-carousel .slide-1 {
 	text-align:center;
-	background-image:url(../images/slideshow/slide-01.jpg);
+	background-image:url(../../images/slideshow/slide-01.jpg);
 	background-position:0 -400px;
 }
 
@@ -1777,7 +1777,7 @@ ul.blog-tags li i {
 
 #homepage-1-carousel .slide-2 {
 	text-align:right;
-	background-image:url(../images/slideshow/slide-02.jpg);
+	background-image:url(../../images/slideshow/slide-02.jpg);
 }
 
 #homepage-1-carousel .slide-2 .slide-mask {
@@ -1797,7 +1797,7 @@ ul.blog-tags li i {
 /* HOMEPAGE 1 - SLIDE 3 */
 
 #homepage-1-carousel .slide-3 {
-	background-image:url(../images/slideshow/slide-03.jpg);
+	background-image:url(../../images/slideshow/slide-03.jpg);
 }
 
 #homepage-1-carousel .slide-3 .slide-mask {

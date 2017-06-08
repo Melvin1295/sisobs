@@ -12,7 +12,8 @@ class ReporteMedicamentoManager extends BaseManager {
             'glosa'=> '',
             'estado'=> '',
             'user_id'=> '',
-            'medicamento_id'=> ''
+            'medicamento_id'=> '',
+            'tipo_reporte_id'=> ''
                   ];
         return $rules;
     }

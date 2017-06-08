@@ -22,6 +22,7 @@ class CreatePublisherDetailTable extends Migration
             $table->string('imagen')->nullable();
             $table->integer('orden')->nullable();
             $table->integer('employee_id')->unsigned();
+            $table->integer('tipo_publicacion_id')->unsigned();
             $table->integer('categoria');
             //$table->integer('publisher_id')->unsigned();
             $table->smallInteger('estado')->default(1);
@@ -29,6 +30,7 @@ class CreatePublisherDetailTable extends Migration
             $table->timestamps();
 
             $table->foreign('employee_id')->references('id')->on('employees');
+            $table->foreign('tipo_publicacion_id')->references('id')->on('tipo_publicacion');
             //$table->foreign('publisher_id')->references('id')->on('publishers');
         }); 
     }

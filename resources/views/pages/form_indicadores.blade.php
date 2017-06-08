@@ -151,10 +151,10 @@ background-color:#686C68;
                      
                     <div class="row">
                        <div class="col-xs-6">
-                          <i class="fa fa-pencil"></i> Descargar Excel
+                          <a ng-click="verIndicadorExcel(indicador.id)"><i class="fa fa-pencil"></i> Descargar Excel</a>
                        </div>
                        <div class="col-xs-6" style="text-aling:rigth;">
-                          <i class="fa fa-pencil"></i> <b>Fuente: </b>@{{indicador.fuente}}
+                          <i class="fa fa-pencil"></i> <b>Fuente: </b>@{{dataIndicadorGlobal[0].fuente}}
                        </div>
                     </div><br>
                      <div class="row">
@@ -232,10 +232,10 @@ background-color:#686C68;
                      
                     <div class="row">
                        <div class="col-xs-6">
-                          <i class="fa fa-pencil"></i> Descargar Excel
+                          <a ng-click="verIndicadorDExcel(item.id)"><i class="fa fa-pencil"></i> Descargar Excel</a>
                        </div>
                        <div class="col-xs-6" style="text-aling:rigth;">
-                          <i class="fa fa-pencil"></i> <b>Fuente: </b>@{{item.fuente}}
+                          <i class="fa fa-pencil"></i> <b>Fuente: </b>@{{item.datos[0].fuente}}
                        </div>
                     </div><br>
                      <div class="row">
@@ -314,10 +314,10 @@ background-color:#686C68;
                      
                     <div class="row">
                        <div class="col-xs-6">
-                          <i class="fa fa-pencil"></i> Descargar Excel
+                         <a ng-click="verIndicadorPExcel(item.id)"><i class="fa fa-pencil"></i> Descargar Excel</a>
                        </div>
                        <div class="col-xs-6" style="text-aling:rigth;">
-                          <i class="fa fa-pencil"></i> <b>Fuente: </b>@{{item.fuente}}
+                          <i class="fa fa-pencil"></i> <b>Fuente: </b>@{{item.datos[0].fuente}}
                        </div>
                     </div><br>
                      <div class="row">
@@ -395,10 +395,10 @@ background-color:#686C68;
                      
                     <div class="row">
                        <div class="col-xs-6">
-                          <i class="fa fa-pencil"></i> Descargar Excel
+                          <a ng-click="verIndicadorZExcel(item.id)"><i class="fa fa-pencil"></i> Descargar Excel</a>
                        </div>
                        <div class="col-xs-6" style="text-aling:rigth;">
-                          <i class="fa fa-pencil"></i> <b>Fuente: </b>@{{item.fuente}}
+                          <i class="fa fa-pencil"></i> <b>Fuente: </b>@{{item.datos[0].fuente}}
                        </div>
                     </div><br>
                      <div class="row">

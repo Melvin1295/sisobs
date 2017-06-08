@@ -8,20 +8,29 @@
            <h3>QUEJAS / RECLAMOS EN LINEA</h3>
                    <div class="panel panel-body panel-info">
                    <form name="reclamoCreateForm" role="form" novalidate>
+
                    	   <div class="row">
                    	   	    <div class="col-sm-12" style="margin-top:-10px;">
                    	   	    	<label style="font-size: 20px;  color: black;">La Siguiente queja o reclamo es totalmente confidencial.</label>
                    	   	    </div>
-                   	   </div>
-                   	   <div class="row">
+                   	   </div> 
+                       <div class="navbar-collapse collapse">
+                             <ul class="nav navbar-nav">
+                              <li><a tyle="margin-top:-10px;" ng-click="filtroTipoQuejas(1)">
+                              <label style="font-size: 20px;  color: black;">MEDICAMENTOS</a></li> 
+                              <li><a tyle="margin-top:-10px;" ng-click="filtroTipoQuejas(2)">
+                              <label style="font-size: 20px;  color: black;">OTRO MOTIVO</a></li>                       
+                          </ul>
+                        </div>
+                   	   <div class="row" ng-repeat="rowQuejas in tipoQuejas" ng-if="numeroTipoQueja==rowQuejas.numero">
                    	   	    <div class="col-sm-1">
-                   	   	    	<input type="checkbox" ng-model="reclamo.flag1" class="form-control">
+                   	   	    	<input type="checkbox" ng-model="rowQuejas.flag" class="form-control">
                    	   	    </div>
                    	   	    <div class="col-sm-11">
-                   	   	    	<label>¿No te dieron en farmacia los medicamentos que te recetaron?</label>
+                   	   	    	<label>@{{rowQuejas.descripcion}}</label>
                    	   	    </div>
                    	   </div>
-                   	   <div class="row">
+                   	   <!--<div class="row">
                    	   	    <div class="col-sm-1">
                    	   	    	<input type="checkbox" ng-model="reclamo.flag2" class="form-control">
                    	   	    </div>
@@ -44,7 +53,7 @@
                    	   	    <div class="col-sm-11">
                    	   	    	<label>Otro motivo</label>
                    	   	    </div>
-                   	   </div>
+                   	   </div>-->
 
                            <div class="row" >
                             <div  class="col-md-4">

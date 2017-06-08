@@ -13,13 +13,21 @@ use Salesfly\Salesfly\Repositories\DetReporteMedicamentoRepo;
 use Salesfly\Salesfly\Managers\DetReporteMedicamentoManager;
 use Salesfly\Salesfly\Entities\ReporteMedicamento;
 
+use Salesfly\Salesfly\Repositories\TipoReporteRepo;
+
+
 class ReporteMedicamentoController extends Controller {
 
     protected $reporteMedicamentoRepo;
-
-    public function __construct(ReporteMedicamentoRepo $reporteMedicamentoRepo)
+    protected $fecha_inicio;
+    protected $fecha_fin;
+    public function __construct(ReporteMedicamentoRepo $reporteMedicamentoRepo,DetReporteMedicamentoRepo $detReporteMedicamentoRepo,TipoReporteRepo $tipoReporteRepo)
     {
         $this->reporteMedicamentoRepo = $reporteMedicamentoRepo;
+        $this->detReporteMedicamentoRepo = $detReporteMedicamentoRepo;
+        $this->tipoReporteRepo = $tipoReporteRepo;
+        $this->fecha_inicio = 0;
+        $this->fecha_fin = 0;
     }
 
     public function index()
@@ -62,7 +70,25 @@ class ReporteMedicamentoController extends Controller {
         \DB::beginTransaction();
         $user = \Auth::user();
         $request["user_id"]= $user->id;
-        $detreporte = $request->detreporte;
+        $medicamentos = $request->medicamentos;
+
+        $reportemedicamentos = $this->reporteMedicamentoRepo->getModel();
+        $manager = new ReporteMedicamentoManager($reportemedicamentos,$request->all());
+        $manager->save();
+
+        $reporte_medicamento_id = $reportemedicamentos->id; 
+
+        foreach ($medicamentos as $item) {
+            if ($item['flag']) {
+                $item['medicamento_id'] = $item['id'];
+                $item['reporte_medicamento_id'] = $reporte_medicamento_id;
+                $item['glosa'] = '';
+
+                $medicamento = $this->detReporteMedicamentoRepo->getModel();
+                $manager = new DetReporteMedicamentoManager($medicamento,$item);
+                $manager->save();
+            }
+        }
 
         //$reportemedicamentos = $this->reporteMedicamentoRepo->getModel();
         //$manager = new ReporteMedicamentoManager($reportemedicamentos,$request->all());
@@ -70,7 +96,7 @@ class ReporteMedicamentoController extends Controller {
         //$temporal=$reportemedicamentos->id;
 
         //$detReporteMedicamentoRepo;
-        foreach($detreporte as $objeto){
+        /*foreach($detreporte as $objeto){
             $objeto['user_id'] = $user->id;
 
             $reportemedicamentos = $this->reporteMedicamentoRepo->getModel();
@@ -78,7 +104,7 @@ class ReporteMedicamentoController extends Controller {
             $manager->save();
           
             $detReporteMedicamentoRepo = null;
-        }
+        }*/
         \DB::commit();
         return response()->json(['estado'=>true, 'nombre'=>$reportemedicamentos->descripcion]);
     }
@@ -118,19 +144,28 @@ class ReporteMedicamentoController extends Controller {
         return response()->json($reportemedicamentos);
     }
 
-    public function exportar()
+    public function exportar($ini,$fin)
     {
-        Excel::create('Laravel Excel', function($excel) {
- 
+        $this->fecha_inicio = $ini;
+        $this->fecha_fin = $fin;
+        return Excel::create('Laravel Excel', function($excel) {
+        
             $excel->sheet('reporte_mediamentos', function($sheet) {
- 
-                $products = ReporteMedicamento::all();
+
+                $products = $this->reporteMedicamentoRepo->exportar($this->fecha_inicio,$this->fecha_fin);
  
                 $sheet->fromArray($products);
  
             });
         })->export('xls');
-        return Book::all();
+        //return Book::all();
+    }
+
+    public function searchAlltipoReporte($q)
+    {
+        $tipoReporte = $this->tipoReporteRepo->searchall($q);
+
+        return response()->json($tipoReporte); 
     }
     
 }

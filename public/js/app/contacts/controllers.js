@@ -1,7 +1,7 @@
 (function(){
     angular.module('contacts.controllers',[])
-        .controller('contactController',['$scope', '$routeParams','$location','crudService' ,'$filter','$route','$log',
-            function($scope, $routeParams,$location,crudService,$filter,$route,$log){
+        .controller('contactController',['$scope', '$routeParams','$location','crudService' ,'$filter','$route','$log','$window',
+            function($scope, $routeParams,$location,crudService,$filter,$route,$log,$window){
                 $scope.contacts = [];
                 $scope.contact;
                 $scope.errors = null;
@@ -190,5 +190,23 @@
                 }
                 $scope.traerAll();
                 $scope.traerUltimo();
+
+
+                $scope.buscar = function() {
+                    if ($scope.buscarForm.$valid) {
+                        $scope.rango_busqueda.fecha_fin.setDate($scope.rango_busqueda.fecha_fin.getDate()+1);
+                        if ($scope.rango_busqueda.fecha_inicio<$scope.rango_busqueda.fecha_fin) {
+                            var fecha_inicio = $filter('date')($scope.rango_busqueda.fecha_inicio,'yyyy-MM-dd');
+                            var fecha_fin = $filter('date')($scope.rango_busqueda.fecha_fin,'yyyy-MM-dd');
+                            console.log(fecha_fin);
+                            window.open('http://apisisobs.dev/api/contacts-excel/recuperarDosDato/'+fecha_inicio+'/'+fecha_fin)
+                            $route.reload();
+                            $window.location.reload();   
+                        }else{
+                            alert("La fecha final debe ser mayor a la fecha inicial");
+                        }
+                        
+                    }
+                }
             }]);
 })();

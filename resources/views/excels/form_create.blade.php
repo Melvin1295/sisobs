@@ -88,6 +88,12 @@
                                   <input type="file" class="form-control" name="file_archivo" uploader-model="file_archivo" />
                             </div>
                        </div>
+                       <div class="col-md-4">
+                          <div class="form-group" >
+                                  <label for="nombres">Fuente</label>
+                                  <input type="text" class="form-control" ng-model="indicatorData.fuente" />
+                            </div>
+                       </div>
                     </div>                
                  <div class="box-footer">
                     <button type="submit" class="btn btn-primary" ng-click="uploadFile()">Cargar</button>

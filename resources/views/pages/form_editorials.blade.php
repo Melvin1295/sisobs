@@ -2,6 +2,7 @@
 	<!-- ==========================
     	PRICING - START
     =========================== --> 
+     
     <section class="content-item pricing">
     	<div class="container">
         	<div class="content-headline">
@@ -13,9 +14,9 @@
                 <div class="col-sm-4" ng-repeat="row in editoriales">
                 	<div class="pricing-plan">
                     	<h4>@{{row.anio}}</h4>
-                    	<div class="price">@{{row.descripcion_corta}}</div>
+                    	<div class="price" style="white-space: pre-line; text-align: justify;">@{{row.descripcion_corta}}</div>
                     	<ul class="list-unstyled">
-                        	<li><i class="fa fa-book"></i><b>Editorial</b> @{{row.nombre}}</li>
+                        	<li><i class="fa fa-book"></i><b>Incidencia</b> @{{row.nombre}}</li>
                             <li><i class="fa fa-calendar"></i><b>Publicado</b> @{{row.fecha_publicacion}}</li>
                             <li><i class="fa fa-check-circle-o"></i><b>Titulo</b> @{{row.titulo_descripcion}}</li>
                         </ul>

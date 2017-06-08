@@ -27,5 +27,10 @@ class MedicamentoRepo extends BaseRepo{
                             ->get();
             return $medicamento;
     }
+    public function searchall($q){
+      $medicamento = Medicamento::get();
+            return $medicamento;
+    }
+    
     
 } 

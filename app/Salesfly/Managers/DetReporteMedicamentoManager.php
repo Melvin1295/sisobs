@@ -4,11 +4,10 @@ class DetReporteMedicamentoManager extends BaseManager {
 
     public function getRules()
     {
-        $rules = [              
-            'descripcion'=> '',
+        $rules = [             
             'glosa'=> '',
             'estado'=> '',
-            'reporte_mediamento_id'=> '',
+            'reporte_medicamento_id'=> '',
             'medicamento_id'=> ''
                   ];
         return $rules;

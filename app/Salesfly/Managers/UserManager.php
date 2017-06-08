@@ -7,7 +7,7 @@ class UserManager extends BaseManager {
     {
         $rules = ['name'=> 'required',
     'email'=> 'required','password'=> '','estado'=> 'required','image'=> 'required',
-            'ubigeo_id' => '' ];
+            'ubigeo_id' => '' , 'role_id' => ''];
         return $rules;
     }
 } 

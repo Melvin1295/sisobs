@@ -14,7 +14,8 @@ class DetPublisherManager extends BaseManager {
             'employee_id'=> '',
             'fecha_publicacion'=> '',
             'estado'=> '',
-            'categoria'=> ''
+            'categoria'=> '',
+            'tipo_publicacion_id' => ''
                   ];
-        return $rules;
+        return $rules; 
     }}

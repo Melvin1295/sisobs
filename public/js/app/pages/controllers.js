@@ -19,18 +19,14 @@
                    $scope.provinces={};
                    $scope.distrits={};
                    $scope.reclamo={};
-                   $scope.reclamo.flag1=false;
-                   $scope.reclamo.flag2=false;
-                   $scope.reclamo.flag3=false;
-                   $scope.reclamo.flag4=false;
                    $scope.currentPage=1;
                    $scope.index=0;
                    $scope.pageActual='';
+                   
 
                    $scope.indicadoresDataDep={};
                    $scope.indicadoresDataProv={};
                    $scope.indicadoresDataDist={};
-
                    $scope.dataIndicadorGlobal={};
 
                    $scope.submenu1='activemenuNuevo';
@@ -40,17 +36,47 @@
 
                    $scope.submenud1='Indicadores Globales';
                    $scope.list=0;
+                   $scope.ciudad=1;
+                   $scope.ciudad1=1;
+                   $scope.ciudad2=2;
 
+                   $scope.pageActual=''; 
+
+                   $scope.tipoQuejas =[];
+                   $scope.tipoPublicaciones = [];
+                   $scope.numeroTipoQueja=1;
+                   $scope.banderaCategoriaSeleionada=false;
+                   //$scope.categoriaSelecionada = 2;
                     //Trae el ultimo registro ordenado por 
+
+                    $scope.selectMenuIten=1;
+                    $scope.selectMenu=function(id) {
+                      $scope.selectMenuIten=id;
+                  }
+
+                    $scope.cargarTipoQuejas=function() {
+                      crudService.search('tipoquejadata',' ').then(function (data){
+                        $scope.tipoQuejas = data;
+                        for (var i = $scope.tipoQuejas.length - 1; i >= 0; i--) {
+                          $scope.tipoQuejas[i].flag=false;
+                        }
+                    });
+                  }
                   var id = $routeParams.id;
 
 	                if(id){
 	                	crudService.search('publisher_id',id,1).then(function (data){
 	                        $scope.publicacione = data;
-	                    });    
-	                }else{
+	                    }); 
+
+                    crudService.search('tipopublicaciondata',0,1).then(function (data){
+                        $scope.tipoPublicaciones = data;
+                    }); 
+                          
+	                }else{ 
 	                	crudService.getObject('getPublisher').then(function (data){
 	                        $scope.ultPubicaciones = data;
+                          console.log(data);
 	                    }); 
 	                    crudService.all('colaboradores').then(function (data){
                             $scope.colaboradores=data.data;
@@ -59,15 +85,31 @@
                             //$scope.colaboradoresFuncion();
 	                    });
 
+                      $scope.cargarTipoQuejas();
+
+                      crudService.search('tipopublicaciondata',0,1).then(function (data){
+                        $scope.tipoPublicaciones = data;
+                    }); 
+
+                      crudService.search('menus_all',0,1).then(function (data){
+                        $scope.menus = data;
+                    }); 
+                       
+
 
 	                }
+                    
+
 	                 if($location.path() == '/pages/editoriales') {
 	                 	 crudService.search('editorials_all',0,$scope.currentPage).then(function (data){
 	                        $scope.editoriales = data.data;
-                            for (var i = 0; i < $scope.editoriales.length; i++) {
-                                $scope.editoriales[i].descripcion_corta.replace('\n','</br>');
-                                $scope.editoriales[i].descripcion.replace('\n','</br>');
-                            }
+                            /*for (var i = 0; i < $scope.editoriales.length; i++) {
+                                $scope.editoriales[i].descripcion_corta.replace('\\n','</br>');
+                                $scope.editoriales[i].descripcion.replace('\\n','</br>');
+                                
+                            }*/
+                            console.log("entre");
+                            console.log(data);
                             //$scope.editoriales[0].descripcion_corta.replace('\n','</br>');
                             //console.log($scope.editoriales[0].descripcion_corta);
 	                        $scope.maxSize = 10;
@@ -84,7 +126,8 @@
 	                  }
 	                  if($location.path() == '/pages/indicadores') {
                              crudService.search('indicators_all',0).then(function (data){
-	                        $scope.indicadores = data.data;
+	                           $scope.indicadores = data.data;
+                              $scope.verIndicador($scope.indicadores[0]);
 	                     });
 	                  }
                     crudService.all('departament').then(function(data)
@@ -101,6 +144,7 @@
                   {
                      $scope.distrits=data;
                   });
+                 
 
                     $scope.cambiar_pestana = function(op) {
                         if (op===1) {
@@ -115,8 +159,7 @@
 
                  $scope.colaboradoresFuncion=function(valor){
                  	
-                        $scope.colaboradores2[0]=$scope.colaboradores;		
-                        console.log($scope.colaboradores2[0]);			
+                        $scope.colaboradores2[0]=$scope.colaboradores;	
 					}                	
                  
                  $scope.cambiarSumenu=function(val){
@@ -126,7 +169,8 @@
                       $scope.submenu3='none';
                       $scope.submenu4='none';
                       $scope.submenud1='Indicadores Globales';
-                       $scope.list=0
+                      $scope.list=0
+                      $scope.verIndicador($scope.indicadores[0]);
                    }
                     if(val == 2){
                       $scope.submenu1='none';
@@ -135,6 +179,7 @@
                       $scope.submenu4='none';
                       $scope.submenud1='Indicadores por Departamento';
                        $scope.list=1;
+                       $scope.verIndicadorD($scope.departaments[0]);
                    }
                     if(val == 3){
                       $scope.submenu1='none';
@@ -143,6 +188,7 @@
                       $scope.submenu4='none';
                       $scope.submenud1='Indicadores por Provincia';
                        $scope.list=2
+                       $scope.verIndicadorP($scope.provinces[0]);
                    }
                     if(val == 4){
                       $scope.submenu1='none';
@@ -151,6 +197,7 @@
                       $scope.submenu4='activemenuNuevo';
                       $scope.submenud1='Indicadores por Distrito';
                        $scope.list=3;
+                        $scope.verIndicadorZ($scope.distrits[0]);
                    }
                    
                  }
@@ -163,23 +210,43 @@
                         });
                  }
                  $scope.verIndicadorD=function(row){
-                    crudService.allById('searchByDepartament',row.id).then(function (data) {
+                       $scope.ciudad=row.id;
+                      crudService.allById('searchByDepartament',row.id).then(function (data) {
                             $scope.indicadoresDataDep = data;
                         });
                  }
                  $scope.verIndicadorP=function(row){
+                     $scope.ciudad1=row.id;
                     crudService.allById('searchByProvincia',row.id).then(function (data) {
                             $scope.indicadoresDataProv = data;
                             $log.log($scope.indicadoresDataProv);
                         });
                  }
                  $scope.verIndicadorZ=function(row){
+                     $scope.ciudad2=row.id;
                     crudService.allById('searchByDistrito',row.id).then(function (data) {
                             $scope.indicadoresDataDist = data;
                         });
                  }
-                 $scope.verDetalle=function(item){
-                 	  $location.path('/pages/publisherItem/'+item.id);                	
+                $scope.verIndicadorExcel=function(row){
+                       window.open('/api/exportIndicatod/allByID/'+row);
+                 }
+                 $scope.verIndicadorDExcel=function(row){                      
+                      
+                      window.open('/api/exportIndicatodD/allByID1/'+$scope.ciudad+'/'+row);
+                 }
+                 $scope.verIndicadorPExcel=function(row){
+                    
+                     window.open('/api/exportIndicatodP/allByID1/'+$scope.ciudad1+'/'+row);
+                 }
+                 $scope.verIndicadorZExcel=function(row){
+                    
+                     window.open('/api/exportIndicatodZ/allByID1/'+$scope.ciudad2+'/'+row);
+                 }
+                 $scope.verDetalle=function(item){ 
+                  //$location.path('/pages/publisherItem/');
+                 	  //$location.path('/pages/publisherItem/'+item.id); 
+                    window.open('/pages/publisherItem/'+item.id,'_parent');               	
                  }
                  $scope.verEditorial=function(id){
                  	  $location.path('/pages/verEditorial/'+id);                	
@@ -191,17 +258,18 @@
 	                        $scope.totalItems = data.total;
 	                        $scope.currentPage = data.current_page;
 	                        $scope.itemsperPage = 5;
+
                         });
                     
                 };
                 $scope.hola=function(){
-                	alert("hola");
+                	
                 }
                 $scope.pageChanged2 = function() {
                  	 	 crudService.search('editorials_all',0,$scope.currentPage).then(function (data){
 	                        $scope.editoriales = data.data;
+                          console.log("entre");
                             
-                            console.log("Entre pa");
 	                        $scope.maxSize = 10;
 	                        $scope.totalItems = data.total;
 	                        $scope.currentPage = data.current_page;
@@ -212,8 +280,6 @@
                 $scope.traerUltimo= function(){
                     crudService.search('publishersUltimo',0,1).then(function (data){
                         $scope.ultimaPublicacion = data;
-                        console.log('$scope.ultimo');
-                        console.log($scope.ultimo);
                     });
                 };
                 
@@ -221,34 +287,16 @@
                  $scope.registrarReclamo = function(){
                    if ($scope.reclamoCreateForm.$valid) {
                             $scope.reclamo.ubigeo_id=$scope.DistritoSelect;
-                            if ($scope.reclamo.flag1) {
-                                $scope.reclamo.flag1 = 1;
-                            }else{
-                              $scope.reclamo.flag1 = 0;
-                            }
-                            if ($scope.reclamo.flag2) {
-                                $scope.reclamo.flag2 = 1;
-                            }else{
-                              $scope.reclamo.flag2 = 0;
-                            }
-                            if ($scope.reclamo.flag3) {
-                                $scope.reclamo.flag3 = 1;
-                            }else{
-                              $scope.reclamo.flag3 = 0;
-                            }
-                            if ($scope.reclamo.flag4) {
-                                $scope.reclamo.flag4 = 1;
-                            }else{
-                              $scope.reclamo.flag4 = 0;
-                            }
+                            
+                            $scope.reclamo.tipoQuejas=$scope.tipoQuejas;
                             $log.log($scope.reclamo);
+
                                 crudService.create($scope.reclamo, 'reclamos').then(function (data) {
                                     
                                     if (data['estado'] == true) {
-                                    //$scope.success = data['nombres'];
                                         alert('Reclamo Registrado Correctamente');
-                                        //$location.path('/docentes');
                                         $scope.reclamo={};
+                                         $scope.cargarTipoQuejas();
 
                                     } else {
                                         $scope.errors = data;
@@ -276,25 +324,40 @@
                         $scope.Distritos = data;
                     });
                 }
-                //================RECLAMOS======================
+                //==========================================
+                  $scope.filtroTipoQuejas=function(num) {
+                      $scope.numeroTipoQueja=num;
+                  }
+
+                  
+                //================CONTACTO======================
                  $scope.registrarMensaje = function(){
                    if ($scope.contactoCreateForm.$valid) {
+
                       crudService.create($scope.contacto, 'contacts').then(function (data) {
                           
                           if (data['estado'] == true) {
-                          //$scope.success = data['nombres'];
                               alert('Mensaje Registrado Correctamente');
                               $scope.contacto={};
-                              //$location.path('/pages/contact');
-                              //$window.reload();
+
 
                           } else {
                               $scope.errors = data;
-
                           }
                       });
                     }                                  
                 }
+
+                 
+                //==============================================
+                  $scope.selectCategoria=function(categoria,cambiar){
+                    if (cambiar) {
+                      $location.path('/pages/blog');
+                    }
+                    $scope.categoriaSelecionada=categoria;
+                    $scope.banderaCategoriaSeleionada=true;
+                    //$scope.traerAll();
+                  }
                 //==============================================
 
                 var slideIndex = 1;
@@ -417,6 +480,8 @@ $scope.currentSlideLess=function(n) {
             $interval.cancel(stopTime);
           });
         }
+
+
       }]);
 
 })();

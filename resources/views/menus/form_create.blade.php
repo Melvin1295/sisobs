@@ -36,13 +36,18 @@
                       <label ng-show="menuCreateForm.$submitted || menuCreateForm.titulo.$dirty && menuCreateForm.titulo.$invalid">
                         <span ng-show="menuCreateForm.titulo.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
                       </label>
-                    </div>
+                    </div> 
+
+                    
+
 
                     <div class="form-group" ng-class="{true: 'has-error'}[ menuCreateForm.descripcion.$error.required && menuCreateForm.$submitted || menuCreateForm.descripcion.$dirty && menuCreateForm.descripcion.$invalid]">
                       <label for="nombres">Descripcion</label>
-                      <input type="text" class="form-control" name="descripcion" placeholder="Descripcion"</ ng-model="menu.descripcion" required>
+                      <textarea rows="4" cols="50" class="form-control" name="descripcion" placeholder="Descripcion"</ ng-model="menu.descripcion" required>
+                        
+                      </textarea>
                       <label ng-show="menuCreateForm.$submitted || menuCreateForm.descripcion.$dirty && menuCreateForm.descripcion.$invalid">
-                        <span ng-show="menuCreateForm.descripcion.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
+                        <span ng-show="menuCreateForm.titulo.$error.required"><i class="fa fa-times-circle-o"></i>Requerido.</span>
                       </label>
                     </div>
                       

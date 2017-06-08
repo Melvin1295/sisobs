@@ -96,11 +96,16 @@ class ExcelsController extends Controller {
         $indicatorsData = $this->indicatorsDataRepo->searchByDepartament($indicador,$dep_id);
             return response()->json($indicatorsData);
      }
+     public function indicadoresCargados(){
+         $indicatorsData = $this->indicatorsDataRepo->indicadoresCargados();
+            return response()->json($indicatorsData);
+     }
     public function import(Request $request)
     {
          
-          //var_dump($request->numero); die();;
+          //var_dump($request->archivo); die();;
           //$num=$request->numero;
+
         if($request->departament_id==0){
              $dep=null;
         }else{
@@ -116,8 +121,31 @@ class ExcelsController extends Controller {
         }else{
             $dist=$request->distrit_id;
         }
+        if($request->numero == 0){
+           IndicatorsData::where('numero','=',0)
+                    ->where('indicator_id','=',$request->indicator_id)
+                    ->delete();
+        }
+        if($request->numero == 1){
+           IndicatorsData::where('numero','=',1)
+                    ->where('departament_id','=',$dep)
+                    ->where('indicator_id','=',$request->indicator_id)
+                    ->delete();
+        }
+        if($request->numero == 2){
+           IndicatorsData::where('numero','=',2)
+                    ->where('province_id','=',$prov)
+                    ->where('indicator_id','=',$request->indicator_id)
+                    ->delete();
+        }
+        if($request->numero == 3){
+           IndicatorsData::where('numero','=',3)
+                    ->where('distrit_id','=',$dep)
+                    ->where('indicator_id','=',$request->indicator_id)
+                    ->delete();
+        }
                              
-          $data= Excel::load($request->archivo, function($reader){})->get();
+          $data= Excel::load('images/excel/carga.xlsx', function($reader){})->get();
           //var_dump($data);die();
          // Excel::load('images/excel/carga.xlsx', function($reader) {
  
@@ -188,7 +216,8 @@ class ExcelsController extends Controller {
                                     'departament_id'=>$dep,
                                     'province_id'=>$prov,
                                     'distrit_id'=>$dist,
-                                    'indicator_id'=>$request->indicator_id]
+                                    'indicator_id'=>$request->indicator_id,
+                                    'fuente'=>$request->fuente]
                             );
                      $manager->save();
                       }
@@ -205,7 +234,69 @@ class ExcelsController extends Controller {
         {
              
         }
-        return "/images/excel/".$time."_".$file;      
+        return "/images/excel/".$file;      
     }
-    
+    public function exportarGlobal($indicador)
+    {
+        $this->indicador = $indicador;
+        Excel::create('Indicador Global', function($excel) {
+ 
+            $excel->sheet('reporte_mediamentos', function($sheet) {
+ 
+                $reclamos = $this->indicatorsDataRepo->excelsDataInidcador($this->indicador);
+ 
+                $sheet->fromArray($reclamos);
+ 
+            });
+        })->export('xls');
+        return Book::all();
+    }
+    public function exportarGlobalD($departament,$indicador)
+    {
+        $this->indicador = $indicador;
+        $this->dep = $departament;
+        Excel::create('Indicador por Departamento', function($excel) {
+ 
+            $excel->sheet('reporte_mediamentos', function($sheet) {
+ 
+                $reclamos = $this->indicatorsDataRepo->excelsDataInidcadorD($this->dep,$this->indicador);
+ 
+                $sheet->fromArray($reclamos);
+ 
+            });
+        })->export('xls');
+        return Book::all();
+    }
+     public function exportarGlobalP($departament,$indicador)
+    {
+        $this->indicador = $indicador;
+        $this->dep = $departament;
+        Excel::create('Indicador por Provincia', function($excel) {
+ 
+            $excel->sheet('reporte_mediamentos', function($sheet) {
+ 
+                $reclamos = $this->indicatorsDataRepo->excelsDataInidcadorD($this->dep,$this->indicador);
+ 
+                $sheet->fromArray($reclamos);
+ 
+            });
+        })->export('xls');
+        return Book::all();
+    }
+     public function exportarGlobalZ($departament,$indicador)
+    {
+        $this->indicador = $indicador;
+        $this->dep = $departament;
+        Excel::create('Indicador por Distrito', function($excel) {
+ 
+            $excel->sheet('reporte_mediamentos', function($sheet) {
+ 
+                $reclamos = $this->indicatorsDataRepo->excelsDataInidcadorZ($this->dep,$this->indicador);
+ 
+                $sheet->fromArray($reclamos);
+ 
+            });
+        })->export('xls');
+        return Book::all();
+    }
 }

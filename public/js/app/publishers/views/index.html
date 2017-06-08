@@ -59,7 +59,9 @@
                       <th style="width: 10px">#</th>
                       <th>Título</th>
                       <th>Fecha</th>
-                      <th>Descripcion Corta</th>
+                      <th>Autor</th>
+                      <th>Categoria</th>
+                      <!--<th>Descripcion Corta</th>-->
                       <th>Imagen</th>
                       <th style="width: 40px">Estado</th>
                       <th style="width: 40px">Ver</th>
@@ -71,7 +73,8 @@
                       <td>{{$index + 1}}</td>
                       <td>{{row.titulo}}</td>
                       <td>{{row.fecha_publicacion}}</td>
-                      <td>{{row.descripcion_corta}}</td>
+                      <td>{{row.autor.apellidos+ ' ' + row.autor.nombres}}</td>
+                      <td>{{row.tipo_publicacion.descripcion}}</td>
                       <td style="width: 100px"><img ng-src="{{row.imagen}}" alt="" class="img-thumbnail"/></td>
                       <td><a ng-click="updateEstadoPublishers(row)" class="btn btn-default btn-xs">{{row.estado == 1? 'Desactivar':'Activar'}}</a>
                       <td><a  ng-disabled="row.archivo_adjunto==''" href="{{row.archivo_adjunto}}" target="_blank" class="btn btn-success btn-xs">Archivo</a></td>

@@ -4,13 +4,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetReporteMedicamento extends \Eloquent {
 
-    protected $table = 'det_reporte_mediamentos';
+    protected $table = 'det_reporte_medicamentos';
     
     protected $fillable = [ 
-                    'descripcion',
                     'glosa',
                     'estado',
-                    'reporte_mediamento_id',
+                    'reporte_medicamento_id',
                     'medicamento_id'
                     ];
-}
+
+                    public function medicamento(){
+            return $this->belongsTo('Salesfly\Salesfly\Entities\Medicamento','medicamento_id');
+        }
+} 
