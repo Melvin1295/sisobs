@@ -140,7 +140,7 @@ class ExcelsController extends Controller {
         }
         if($request->numero == 3){
            IndicatorsData::where('numero','=',3)
-                    ->where('distrit_id','=',$dep)
+                    ->where('distrit_id','=',$dist)
                     ->where('indicator_id','=',$request->indicator_id)
                     ->delete();
         }
@@ -223,6 +223,50 @@ class ExcelsController extends Controller {
                       }
         // });
         return response()->json(['estado'=>true, 'nombre'=>'Ejemplo']);
+    }
+    //ultimos cambios
+    public function deleteFileIndicador(Request $request){
+       //var_dump($request->indicator_id);die();
+         if($request->idDep==0){
+             $dep=null;
+        }else{
+            $dep=$request->idDep;
+        }
+        if($request->idePro==0){
+            $prov=null;
+        }else{
+            $prov=$request->idPro;
+        }
+        if($request->idDist==0){
+            $dist=null;
+        }else{
+            $dist=$request->idDist;
+        }
+        if($request->numero == 0){
+           IndicatorsData::where('numero','=',0)
+                    ->where('indicator_id','=',$request->indicator_id)
+                    ->delete();
+        }
+        if($request->numero == 1){
+           IndicatorsData::where('numero','=',1)
+                    ->where('departament_id','=',$dep)
+                    ->where('indicator_id','=',$request->indicator_id)
+                    ->delete();
+        }
+        if($request->numero == 2){
+           IndicatorsData::where('numero','=',2)
+                    ->where('province_id','=',$prov)
+                    ->where('indicator_id','=',$request->indicator_id)
+                    ->delete();
+        }
+        if($request->numero == 3){
+            //var_dump($dist);die();
+           IndicatorsData::where('numero','=',3)
+                    ->where('distrit_id','=',$dist)
+                    ->where('indicator_id','=',$request->indicator_id)
+                    ->delete();
+        }
+        return response()->json(['estado'=>true, 'nombre'=>'Elimando']);
     }
     public function uploadFile(){
         $file = $_FILES["file"]["name"];

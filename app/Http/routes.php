@@ -358,3 +358,6 @@ Route::get('api/exportIndicatodP/allByID1/{id}/{ind}', ['as' => 'person_all', 'u
 Route::get('api/exportIndicatodZ/allByID1/{id}/{ind}', ['as' => 'person_all', 'uses' => 'ExcelsController@exportarGlobalZ']); 
 
 Route::get('api/idicadoresData/all/', ['as' => 'person_all', 'uses' => 'ExcelsController@indicadoresCargados']); 
+
+//ultimos Cambios
+Route::post('api/excel/destroy',['as'=>'person_create', 'uses'=>'ExcelsController@deleteFileIndicador']);

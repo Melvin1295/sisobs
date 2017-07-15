@@ -314,17 +314,29 @@ class IndicatorsDataRepo extends BaseRepo{
         ->get();
         return $indicators;    
     }
+    //ultimos Cambios 
     public function indicadoresCargados(){
         $indicators =IndicatorsData::join("indicators","indicators.id","=","indicatorsData.indicator_id")
                                     ->leftjoin("departaments","departaments.id","=","indicatorsData.departament_id")
                                     ->leftjoin("provinces","provinces.id","=","indicatorsData.province_id")
                                     ->leftjoin("distrits","distrits.id","=","indicatorsData.distrit_id")
-        ->select(\DB::raw("indicatorsData.descripcion,indicators.titulo, 
+        ->select(\DB::raw("indicatorsData.numero,
+                            departaments.id as idDep,
+                            provinces.id as idPro,
+                            distrits.id as idDist,
+                            indicators.id as indicator_id,
+                          indicatorsData.descripcion,indicators.titulo, 
                           if(indicatorsData.numero=0 , 'Global' , if(indicatorsData.numero=1 ,departaments.nombre,
                           if(indicatorsData.numero=2,provinces.nombre, distrits.nombre))) as  indicador,
                           if(indicatorsData.numero=0 , 'Indicador Global' , if(indicatorsData.numero=1 ,'Indicador por departamento',
                           if(indicatorsData.numero=2,    'Indicador por Provincia','Indicador por Distrito'))) as  tipoIndicador,
                           indicatorsData.created_at"))
+        ->groupBy('indicatorsData.numero')
+        ->groupBy('indicators.id')
+        ->groupBy('indicatorsData.created_at')
+        ->groupBy('indicatorsData.departament_id')
+        ->groupBy('indicatorsData.province_id')
+        ->groupBy('indicatorsData.distrit_id')
         ->get();
         return  $indicators;
     }

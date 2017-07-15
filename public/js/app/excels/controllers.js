@@ -47,6 +47,12 @@
                          }
                       });
                 }
+                 $scope.deleteDataFile=function(row){
+                    crudService.destroy(row,'excel').then(function(data){
+                          alert("Datos de indicador Eliminados correctamente.");
+                          $window.location.reload(); 
+                    })
+                 }
                  $scope.uploadFile = function(){                     
                         $scope.bandera = true;
                         var file_archivo = $scope.file_archivo;
