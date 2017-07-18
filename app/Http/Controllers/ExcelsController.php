@@ -83,6 +83,17 @@ class ExcelsController extends Controller {
             $distrits = $this->distritRepo->searchall(30);
             return response()->json($distrits);
     }
+    ///lo nuevo
+       public function findByProv($idProv){
+            $distrits = $this->distritRepo->findByProv($idProv);
+            return response()->json($distrits);
+    }
+     public function findByDep($idDep){
+            $distrits = $this->provinceRepo->findByDep($idDep);
+            return response()->json($distrits);
+    }
+
+    //fin de los nuevo
 
      public function getAllDepartament1($q){
             $departaments = $this->departamentRepo->searchall1($q);

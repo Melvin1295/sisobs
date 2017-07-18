@@ -32,5 +32,14 @@ class DistritRepo extends BaseRepo{
         }        
         return $distrits;
     }
+
+     public function findByProv($prov)
+    {
+    
+        $authors =Distrit::where('province_id','=',$prov)
+         ->get();
+            
+        return $authors;
+    }
     
 } 

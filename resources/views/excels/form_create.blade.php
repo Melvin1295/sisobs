@@ -41,19 +41,19 @@
                                  
                             </div>
                        </div>
-                       <div class="col-md-4" ng-if="tipoIndicador == 1">
+                       <div class="col-md-4" ng-if="tipoIndicador >= 1">
                           <div class="form-group" >
                                    <label for="nombres">Seleccione Departamento</label>
-                                   <select class="form-control" ng-model="indicatorData.departament_id">
+                                   <select class="form-control" ng-change="getallProvByDepart(indicatorData.departament_id)" ng-model="indicatorData.departament_id">
                                     <option value="0">Seleccione Depratamento</option>
                                     <option ng-repeat="item in departaments" value="@{{item.id}}">@{{item.nombre}}</option>
                                   </select>
                             </div>
                        </div>
-                       <div class="col-md-4" ng-if="tipoIndicador == 2">
+                       <div class="col-md-4" ng-if="tipoIndicador >= 2">
                           <div class="form-group" >
                                   <label for="nombres">Seleccione Provincia</label>
-                                  <select class="form-control" ng-model="indicatorData.province_id">
+                                  <select class="form-control" ng-change="getallDistByProv(indicatorData.province_id)" ng-model="indicatorData.province_id">
                                     <option value="0">Seleccione Provincia</option>
                                     <option ng-repeat="item in provinces" value="@{{item.id}}">@{{item.nombre}}</option>
                                   </select>

@@ -32,5 +32,14 @@ class ProvinceRepo extends BaseRepo{
      }        
         return $authors;
     }
+
+     public function findByDep($depId)
+    {
+    
+        $authors =Province::where('departament_id','=',$depId)
+         ->get();
+            
+        return $authors;
+    }
     
 } 

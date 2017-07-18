@@ -368,3 +368,7 @@ Route::post('api/excel/destroy',['as'=>'person_create', 'uses'=>'ExcelsControlle
 Route::get('api/departament/search/{q?}',['as'=>'person_form_create','uses'=>'ExcelsController@getAllDepartament1']);
 Route::get('api/provinces/search/{q?}/{dep}',['as'=>'person_form_create','uses'=>'ExcelsController@getAllProvince1']);
 Route::get('api/distrits/search/{q?}/{prov}',['as'=>'person_form_create','uses'=>'ExcelsController@getAllDistrit1']);
+
+Route::get('api/ubigeoProvinces/find/{dep}',['as'=>'person_form_create','uses'=>'ExcelsController@findByDep']);
+
+Route::get('api/ubigeoDistrits/find/{prov}',['as'=>'person_form_create','uses'=>'ExcelsController@findByProv']);

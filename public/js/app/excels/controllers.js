@@ -21,7 +21,7 @@
                       $scope.departaments=data;                     
                   });
 
-                   crudService.all('provinces').then(function(data)
+                 /*  crudService.all('provinces').then(function(data)
                   {
                      $scope.provinces=data;
                   });
@@ -29,7 +29,7 @@
                     crudService.all('distrits').then(function(data)
                   {
                      $scope.distrits=data;
-                  });
+                  });*/
 
                     crudService.all('indicators').then(function(data)
                   {
@@ -38,6 +38,24 @@
                   crudService.all('idicadoresData').then(function (data){
                         $scope.listInidcadores = data;
                     });
+
+                  //lo nuevo 
+                $scope.getallProvByDepart=function(idDep){
+                    crudService.byId(idDep,'ubigeoProvinces').then(function (data){
+                        $scope.provinces = data;
+                        $scope.distrits ={};
+                        $scope.indicatorData.province_id='0';
+                        $scope.indicatorData.distrit_id='0';
+                    });
+                }
+                $scope.getallDistByProv=function(idProv){
+                   crudService.byId(idProv,'ubigeoDistrits').then(function (data){
+                        $scope.distrits = data;
+                        $scope.indicatorData.distrit_id='0';
+                    });
+                }
+
+                //fin de lo nuevo
                 $scope.import1=function(){
                     $scope.indicatorData.numero=$scope.tipoIndicador;
                     crudService.create($scope.indicatorData,'excel').then(function(data)
