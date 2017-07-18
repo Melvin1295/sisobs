@@ -20,5 +20,17 @@ class ProvinceRepo extends BaseRepo{
         $authors =Province::get();
         return $authors;
     }
+     public function searchall1($q,$depId)
+    {
+     if(empty($q)){
+        $authors =Province::where('departament_id','=',$depId)
+         ->get();
+     }else{
+        $authors =Province::where('nombre','like','%'.$q.'%')
+         ->where('departament_id','=',$depId)
+         ->get();
+     }        
+        return $authors;
+    }
     
 } 

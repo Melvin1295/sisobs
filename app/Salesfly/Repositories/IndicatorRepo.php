@@ -30,18 +30,26 @@ class IndicatorRepo extends BaseRepo{
                     ->first();
         return $publisher;
     }
-    public function indicators_all()
+    public function indicators_all($q)
     {
-        $publisher =Indicator::where('estado',1)
+        if(!empty($q)){
+            $publisher =Indicator::where('estado',1)
+                    ->where('titulo','like','%'.$q.'%')
                     ->with('province')
-                    ->paginate(15);
+                    ->paginate(1000);
+                }else{
+                    $publisher =Indicator::where('estado',1)
+                    ->with('province')
+                    ->paginate(1000);
+                }
+        
         return $publisher;
     }
      public function indicators_all2()
     {
         $publisher =Indicator::where('estado',1)
                     ->with('province')
-                    ->get();
+                    ->paginate(2);
         return $publisher;
     }
     public function searchall($q)

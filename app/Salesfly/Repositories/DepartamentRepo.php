@@ -20,5 +20,16 @@ class DepartamentRepo extends BaseRepo{
         $departaments =Departament::get();
         return $departaments;
     }
+    public function searchall1($q)
+    {
+        if(empty($q)){
+             $departaments =Departament::get();
+        }else{
+             $departaments =Departament::where('nombre','like', '%'.$q.'%')
+            ->get();
+        }
+       
+        return $departaments;
+    }
     
 } 

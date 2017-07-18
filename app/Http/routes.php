@@ -330,9 +330,11 @@ Route::get('api/reportemedicamentos-excel/recuperarDosDato/{ini?}/{fin?}', ['as'
 Route::get('excels',['as'=>'person','uses'=>'ExcelsController@index']);
 Route::get('excels/create',['as'=>'person_create','uses'=>'ExcelsController@index']);
 Route::get('excels/form-create',['as'=>'person_form_create','uses'=>'ExcelsController@form_create']);
+
 Route::get('api/departament/all',['as'=>'person_form_create','uses'=>'ExcelsController@getAllDepartament']);
 Route::get('api/provinces/all',['as'=>'person_form_create','uses'=>'ExcelsController@getAllProvince']);
 Route::get('api/distrits/all',['as'=>'person_form_create','uses'=>'ExcelsController@getAllDistrit']);
+
 Route::get('api/indicators/all',['as'=>'person_form_create','uses'=>'ExcelsController@getAllIndicator']);
 
 Route::post('api/excel/create',['as'=>'person_create', 'uses'=>'ExcelsController@import']);
@@ -361,3 +363,8 @@ Route::get('api/idicadoresData/all/', ['as' => 'person_all', 'uses' => 'ExcelsCo
 
 //ultimos Cambios
 Route::post('api/excel/destroy',['as'=>'person_create', 'uses'=>'ExcelsController@deleteFileIndicador']);
+
+
+Route::get('api/departament/search/{q?}',['as'=>'person_form_create','uses'=>'ExcelsController@getAllDepartament1']);
+Route::get('api/provinces/search/{q?}/{dep}',['as'=>'person_form_create','uses'=>'ExcelsController@getAllProvince1']);
+Route::get('api/distrits/search/{q?}/{prov}',['as'=>'person_form_create','uses'=>'ExcelsController@getAllDistrit1']);

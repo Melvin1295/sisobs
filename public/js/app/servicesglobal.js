@@ -12,10 +12,30 @@
 
                 return deferred.promise;
             }
-            function allById(uri,value)
+            function search1(uri,q)
             {
                 var deferred = $q.defer();
-                $http.get('/api/'+uri+'/allByID/'+value)
+                $http.get('/api/'+uri+'/search/'+q)
+                    .success(function (data) {
+                        deferred.resolve(data);
+                    });
+
+                return deferred.promise;
+            }
+            function search2(uri,q,id)
+            {
+                var deferred = $q.defer();
+                $http.get('/api/'+uri+'/search/'+q+'/'+id)
+                    .success(function (data) {
+                        deferred.resolve(data);
+                    });
+
+                return deferred.promise;
+            }
+            function allById(uri,value,page)
+            {
+                var deferred = $q.defer();
+                $http.get('/api/'+uri+'/allByID/'+value+'/?page='+page)
                     .success(function (data) {
                         deferred.resolve(data);
                     });
@@ -335,6 +355,8 @@
                 recuperarUnDato: recuperarUnDato,
                 recuperarDosDato:recuperarDosDato,
                 all: all,
+                search1: search1,
+                search2: search2,
                 paginate: paginate,
                 create:create,
                 Reportes10: Reportes10,

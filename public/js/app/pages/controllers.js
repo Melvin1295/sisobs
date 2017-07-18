@@ -144,7 +144,61 @@
                   {
                      $scope.distrits=data;
                   });
-                 
+                  $scope.search;
+                  $scope.departamentIdFiltro;
+                  $scope.provinceIdFiltro;
+                     $scope.searchIndicador=function(val){
+                          if(val ==''){
+                            val='0';
+                          }
+                          crudService.search('indicators_all',val).then(function (data){
+                             $scope.indicadores = data.data;
+                              $scope.verIndicador($scope.indicadores[0]);
+                       });
+                     }
+                     $scope.searchDepartament=function(val){
+                      if(val ==''){
+                            val='0';
+                          }
+                          crudService.search1('departament',val).then(function(data){
+                              $scope.departaments=data; 
+                          })
+                     }
+                     $scope.searchProvincias=function(val){
+                      if(val ==''){
+                            val='0';
+                          }
+                          crudService.search2('provinces',val,$scope.departamentIdFiltro).then(function(data){
+                              $scope.provinces=data; 
+                            //   if(val == 3){
+                      $scope.submenu1='none';
+                      $scope.submenu2='none';
+                      $scope.submenu3='activemenuNuevo';
+                      $scope.submenu4='none';
+                      $scope.submenud1='Provincias de '+$scope.valor;
+                       $scope.list=2
+                       $log.log($scope.provinces[0]);
+                       $scope.verIndicadorP($scope.provinces[0]);
+                   //}
+                          })
+                     }
+                     $scope.searchDistrit=function(val){
+                      if(val ==''){
+                            val='0';
+                          }
+                          crudService.search2('distrits',val,$scope.provinceIdFiltro).then(function(data){
+                              $scope.distrits=data; 
+                              
+                      $scope.submenu1='none';
+                      $scope.submenu2='none';
+                      $scope.submenu3='none';
+                      $scope.submenu4='activemenuNuevo'; 
+                      $scope.submenud1='Distritos de '+$scope.valor1+'/'+$scope.valor;
+                       $scope.list=3;
+                        $scope.verIndicadorZ($scope.distrits[0]);
+                   
+                          })
+                     }
 
                     $scope.cambiar_pestana = function(op) {
                         if (op===1) {
@@ -161,8 +215,43 @@
                  	
                         $scope.colaboradores2[0]=$scope.colaboradores;	
 					}                	
-                 
-                 $scope.cambiarSumenu=function(val){
+                 $scope.valor='';
+                 $scope.valor1='';
+                 $scope.cambiarSumenu1=function(val,item,is){
+                  if(is== 1){
+                     $scope.valor=item.nombre;
+                     $scope.departamentIdFiltro=item.id;
+                     $scope.searchProvincias('0');
+                  }else{
+                      $scope.valor1=item.nombre;
+                      $scope.provinceIdFiltro=item.id
+                      $scope.searchDistrit('0');
+                  }
+                  
+                  //alert($scope.valor);
+                   /*f(val == 1){
+                      $scope.submenu1='activemenuNuevo';
+                      $scope.submenu2='none';
+                      $scope.submenu3='none';
+                      $scope.submenu4='none';
+                      $scope.submenud1='Indicadores Globales';
+                      $scope.list=0
+                      $scope.verIndicador($scope.indicadores[0]);
+                   }
+                    if(val == 2){
+                      $scope.submenu1='none';
+                      $scope.submenu2='activemenuNuevo';
+                      $scope.submenu3='none';
+                      $scope.submenu4='none';
+                      $scope.submenud1='Indicadores por Departamento';
+                       $scope.list=1;
+                       $scope.verIndicadorD($scope.departaments[0]);
+                   }*/
+
+                    
+                   
+                 }
+                  $scope.cambiarSumenu=function(val){
                    if(val == 1){
                       $scope.submenu1='activemenuNuevo';
                       $scope.submenu2='none';
@@ -181,7 +270,7 @@
                        $scope.list=1;
                        $scope.verIndicadorD($scope.departaments[0]);
                    }
-                    if(val == 3){
+                    /*if(val == 3){
                       $scope.submenu1='none';
                       $scope.submenu2='none';
                       $scope.submenu3='activemenuNuevo';
@@ -198,7 +287,7 @@
                       $scope.submenud1='Indicadores por Distrito';
                        $scope.list=3;
                         $scope.verIndicadorZ($scope.distrits[0]);
-                   }
+                   }*/
                    
                  }
                  $scope.verIndicador=function(row){
@@ -211,21 +300,75 @@
                  }
                  $scope.verIndicadorD=function(row){
                        $scope.ciudad=row.id;
-                      crudService.allById('searchByDepartament',row.id).then(function (data) {
-                            $scope.indicadoresDataDep = data;
+                      crudService.allById('searchByDepartament',row.id,1).then(function (data) {
+                            $scope.indicadoresDataDep = data.data;
+                            $scope.maxSize1 = 15;
+                            $scope.totalItems1 = data.total;
+                            $scope.currentPage1 = data.current_page;
+                            $scope.itemsperPage1 = 2;
                         });
                  }
-                 $scope.verIndicadorP=function(row){
-                     $scope.ciudad1=row.id;
-                    crudService.allById('searchByProvincia',row.id).then(function (data) {
-                            $scope.indicadoresDataProv = data;
-                            $log.log($scope.indicadoresDataProv);
+                 $scope.pageChangedDep = function(page) {
+                  //alert(page);
+                    crudService.allById('searchByDepartament',$scope.ciudad,page).then(function (data) {
+                            $scope.indicadoresDataDep = data.data;
+                            $scope.maxSize1 = 15;
+                            $scope.totalItems1 = data.total;
+                            $scope.currentPage1 = data.current_page;
+                            $scope.itemsperPage1 = 2;
                         });
+                 }
+                 
+                 $scope.verIndicadorP=function(row){
+                    // 
+                     if(row == undefined){
+                         $scope.indicadoresDataProv = {};
+                     }else{
+                        $scope.ciudad1=row.id;
+                         crudService.allById('searchByProvincia',row.id,1).then(function (data) {
+                            $scope.indicadoresDataProv = data.data;
+                            $scope.maxSize1 = 15;
+                            $scope.totalItems1 = data.total;
+                            $scope.currentPage1 = data.current_page;
+                            $scope.itemsperPage1 = 2;
+                        });
+                     }
+                    
                  }
                  $scope.verIndicadorZ=function(row){
-                     $scope.ciudad2=row.id;
-                    crudService.allById('searchByDistrito',row.id).then(function (data) {
-                            $scope.indicadoresDataDist = data;
+                     if(row == undefined){
+                        $scope.indicadoresDataDist ={};
+                     }else{
+                        $scope.ciudad2=row.id;
+                        crudService.allById('searchByDistrito',row.id,1).then(function (data) {
+                            $scope.indicadoresDataDist = data.data;
+                            $scope.maxSize1 = 15;
+                            $scope.totalItems1 = data.total;
+                            $scope.currentPage1 = data.current_page;
+                            $scope.itemsperPage1 = 2;
+                        });
+                     }
+                     
+                    
+                 }
+                 $scope.pageChangedProv = function(page) {
+                  //alert(page);
+                    crudService.allById('searchByProvincia',$scope.ciudad1,page).then(function (data) {
+                            $scope.indicadoresDataProv = data.data;
+                            $scope.maxSize1 = 15;
+                            $scope.totalItems1 = data.total;
+                            $scope.currentPage1 = data.current_page;
+                            $scope.itemsperPage1 = 2;
+                        });
+                 }
+                 $scope.pageChangedDist = function(page) {
+                  //alert(page);
+                    crudService.allById('searchByDistrito',$scope.ciudad2,page).then(function (data) {
+                            $scope.indicadoresDataDist = data.data;
+                            $scope.maxSize1 = 15;
+                            $scope.totalItems1 = data.total;
+                            $scope.currentPage1 = data.current_page;
+                            $scope.itemsperPage1 = 2;
                         });
                  }
                 $scope.verIndicadorExcel=function(row){

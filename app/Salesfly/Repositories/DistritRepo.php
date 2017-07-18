@@ -20,5 +20,17 @@ class DistritRepo extends BaseRepo{
         $distrits =Distrit::get();
         return $distrits;
     }
+    public function searchall1($q,$prov)
+    {
+        if(empty($q)){
+           $distrits =Distrit::where('province_id','=',$prov)
+         ->get();
+        }else{
+           $distrits =Distrit::where('nombre','like','%'.$q.'%')
+         ->where('province_id','=',$prov)
+         ->get();
+        }        
+        return $distrits;
+    }
     
 } 

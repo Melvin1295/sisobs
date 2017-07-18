@@ -120,7 +120,7 @@ class IndicatorController extends Controller {
     }
     public function indicators_all($q)
     {
-        $indicators = $this->indicatorRepo->indicators_all();
+        $indicators = $this->indicatorRepo->indicators_all($q);
 
         return response()->json($indicators);
     }

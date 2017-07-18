@@ -83,6 +83,21 @@ class ExcelsController extends Controller {
             $distrits = $this->distritRepo->searchall(30);
             return response()->json($distrits);
     }
+
+     public function getAllDepartament1($q){
+            $departaments = $this->departamentRepo->searchall1($q);
+            return response()->json($departaments);
+    }
+
+    public function getAllProvince1($q,$depId){
+            $provinces = $this->provinceRepo->searchall1($q,$depId);
+            return response()->json($provinces);
+    }
+
+    public function getAllDistrit1($q,$provId){
+            $distrits = $this->distritRepo->searchall1($q,$provId);
+            return response()->json($distrits);
+    }
     
     public function getAllIndicator(){
             $indicators = $this->indicatorRepo->searchall(30);

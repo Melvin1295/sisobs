@@ -75,8 +75,8 @@ background-color:#686C68;
 <li><a href='#'>Sub Link 4</a></li>
 </ul>-->
 </li>
-<li class="@{{submenu3}}"><a href='#'  ng-click="cambiarSumenu(3)">Indicadores Provincia</a></li>
-<li class="@{{submenu4}}"><a href='#'  ng-click="cambiarSumenu(4)">Indicadores Distrito</a>
+<!--<li class="@{{submenu3}}"><a href='#'  ng-click="cambiarSumenu(3)">Indicadores Provincia</a></li>
+<li class="@{{submenu4}}"><a href='#'  ng-click="cambiarSumenu(4)">Indicadores Distrito</a>-->
 <!--<ul>
 <li><a href='#'>Sub Link 1</a></li>
 <li><a href='#'>Sub Link 2</a></li>
@@ -103,7 +103,7 @@ background-color:#686C68;
                                     
                                     <div ng-if="bandera">
                                         <ul class="nav nav-tabs nav-justified" id="slideshow-tabs">
-                                        <li class="active"><a href="#" ng-click="cambiar_pestana(1)"><span></span>@{{submenud1}}</a></li>
+                                        <li class="active"><a ><button ng-click="cambiarSumenu(2)" ng-if="list >= 2  " style="float: left;" class="fa fa-arrow-left btn btn-danger"></button><span></span>@{{submenud1}}</a></li>
                                        </ul>
                                     </div>
                                     
@@ -113,21 +113,52 @@ background-color:#686C68;
                 
                 <!-- BLOG POSTS - END -->
                 
-            
+            <form name="filterForm">
                     <div ng-if="bandera">
-                <div class="vertical-menu" ng-if="list == 0">
-                        <a ng-repeat="row in indicadores" href="#" ng-click="verIndicador(row)" style="">@{{row.titulo}}</a>
+                <div class="panel panel-default" style="padding-bottom: 10px;" ng-if="list == 0">
+                   <input type="text" class="form-control"  ng-model="search" ng-keyup="searchIndicador(search)" placeholder="Buscar Indicador">
+                  <div class="panel-body" style="max-height: 450px;  overflow-y: scroll;">                    
+                    <div class="vertical-menu" ng-if="list == 0">
+                            <a ng-repeat="row in indicadores" href="#" ng-click="verIndicador(row)" style="">@{{row.titulo}}</a>
+                    </div>
+                  </div>
                 </div>
-                <div class="vertical-menu" ng-if="list == 1">
-                        <a ng-repeat="row in departaments" href="#" ng-click="verIndicadorD(row)" style="">@{{row.nombre}}</a>
+                <div class="panel panel-default" style="padding-bottom: 10px;" ng-if="list == 1">
+                   <input type="text" class="form-control"  ng-model="search" ng-keyup="searchDepartament(search)" placeholder="Buscar Departamento">
+                  <div class="panel-body" style="max-height: 450px;  overflow-y: scroll;">                    
+                    <div class="vertical-menu" ng-if="list == 1">
+                            <a ng-repeat="row in departaments" href="#" ng-click="verIndicadorD(row)" style="">
+                            <i class="fa fa-word"></i> @{{row.nombre}}<button ng-click="cambiarSumenu1(3,row,1)" class="fa fa-external-link btn btn-danger" style="margin-left:2%;" aria-hidden="true"></button></a>
+                    </div>
+                  </div>
                 </div>
-                <div class="vertical-menu" ng-if="list == 2">
+                <div class="panel panel-default" style="padding-bottom: 10px;" ng-if="list == 2">
+                   <input type="text" class="form-control"  ng-model="search" ng-keyup="searchProvincias(search)" placeholder="Buscar Provincia">
+                  <div class="panel-body" style="max-height: 450px;  overflow-y: scroll;">                    
+                    <div class="vertical-menu" ng-if="list == 2">
+                            <a ng-repeat="row in provinces" href="#" ng-click="verIndicadorP(row)" style="">
+                            <i class="fa fa-word"></i> @{{row.nombre}} <button ng-click="cambiarSumenu1(4,row,2)" class="fa fa-external-link btn btn-danger" style="margin-left:2%;" aria-hidden="true"></button></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default" style="padding-bottom: 10px;" ng-if="list == 3">
+                   <input type="text" class="form-control"  ng-model="search" ng-keyup="searchDistrit(search)" placeholder="Buscar Distrito">
+                  <div class="panel-body" style="max-height: 450px;  overflow-y: scroll;">                    
+                    <div class="vertical-menu" ng-if="list == 3">
+                            <a ng-repeat="row in distrits" href="#" ng-click="verIndicadorZ(row)" style="">
+                            <i class="fa fa-word"></i> @{{row.nombre}}</a>
+                    </div>
+                  </div>
+                </div>
+
+              <!---<div class="vertical-menu" ng-if="list == 2">
                         <a ng-repeat="row in provinces" href="#" ng-click="verIndicadorP(row)" style="">@{{row.nombre}}</a>
                 </div>
                 <div class="vertical-menu" ng-if="list == 3">
                         <a ng-repeat="row in distrits" href="#" ng-click="verIndicadorZ(row)" style="">@{{row.nombre}}</a>
-                </div>
+                </div>-->
             </div>
+            </form>
             <div ng-if="bandera1">
                 <!--<div class="vertical-menu" ng-disabled="true">
                                           <a href="#" style="">vbn 1</a>
@@ -220,7 +251,33 @@ background-color:#686C68;
                 </div>
                 <!-- SIDEBAR - START -->
                  <div class="col-xs-8" ng-if="list == 1">
-                <div class="blog-post" ng-repeat="item in indicadoresDataDep"  >
+
+                 <!--<div class="form-group"> 
+                      <div class="input-group">
+                          <div class="input-group-addon">@</div>
+                          <input class="form-control" type="text">
+                      </div>
+                 </div>-->
+                 <div class="row" style="margin-top: -42px; width:100%;  margin-bottom: 3px;">
+
+                  <div class="col-xs-6">
+                    <div class="form-group"> 
+                      <div class="input-group" style="margin-bottom: -12px;">
+                          <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                          <input class="form-control" ng-model="test.titulo" type="text">
+                      </div>
+                 </div></div>
+                 </div>
+
+
+                 <!--<div style="margin-top: -40px;  max-width: 40%;  float: right;">
+                  <label>Buscar:</label>
+                 <select class="form-control selectpicker"  >
+                          <option value="0">Todos</option>
+                          <option ng-repeat="row in indicadores" value="row.id">@{{row.titulo}}</option>
+                 </select>
+                 </div>-->
+                <div class="blog-post" ng-repeat="item in indicadoresDataDep | filter:test"  >
                     <div class="row">
                         
                             
@@ -298,11 +355,24 @@ background-color:#686C68;
                        </div>
                      </div>
                     </div>
-                </div>
+                    <div class="box-footer clearfix">
+                  <pagination total-items="totalItems1" ng-model="currentPage1" max-size="maxSize" class="pagination-sm no-margin pull-right" items-per-page="itemsperPage1" boundary-links="true" rotate="false" num-pages="numPages" ng-change="pageChangedDep(currentPage1)"></pagination>
+                </div></div>
                 
                 <!-- SIDEBAR - END -->
                 <div class="col-xs-8" ng-if="list == 2">
-                <div class="blog-post" ng-repeat="item in indicadoresDataProv"  >
+                <div class="row" style="margin-top: -42px; width:100%;  margin-bottom: 3px;">
+                  
+                  <div class="col-xs-6">
+                    <div class="form-group"> 
+                      <div class="input-group" style="margin-bottom: -12px;">
+                          <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                          <input class="form-control" ng-model="test1.titulo" type="text">
+                      </div>
+                 </div></div>
+                 </div>
+
+                <div class="blog-post" ng-repeat="item in indicadoresDataProv | filter:test1"  >
                     <div class="row">
                         
                             
@@ -380,10 +450,21 @@ background-color:#686C68;
                        </div>
                      </div>
                     </div>
+                    <pagination total-items="totalItems1" ng-model="currentPage1" max-size="maxSize" class="pagination-sm no-margin pull-right" items-per-page="itemsperPage1" boundary-links="true" rotate="false" num-pages="numPages" ng-change="pageChangedProv(currentPage1)"></pagination>
                 </div>
                 <!-- SIDEBAR - END -->
                 <div class="col-xs-8" ng-if="list == 3">
-                <div class="blog-post" ng-repeat="item in indicadoresDataDist"  >
+                <div class="row" style="margin-top: -42px; width:100%;  margin-bottom: 3px;">
+                  
+                  <div class="col-xs-6">
+                    <div class="form-group"> 
+                      <div class="input-group" style="margin-bottom: -12px;">
+                          <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                          <input class="form-control" ng-model="test2.titulo" type="text">
+                      </div>
+                 </div></div>
+                 </div>
+                <div class="blog-post" ng-repeat="item in indicadoresDataDist | filter:test2"  >
                     <div class="row">
                         
                             
@@ -461,6 +542,7 @@ background-color:#686C68;
                        </div>
                      </div>
                     </div>
+                    <pagination total-items="totalItems1" ng-model="currentPage1" max-size="maxSize" class="pagination-sm no-margin pull-right" items-per-page="itemsperPage1" boundary-links="true" rotate="false" num-pages="numPages" ng-change="pageChangedDist(currentPage1)"></pagination>
                 </div>
 
             </div>
